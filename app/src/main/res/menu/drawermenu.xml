@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:title="Số giao dịch"
+            android:icon="@drawable/ic_account_balance_wallet_black_24dp"/>
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="Số nợ"
+            android:icon="@drawable/ic_attach_money_black_24dp"/>
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="Xu hướng"
+            android:icon="@drawable/ic_show_chart_black_24dp"/>
+        <item
+            android:id="@+id/nav_manage"
+            android:title="Nhóm"
+            android:icon="@drawable/ic_group_black_24dp"/>
+    </group>
+</menu>
