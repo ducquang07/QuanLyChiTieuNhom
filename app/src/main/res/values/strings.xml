@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Quản lý chi tiêu nhóm</string>
     <string name="title_activity_them_giao_dich">Thêm giao dịch</string>
+
+
+    <!--Thai add-->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="money_total">1,854,000 đ</string>
+    <string name="sync">Bấm để đồng bộ</string>
+    <string name="notification_btn">TODO</string>
 </resources>
