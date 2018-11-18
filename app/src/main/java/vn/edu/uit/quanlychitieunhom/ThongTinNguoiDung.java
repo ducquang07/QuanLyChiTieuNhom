@@ -30,7 +30,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
     private TextView txtgioitinh;
     private TextView txtsodienthoai;
     private String url = "http://192.168.1.103:8080/api/taikhoan/hoaithanh";
-    private Taikhoan taikhoan;
+    //private Taikhoan taikhoan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
             }
         });
     }
-    private void getData(String url)
+    /*private void getData(String url)
      {
          txtgioitinh = findViewById(R.id.txtgioitinh);
          txtngaydangki = findViewById(R.id.txtngaydangki);
@@ -89,7 +89,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
                  });
          requestQueue.add(jsonArrayRequest);
 
-     }
+     }*/
    /* public interface VolleyCallback {
         void onSuccessResponse(Taikhoan result);
     }
