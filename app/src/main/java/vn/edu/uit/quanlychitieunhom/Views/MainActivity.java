@@ -1,4 +1,4 @@
-package vn.edu.uit.quanlychitieunhom;
+package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+
+import vn.edu.uit.quanlychitieunhom.R;
 
 /**
  * A login screen that offers login via email/password.

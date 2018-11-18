@@ -1,4 +1,4 @@
-package vn.edu.uit.quanlychitieunhom;
+package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -18,6 +18,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
+import vn.edu.uit.quanlychitieunhom.R;
+
 
 public class ManHinhChinh extends AppCompatActivity {
 
@@ -27,6 +30,17 @@ public class ManHinhChinh extends AppCompatActivity {
     private ActionBar actionbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private FloatingActionButton fab;
+
+
+
+    protected void ReferenceById(){
+        mDrawerLayout = findViewById(R.id.drawer);
+        toolbar = findViewById(R.id.toolbar);
+        tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
+        viewPager = (ViewPager) findViewById(R.id.view_paper);
+        fab = findViewById(R.id.fb);
+    }
 
 
     @Override
@@ -36,12 +50,11 @@ public class ManHinhChinh extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_chinh);
 
-        mDrawerLayout = findViewById(R.id.drawer);
-        toolbar = findViewById(R.id.toolbar);
-        tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
-        viewPager = (ViewPager) findViewById(R.id.view_paper);
+        /* Get component from view*/
+        ReferenceById();
 
         setSupportActionBar(toolbar);
+
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -55,7 +68,6 @@ public class ManHinhChinh extends AppCompatActivity {
         viewPager.setAdapter(simpleFragmentPagerAdapter);
         viewPager.setCurrentItem(6,false);
 
-        FloatingActionButton fab = findViewById(R.id.fb);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

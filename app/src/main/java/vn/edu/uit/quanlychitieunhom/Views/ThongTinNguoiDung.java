@@ -1,4 +1,4 @@
-package vn.edu.uit.quanlychitieunhom;
+package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -18,6 +18,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+
+import vn.edu.uit.quanlychitieunhom.R;
 
 public class ThongTinNguoiDung extends AppCompatActivity {
 
