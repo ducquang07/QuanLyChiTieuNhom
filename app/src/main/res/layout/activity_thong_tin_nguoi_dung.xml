@@ -22,20 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:background="@color/mautimhong">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icons8_left_24"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"/>
+            android:background="@color/colorPrimary">
 
             <ImageView
 
                 android:layout_width="100dp"
                 android:layout_height="110dp"
-                android:layout_marginLeft="100dp"
+                android:layout_marginStart="125dp"
                 android:layout_marginTop="60dp"
                 android:src="@drawable/hoaanhdao" />
 
@@ -64,18 +57,17 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="36dp"
-                    android:text="Tên hiển thị:" />
+                    android:text="Họ và tên" />
 
                 <TextView
-                    android:id="@+id/txttenhienthi"
+                    android:id="@+id/txttennguoidung"
                     style="@style/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-
-                    android:text="Trần Thị Ngọc Diễm" />
+                    />
 
 
             </RelativeLayout>
@@ -97,12 +89,13 @@
 
                 <TextView
                     style="@style/content"
+                    android:id="@+id/txttentaikhoan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="ngocdiem" />
+                    />
 
 
             </RelativeLayout>
@@ -123,12 +116,13 @@
 
                 <TextView
                     style="@style/content"
+                    android:id="@+id/txtgioitinh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="Nữ" />
+                    />
 
 
             </RelativeLayout>
@@ -145,16 +139,19 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="38dp"
-                    android:text="Ngày sinh:" />
+                    android:text="Ngày sinh:"
+                    />
 
                 <TextView
                     style="@style/content"
+                    android:id="@+id/txtngaysinh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="15/11/1996" />
+
+                    />
 
 
             </RelativeLayout>
@@ -175,15 +172,17 @@
 
                 <TextView
                     style="@style/content"
+                    android:id="@+id/txtsodienthoai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="0123456789" />
+                    />
 
 
             </RelativeLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -198,27 +197,29 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="36dp"
-                    android:text="Ngày đăng kí:" />
+                    android:text="Ngày dang kí:" />
 
                 <TextView
                     style="@style/content"
+                    android:id="@+id/txtngaydangki"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="20/11/2018" />
+                    />
 
 
             </RelativeLayout>
 
             <Button
+                android:id="@+id/btn_doithongtin"
                 android:layout_width="157dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginStart="110dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/background_button_doithongtin"
-                android:text="ĐỔI THÔNG TIN"
+                android:text="ÐỔI THÔNG TIN"
                 android:textColor="@color/mautrang" />
 
 
