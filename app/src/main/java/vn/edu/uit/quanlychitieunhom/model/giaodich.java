@@ -1,16 +1,25 @@
 package vn.edu.uit.quanlychitieunhom.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class giaodich {
-
+    @SerializedName("magiaodich")
     private int magiaodich;
+    @SerializedName("ngaygiaodich")
     private Date ngaygiaodich;
+    @SerializedName("sotien")
     private Double sotien;
+    @SerializedName("ghichu")
     private String ghichu;
+    @SerializedName("anhhoadon")
     private String anhhoadon;
+    @SerializedName("maloaigiaodich")
     private int maloaigiaodich;
+    @SerializedName("tentaikhoan")
     private String tentaikhoan;
+    @SerializedName("manhomchitieu")
     private int manhomchitieu;
 
     public giaodich() {
