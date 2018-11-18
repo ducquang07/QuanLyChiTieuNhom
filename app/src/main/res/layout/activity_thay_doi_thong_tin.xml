@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:baselineAligned="true"
+        android:divider="?android:dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="108dp"
+                android:layout_height="92dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/hoaanhdao" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:divider="?android:dividerHorizontal"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:text="Trần Thị Ngọc Diễm"
+                    android:textSize="14sp"
+                    android:backgroundTint="#4EA1D1"
+                    android:textCursorDrawable="@null"/>
+
+                <ImageButton
+                    android:id="@+id/btnclear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_clear" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:text="012345678"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    android:backgroundTint="#4EA1D1"
+                    android:textCursorDrawable="@null"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_phone" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_radiobuttonchecked"
+                        android:text="Nam"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_radiobuttonchecked"
+                        android:text="Nữ"
+                        android:textSize="15sp" />
+
+                </RadioGroup>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_gender" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/dateDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="15/11/1996"
+                    android:textColor="#111111"
+                    android:textSize="14sp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/pickDate"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@null"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_edit_button" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#DDDDDD"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+            <CheckBox
+                android:id="@+id/ckb_password"
+                android:layout_width="146dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:button="@drawable/custom_radiobuttonchecked"
+                android:text="Đổi mật khẩu" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/background_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="Mật khẩu cũ:" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:backgroundTint="#4EA1D1"
+                android:hint="Nhập mật khẩu cũ"
+                android:inputType="textPassword"
+                android:textColor="#111111"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="Mật khẩu mới" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:backgroundTint="#4EA1D1"
+                android:hint="Nhập mật khẩu mới"
+                android:inputType="textPassword"
+                android:textColor="#111111"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/btn_doithongtin"
+            android:layout_width="157dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_button_doithongtin"
+            android:text="CẬP NHẬT"
+            android:textColor="@color/mautrang" />
+    </LinearLayout>
+</LinearLayout>
