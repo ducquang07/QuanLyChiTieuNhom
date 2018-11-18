@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,21 +19,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ThemGiaoDich"
+            android:name=".Views.ThemGiaoDich"
             android:label="@string/title_activity_them_giao_dich"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
 
         <activity
-            android:name=".ChiTietHoaDon"
+            android:name=".Views.ChiTietHoaDon"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
 
-        <activity android:name=".ThongTinNguoiDung"
+        <activity android:name=".Views.ThongTinNguoiDung"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
 
-        <activity android:name=".ManHinhChinh"
+        <activity android:name=".Views.ManHinhChinh"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
 

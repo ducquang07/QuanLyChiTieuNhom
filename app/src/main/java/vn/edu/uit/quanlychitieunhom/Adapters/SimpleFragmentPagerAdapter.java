@@ -1,9 +1,11 @@
-package vn.edu.uit.quanlychitieunhom;
+package vn.edu.uit.quanlychitieunhom.Adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import vn.edu.uit.quanlychitieunhom.Fragments.FragmentHienThiGiaoDich;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
