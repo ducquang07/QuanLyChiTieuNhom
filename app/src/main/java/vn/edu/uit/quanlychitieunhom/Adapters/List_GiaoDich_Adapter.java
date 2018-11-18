@@ -18,7 +18,7 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
     private Context mContext;
     private List<giaodich> mTransactionList;
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM yyyy");
 
     public List_GiaoDich_Adapter(Context mContext, List<giaodich> mTransactionList) {
         this.mContext = mContext;
@@ -47,7 +47,7 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
         TextView tvTransactionName = (TextView) v.findViewById(R.id.tvTransactionName);
         TextView tvCharge = (TextView) v.findViewById(R.id.tvCharge);
 
-        tvDate.setText(dateFormat.format(mTransactionList.get(position).getNgaygiaodich()));
+        tvDate.setText("Tháng " + dateFormat.format(mTransactionList.get(position).getNgaygiaodich()));
         tvTransactionName.setText(mTransactionList.get(position).getGhichu());
         tvCharge.setText(Double.toString(mTransactionList.get(position).getSotien()));
         v.setTag(mTransactionList.get(position).getMagiaodich());
