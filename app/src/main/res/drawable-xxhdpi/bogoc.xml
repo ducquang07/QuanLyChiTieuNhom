@@ -4,7 +4,7 @@
 
     <!-- Set màu nền-->
     <solid
-        android:color="#0055ff" >
+        android:color="@color/mauxanhla" >
     </solid>
 
     <!-- bán kính đường tròn ở 4 góc -->

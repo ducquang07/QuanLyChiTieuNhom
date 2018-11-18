@@ -2,13 +2,14 @@
 <resources>
     <color name="colorPrimary">#4EA1D1</color>
     <color name="colorPrimaryDark">#448fba</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#4EA1D1</color>
     <color name="colorTextWhite">#ffffff</color>
     <color name="colorTextBlue">#0049a3</color>
     <color name="mautimhong">#990066</color>
     <color name="mautrang">#FFFFFF</color>
     <color name="mauxam">#444444</color>
     <color name="mauden">#131212</color>
+    <color name="mauxanhla">#119d65</color>
 
     <color name="white">#ffffff</color>
     <color name="colorBackground">#EEEEEE</color>

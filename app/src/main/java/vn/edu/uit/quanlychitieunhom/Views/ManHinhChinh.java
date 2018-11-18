@@ -1,10 +1,13 @@
 package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -17,12 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
 import vn.edu.uit.quanlychitieunhom.R;
 
 
-public class ManHinhChinh extends AppCompatActivity {
+public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -31,6 +36,8 @@ public class ManHinhChinh extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private FloatingActionButton fab;
+    private LinearLayout header_container;
+    private NavigationView nav_view;
 
 
 
@@ -40,6 +47,11 @@ public class ManHinhChinh extends AppCompatActivity {
         tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
         viewPager = (ViewPager) findViewById(R.id.view_paper);
         fab = findViewById(R.id.fb);
+//        header_container = findViewById(R.id.header_container);
+        nav_view = findViewById(R.id.nav_view);
+        if (nav_view != null) {
+            nav_view.setNavigationItemSelectedListener(this);
+        }
     }
 
 
@@ -71,8 +83,10 @@ public class ManHinhChinh extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                startActivity(i);
+//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -81,6 +95,15 @@ public class ManHinhChinh extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        header_container = findViewById(R.id.header_container);
+        header_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ThongTinNguoiDung.class);
+                startActivity(i);
+            }
+        });
 
         if(mToggle.onOptionsItemSelected(item)){
             return true;
@@ -114,5 +137,30 @@ public class ManHinhChinh extends AppCompatActivity {
             setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+
+        header_container = findViewById(R.id.header_container);
+        header_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ThongTinNguoiDung.class);
+                startActivity(i);
+            }
+        });
+
+        if(id == R.id.nav_nhom){
+            Toast.makeText(getApplicationContext(),"Nhóm",Toast.LENGTH_LONG).show();
+        }else if(id == R.id.nav_so_no){
+            Toast.makeText(getApplicationContext(),"Sổ nợ",Toast.LENGTH_LONG).show();
+        }else if(id == R.id.nav_xu_huong){
+            Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
+        }else if(id == R.id.nav_so_giao_dich){
+            Toast.makeText(getApplicationContext(),"Sổ giao dịch",Toast.LENGTH_LONG).show();
+        }
+        return true;
     }
 }
