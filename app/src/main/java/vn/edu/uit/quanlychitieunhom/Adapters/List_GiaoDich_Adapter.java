@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
     private List<giaodich> mTransactionList;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM yyyy");
+    NumberFormat  numberFormat = new DecimalFormat("#,###,###");
+
+
 
     public List_GiaoDich_Adapter(Context mContext, List<giaodich> mTransactionList) {
         this.mContext = mContext;
@@ -46,10 +51,16 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
         TextView tvDate = (TextView) v.findViewById(R.id.tvDate);
         TextView tvTransactionName = (TextView) v.findViewById(R.id.tvTransactionName);
         TextView tvCharge = (TextView) v.findViewById(R.id.tvCharge);
+        TextView tvDay = (TextView) v.findViewById(R.id.tvDay);
 
+        tvDay.setText(
+                mTransactionList.get(position).getNgaygiaodich().getDay()>=10?
+                Integer.toString(mTransactionList.get(position).getNgaygiaodich().getDay()):
+                "0"+Integer.toString(mTransactionList.get(position).getNgaygiaodich().getDay())
+        );
         tvDate.setText("Tháng " + dateFormat.format(mTransactionList.get(position).getNgaygiaodich()));
         tvTransactionName.setText(mTransactionList.get(position).getGhichu());
-        tvCharge.setText(Double.toString(mTransactionList.get(position).getSotien()));
+        tvCharge.setText(numberFormat.format(mTransactionList.get(position).getSotien()));
         v.setTag(mTransactionList.get(position).getMagiaodich());
 
         return v;
