@@ -1,4 +1,4 @@
-package vn.edu.uit.quanlychitieunhom;
+package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
+
+import vn.edu.uit.quanlychitieunhom.R;
 
 
 public class ThayDoiThongTinNguoiDung extends AppCompatActivity {

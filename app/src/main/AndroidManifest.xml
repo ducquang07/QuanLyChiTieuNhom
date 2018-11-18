@@ -33,7 +33,7 @@
         <activity android:name=".Views.ThongTinNguoiDung"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
-        <activity android:name=".ThayDoiThongTinNguoiDung"
+        <activity android:name=".Views.ThayDoiThongTinNguoiDung"
             android:parentActivityName=".ThongTinNguoiDung"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="Chỉnh sửa thông tin"

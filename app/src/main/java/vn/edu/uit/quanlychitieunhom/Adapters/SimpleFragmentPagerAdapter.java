@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import vn.edu.uit.quanlychitieunhom.Fragments.FragmentHienThiGiaoDich;
+import vn.edu.uit.quanlychitieunhom.Fragments.Fragment_HienThiGiaoDich;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
@@ -20,7 +20,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        FragmentHienThiGiaoDich fragmentDemo = new FragmentHienThiGiaoDich();
+        Fragment_HienThiGiaoDich fragmentDemo = new Fragment_HienThiGiaoDich();
         return fragmentDemo;
     }
 

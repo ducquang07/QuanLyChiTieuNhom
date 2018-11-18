@@ -3,6 +3,7 @@ package vn.edu.uit.quanlychitieunhom.model;
 import java.util.Date;
 
 public class giaodich {
+
     private int magiaodich;
     private Date ngaygiaodich;
     private Double sotien;

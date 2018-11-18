@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import vn.edu.uit.quanlychitieunhom.R;
 
-public class FragmentHienThiGiaoDich extends Fragment {
-
+public class Fragment_GiaoDich_Item extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_hien_thi_giao_dich,container,false); // ?????????
+        return inflater.inflate(R.layout.fragment_giao_dich_item,container,false);
     }
+
 }
