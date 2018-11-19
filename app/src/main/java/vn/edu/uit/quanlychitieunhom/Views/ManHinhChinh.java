@@ -154,8 +154,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
 
         if(id == R.id.nav_nhom){
             Toast.makeText(getApplicationContext(),"Nhóm",Toast.LENGTH_LONG).show();
-        }else if(id == R.id.nav_so_no){
-            Toast.makeText(getApplicationContext(),"Sổ nợ",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_xu_huong){
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_so_giao_dich){

@@ -9,9 +9,9 @@ import vn.edu.uit.quanlychitieunhom.Fragments.Fragment_HienThiGiaoDich;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] tabTitle = new String[]{"Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng trước","Tháng này","Tương lai","Tháng 1","Tháng 2","Tháng 3","Tháng 4"};
+    private String[] tabTitle = new String[]{"Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng trước","Tháng này","Tương lai"};
     Context context;
-    private int pagecount = 12;
+    private int pagecount = 8;
 
     public SimpleFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);

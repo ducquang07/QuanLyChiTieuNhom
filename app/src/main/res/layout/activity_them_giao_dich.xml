@@ -87,7 +87,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Ghi chú"
-                android:inputType="textPersonName" />
+                android:inputType="text" />
 
         </LinearLayout>
 

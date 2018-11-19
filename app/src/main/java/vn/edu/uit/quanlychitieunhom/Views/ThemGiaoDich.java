@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -16,6 +18,7 @@ import vn.edu.uit.quanlychitieunhom.R;
 public class ThemGiaoDich extends AppCompatActivity {
 
     private EditText txtDate;
+    private Button btnThem;
     private int mYear;
     private int mMonth;
     private int mDay;
@@ -29,6 +32,7 @@ public class ThemGiaoDich extends AppCompatActivity {
 
         // Capture our View elements
         txtDate = (EditText) findViewById(R.id.txtDate);
+        btnThem = findViewById(R.id.btnThem);
 
         txtDate.setInputType(InputType.TYPE_NULL);
 
@@ -47,6 +51,13 @@ public class ThemGiaoDich extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+
+        btnThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Thêm giao dịch", Toast.LENGTH_LONG).show();
+            }
+        });
 
         txtDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
