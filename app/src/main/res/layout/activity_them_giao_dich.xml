@@ -133,7 +133,7 @@
             android:id="@+id/btnThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bogoc"
+            android:background="@drawable/btn"
             android:text="Thêm"
             android:textColor="@color/colorTextWhite" />
     </LinearLayout>

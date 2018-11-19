@@ -21,28 +21,27 @@
         </activity>
         <activity
             android:name=".Views.ThemGiaoDich"
+            android:parentActivityName=".Views.ManHinhChinh"
             android:label="@string/title_activity_them_giao_dich"
-            android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
 
         <activity
             android:name=".Views.ChiTietHoaDon"
+            android:parentActivityName=".Views.ManHinhChinh"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
 
         <activity android:name=".Views.ThongTinNguoiDung"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Views.ManHinhChinh"
             android:exported="true"/>
         <activity android:name=".Views.ThayDoiThongTinNguoiDung"
-            android:parentActivityName=".ThongTinNguoiDung"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Views.ThongTinNguoiDung"
             android:label="Chỉnh sửa thông tin"
             android:exported="true"/>
 
         <activity android:name=".Views.ManHinhChinh"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
-
 
     </application>
 
