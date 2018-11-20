@@ -13,6 +13,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +36,10 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     private ListView lvTransaction;
     private List_GiaoDich_Adapter list_giaoDich_adapter;
     private List<giaodich> List_GiaoDich;
+    private List<String> label_date;
+
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
     @Nullable
@@ -42,11 +49,38 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         /* Get list view component from view */
         lvTransaction = (ListView) view.findViewById(R.id.lv_transaction);
 
+        List_GiaoDich = new ArrayList<>();
 
-        getGiaoDich();
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
+
+        /*Pass param for list_adapter*/
+        list_giaoDich_adapter = new List_GiaoDich_Adapter(getContext(),List_GiaoDich);
+
+        /*Set adapter for listview*/
+        lvTransaction.setAdapter(list_giaoDich_adapter);
+
+//        getGiaoDich();
 
         return view;
     }
+
+
+
+
+
+
+
+
+
 
     /*Get list giao dich by request API*/
     public void getGiaoDich(){
@@ -57,7 +91,18 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                 @Override
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
                     List_GiaoDich = response.body();
+
+//                    for (giaodich item: List_GiaoDich) {
+//                        String temp = dateFormat.format(item.getNgaygiaodich());
+//                        if(!label_date.contains(temp)){
+//                            label_date.add(dateFormat.format(temp));
+//                            list_giaodichpage.add( new GiaoDichPage(temp,item));
+//                        }
+//                    }
+
+                    /*TO DO*/
                     GeneratedAdapter();
+
                 }
 
                 @Override

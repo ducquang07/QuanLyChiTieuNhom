@@ -100,4 +100,17 @@ public class giaodich {
         this.manhomchitieu = manhomchitieu;
     }
 
+    @Override
+    public String toString() {
+        return "giaodich{" +
+                "magiaodich=" + magiaodich +
+                ", ngaygiaodich=" + ngaygiaodich +
+                ", sotien=" + sotien +
+                ", ghichu='" + ghichu + '\'' +
+                ", anhhoadon='" + anhhoadon + '\'' +
+                ", maloaigiaodich=" + maloaigiaodich +
+                ", tentaikhoan='" + tentaikhoan + '\'' +
+                ", manhomchitieu=" + manhomchitieu +
+                '}';
+    }
 }
