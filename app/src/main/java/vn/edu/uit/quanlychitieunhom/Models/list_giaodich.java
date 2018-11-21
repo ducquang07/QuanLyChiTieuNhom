@@ -1,5 +1,6 @@
 package vn.edu.uit.quanlychitieunhom.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,10 @@ public class list_giaodich {
         this.danhsachchitieu = danhsachchitieu;
     }
 
-
+    public list_giaodich(Date ngaygiaodich) {
+        this.ngaygiaodich = ngaygiaodich;
+        this.danhsachchitieu = new ArrayList<>();
+    }
 
     public Date getNgaygiaodich() {
         return ngaygiaodich;
@@ -30,6 +34,22 @@ public class list_giaodich {
         this.danhsachchitieu = danhsachchitieu;
     }
 
+    public void addToDanhsachchitieu(giaodich giaodich){
+        this.danhsachchitieu.add(giaodich);
+    }
+
+    @Override
+    public String toString() {
+        return "list_giaodich{" +
+                "ngaygiaodich=" + ngaygiaodich +
+                ", danhsachchitieu=" + danhsachchitieu +
+                '}';
+    }
+
+    public void parse ( list_giaodich other ){
+        this.ngaygiaodich = other.getNgaygiaodich();
+        this.danhsachchitieu = other.getDanhsachchitieu();
+    }
 
 
 }

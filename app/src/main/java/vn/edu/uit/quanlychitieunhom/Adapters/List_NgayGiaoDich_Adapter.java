@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import vn.edu.uit.quanlychitieunhom.Models.list_giaodich;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Utils.Util;
 import vn.edu.uit.quanlychitieunhom.Models.giaodich;
@@ -26,6 +27,7 @@ public class List_NgayGiaoDich_Adapter extends BaseAdapter {
     private Context mContext;
     private List<giaodich> mTransactionList;
     private ArrayList<giaodich> list_itemGiaodich;
+    private List<list_giaodich>mDateTransactionList;
 
     private FragmentActivity myContext;
 
@@ -33,19 +35,19 @@ public class List_NgayGiaoDich_Adapter extends BaseAdapter {
 
 
 
-    public List_NgayGiaoDich_Adapter(Context mContext, List<giaodich> mTransactionList) {
+    public List_NgayGiaoDich_Adapter(Context mContext, List<list_giaodich> mDateTransactionList) {
         this.mContext = mContext;
-        this.mTransactionList = mTransactionList;
+        this.mDateTransactionList = mDateTransactionList;
     }
 
     @Override
     public int getCount() {
-        return mTransactionList.size();
+        return mDateTransactionList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mTransactionList.get(position);
+        return mDateTransactionList.get(position);
     }
 
     @Override
@@ -56,30 +58,24 @@ public class List_NgayGiaoDich_Adapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final View v = View.inflate(mContext,R.layout.fragment_giao_dich,null);
+
         TextView tvDate = (TextView) v.findViewById(R.id.tvDate);
         TextView tvDay = (TextView) v.findViewById(R.id.tvDay);
-
-        tvDay.setText(
-                mTransactionList.get(position).getNgaygiaodich().getDay()>=10?
-                Integer.toString(mTransactionList.get(position).getNgaygiaodich().getDay()):
-                "0"+Integer.toString(mTransactionList.get(position).getNgaygiaodich().getDay())
-        );
-        tvDate.setText("Tháng " + util.DateStringByFormat(mTransactionList.get(position).getNgaygiaodich(),"MM yyyy"));
-        v.setTag(mTransactionList.get(position).getMagiaodich());
-
-
         ListView lv_item = (ListView) v.findViewById(R.id.lv_item);
 
-        list_itemGiaodich = new ArrayList<>();
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something1","no image",1,"Thai Nguyen",1));
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something2","no image",1,"Thai Nguyen",1));
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something3","no image",1,"Thai Nguyen",1));
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something4","no image",1,"Thai Nguyen",1));
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something5","no image",1,"Thai Nguyen",1));
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something6","no image",1,"Thai Nguyen",1));
-        list_itemGiaodich.add(new giaodich(001,new Date(), (double) 2000,"Note something7","no image",1,"Thai Nguyen",1));
 
+        tvDay.setText(
+                mDateTransactionList.get(position).getNgaygiaodich().getDate()>=10?
+                Integer.toString(mDateTransactionList.get(position).getNgaygiaodich().getDate()):
+                "0"+Integer.toString(mDateTransactionList.get(position).getNgaygiaodich().getDate())
+        );
+
+        tvDate.setText("Tháng " + util.DateStringByFormat(mDateTransactionList.get(position).getNgaygiaodich(),"MM yyyy"));
+
+
+
+        list_itemGiaodich = new ArrayList<>();
+        list_itemGiaodich = (ArrayList<giaodich>) mDateTransactionList.get(position).getDanhsachchitieu();
 
         /*Pass param for list_adapter*/
         List_ItemGiaoDich_Adapter list_itemGiaoDich_adapter= new List_ItemGiaoDich_Adapter(v.getContext(),list_itemGiaodich);
@@ -94,4 +90,6 @@ public class List_NgayGiaoDich_Adapter extends BaseAdapter {
         container.setLayoutParams(param);
         return v;
     }
+
+
 }

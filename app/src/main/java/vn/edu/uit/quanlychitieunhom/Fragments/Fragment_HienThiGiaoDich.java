@@ -21,10 +21,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.edu.uit.quanlychitieunhom.Adapters.List_NgayGiaoDich_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
+import vn.edu.uit.quanlychitieunhom.Models.list_giaodich;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.GiaoDich_Service;
 import vn.edu.uit.quanlychitieunhom.Models.giaodich;
-
+import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 
 public class Fragment_HienThiGiaoDich extends Fragment {
@@ -32,6 +33,8 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     private ListView lvTransaction;
     private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
     private List<giaodich> List_GiaoDich;
+    private List<list_giaodich> List_GiaoDichTheoNgay;
+    Util util = new Util();
 
 
 
@@ -45,7 +48,6 @@ public class Fragment_HienThiGiaoDich extends Fragment {
 
         List_GiaoDich = new ArrayList<>();
         getGiaoDich();
-        GeneratedAdapter();
         return view;
     }
 
@@ -58,16 +60,7 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                 @Override
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
                     List_GiaoDich = response.body();
-
-//                    for (giaodich item: List_GiaoDich) {
-//                        String temp = dateFormat.format(item.getNgaygiaodich());
-//                        if(!label_date.contains(temp)){
-//                            label_date.add(dateFormat.format(temp));
-//                            list_giaodichpage.add( new GiaoDichPage(temp,item));
-//                        }
-//                    }
-
-                    /*TO DO*/
+                    List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
 
                 }
@@ -86,7 +79,7 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     /*Create List Giao Dich adapter to set up listview */
     public void GeneratedAdapter(){
         /*Pass param for list_adapter*/
-        list_ngaygiaoDich_adapter = new List_NgayGiaoDich_Adapter(getContext(),List_GiaoDich);
+        list_ngaygiaoDich_adapter = new List_NgayGiaoDich_Adapter(getContext(),List_GiaoDichTheoNgay);
 
         /*Set adapter for listview*/
         lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
