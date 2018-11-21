@@ -1,22 +1,20 @@
 package vn.edu.uit.quanlychitieunhom.Adapters;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 
-import vn.edu.uit.quanlychitieunhom.Fragments.Fragment_GiaoDich_Item;
 import vn.edu.uit.quanlychitieunhom.R;
+import vn.edu.uit.quanlychitieunhom.Views.ChiTietHoaDon;
 import vn.edu.uit.quanlychitieunhom.model.giaodich;
 
 public class List_ItemGiaoDich_Adapter extends BaseAdapter {
@@ -47,7 +45,7 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
 
         View v = View.inflate(mContext,R.layout.fragment_giao_dich_item,null);
         TextView tvTransactionName = (TextView) v.findViewById(R.id.tvTransactionName);
@@ -55,6 +53,14 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
 
         tvTransactionName.setText(list_itemGiaodich.get(position).getGhichu());
         tvCharge.setText(numberFormat.format(list_itemGiaodich.get(position).getSotien()));
+        LinearLayout ln_item = (LinearLayout) v.findViewById(R.id.ln_item);
+        ln_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ChiTietHoaDon.class);
+                mContext.startActivity(i);
+            }
+        });
         return v;
     }
 }

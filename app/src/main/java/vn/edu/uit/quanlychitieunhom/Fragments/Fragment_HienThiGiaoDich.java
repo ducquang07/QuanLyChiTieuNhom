@@ -1,6 +1,5 @@
 package vn.edu.uit.quanlychitieunhom.Fragments;
 
-import android.arch.lifecycle.GeneratedAdapter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,8 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +20,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import vn.edu.uit.quanlychitieunhom.Adapters.List_GiaoDich_Adapter;
+import vn.edu.uit.quanlychitieunhom.Adapters.List_NgayGiaoDich_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.GiaoDich_Service;
@@ -34,7 +31,7 @@ import vn.edu.uit.quanlychitieunhom.model.giaodich;
 public class Fragment_HienThiGiaoDich extends Fragment {
 
     private ListView lvTransaction;
-    private List_GiaoDich_Adapter list_giaoDich_adapter;
+    private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
     private List<giaodich> List_GiaoDich;
     private List<String> label_date;
 
@@ -63,10 +60,10 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
 
         /*Pass param for list_adapter*/
-        list_giaoDich_adapter = new List_GiaoDich_Adapter(getContext(),List_GiaoDich);
+        list_ngaygiaoDich_adapter = new List_NgayGiaoDich_Adapter(getContext(),List_GiaoDich);
 
         /*Set adapter for listview*/
-        lvTransaction.setAdapter(list_giaoDich_adapter);
+        lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
 
 //        getGiaoDich();
 
@@ -119,9 +116,9 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     /*Create List Giao Dich adapter to set up listview */
     public void GeneratedAdapter(){
         /*Pass param for list_adapter*/
-        list_giaoDich_adapter = new List_GiaoDich_Adapter(getContext(),List_GiaoDich);
+        list_ngaygiaoDich_adapter = new List_NgayGiaoDich_Adapter(getContext(),List_GiaoDich);
 
         /*Set adapter for listview*/
-        lvTransaction.setAdapter(list_giaoDich_adapter);
+        lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
     }
 }

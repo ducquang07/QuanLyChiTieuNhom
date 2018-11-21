@@ -21,7 +21,8 @@ import java.util.List;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.model.giaodich;
 
-public class List_GiaoDich_Adapter extends BaseAdapter {
+
+public class List_NgayGiaoDich_Adapter extends BaseAdapter {
 
     private Context mContext;
     private List<giaodich> mTransactionList;
@@ -34,7 +35,7 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
 
 
 
-    public List_GiaoDich_Adapter(Context mContext, List<giaodich> mTransactionList) {
+    public List_NgayGiaoDich_Adapter(Context mContext, List<giaodich> mTransactionList) {
         this.mContext = mContext;
         this.mTransactionList = mTransactionList;
     }
@@ -56,10 +57,8 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = View.inflate(mContext,R.layout.fragment_giao_dich,null);
+        final View v = View.inflate(mContext,R.layout.fragment_giao_dich,null);
         TextView tvDate = (TextView) v.findViewById(R.id.tvDate);
-//        TextView tvTransactionName = (TextView) v.findViewById(R.id.tvTransactionName);
-//        TextView tvCharge = (TextView) v.findViewById(R.id.tvCharge);
         TextView tvDay = (TextView) v.findViewById(R.id.tvDay);
 
         tvDay.setText(
@@ -68,8 +67,6 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
                 "0"+Integer.toString(mTransactionList.get(position).getNgaygiaodich().getDay())
         );
         tvDate.setText("Tháng " + dateFormat.format(mTransactionList.get(position).getNgaygiaodich()));
-//        tvTransactionName.setText(mTransactionList.get(position).getGhichu());
-//        tvCharge.setText(numberFormat.format(mTransactionList.get(position).getSotien()));
         v.setTag(mTransactionList.get(position).getMagiaodich());
 
 
@@ -98,6 +95,8 @@ public class List_GiaoDich_Adapter extends BaseAdapter {
         ViewGroup.LayoutParams param = container.getLayoutParams();
         param.height= 145*list_itemGiaodich.size();
         container.setLayoutParams(param);
+
+
 
         return v;
     }
