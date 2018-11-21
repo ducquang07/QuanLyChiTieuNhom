@@ -9,20 +9,19 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+
 import java.util.List;
 
 import vn.edu.uit.quanlychitieunhom.R;
+import vn.edu.uit.quanlychitieunhom.Utils.Util;
 import vn.edu.uit.quanlychitieunhom.Views.ChiTietHoaDon;
-import vn.edu.uit.quanlychitieunhom.model.giaodich;
+import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 
 public class List_ItemGiaoDich_Adapter extends BaseAdapter {
 
     private Context mContext;
     private List<giaodich> list_itemGiaodich;
-    NumberFormat numberFormat = new DecimalFormat("#,###,###");
-
+    Util util = new Util();
 
     public List_ItemGiaoDich_Adapter(Context mContext, List<giaodich> list_itemGiaodich) {
         this.mContext = mContext;
@@ -52,7 +51,8 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
         TextView tvCharge = (TextView) v.findViewById(R.id.tvCharge);
 
         tvTransactionName.setText(list_itemGiaodich.get(position).getGhichu());
-        tvCharge.setText(numberFormat.format(list_itemGiaodich.get(position).getSotien()));
+//        tvCharge.setText(numberFormat.format(list_itemGiaodich.get(position).getSotien()));
+        tvCharge.setText(util.DoubleToStringByFormat(list_itemGiaodich.get(position).getSotien(),"#,###,###"));
         LinearLayout ln_item = (LinearLayout) v.findViewById(R.id.ln_item);
         ln_item.setOnClickListener(new View.OnClickListener() {
             @Override

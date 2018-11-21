@@ -1,4 +1,4 @@
-package vn.edu.uit.quanlychitieunhom.model;
+package vn.edu.uit.quanlychitieunhom.Models;
 
 public class nhomchitieu {
     private int manhomchitieu;

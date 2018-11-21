@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +23,7 @@ import vn.edu.uit.quanlychitieunhom.Adapters.List_NgayGiaoDich_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.GiaoDich_Service;
-import vn.edu.uit.quanlychitieunhom.model.giaodich;
+import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 
 
 
@@ -33,10 +32,8 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     private ListView lvTransaction;
     private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
     private List<giaodich> List_GiaoDich;
-    private List<String> label_date;
 
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
     @Nullable
@@ -47,37 +44,10 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         lvTransaction = (ListView) view.findViewById(R.id.lv_transaction);
 
         List_GiaoDich = new ArrayList<>();
-
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-        List_GiaoDich.add(new giaodich(001,new Date(), (double) 2000,"Note something","no image",1,"Thai Nguyen",1));
-
-        /*Pass param for list_adapter*/
-        list_ngaygiaoDich_adapter = new List_NgayGiaoDich_Adapter(getContext(),List_GiaoDich);
-
-        /*Set adapter for listview*/
-        lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
-
-//        getGiaoDich();
-
+        getGiaoDich();
+        GeneratedAdapter();
         return view;
     }
-
-
-
-
-
-
-
-
-
 
     /*Get list giao dich by request API*/
     public void getGiaoDich(){
