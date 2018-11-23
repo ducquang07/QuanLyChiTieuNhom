@@ -40,9 +40,6 @@ public class ThongTinNguoiDung extends AppCompatActivity {
         setContentView(R.layout.activity_thong_tin_nguoi_dung);
         addControls();
         // getData(url);
-
-
-
     }
 
     private void addControls() {

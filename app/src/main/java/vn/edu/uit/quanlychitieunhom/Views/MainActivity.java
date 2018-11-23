@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity  {
     private View mProgressView;
     private View mLoginFormView;
     private Button btnLogin;
+    private Button btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -332,6 +333,15 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), ManHinhChinh.class);
+                startActivity(i);
+            }
+        });
+
+        btnRegister =findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), DangKiTaiKhoan.class);
                 startActivity(i);
             }
         });

@@ -3,6 +3,7 @@ package vn.edu.uit.quanlychitieunhom.Adapters;
 import android.content.Context;
 import android.content.Intent;
 
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -44,7 +45,7 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
 
         View v = View.inflate(mContext,R.layout.fragment_giao_dich_item,null);
         TextView tvTransactionName = (TextView) v.findViewById(R.id.tvTransactionName);
@@ -57,7 +58,12 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
         ln_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("create_by","Thái Nguyễn");
+                bundle.putDouble("sotien",list_itemGiaodich.get(position).getSotien());
+                bundle.putSerializable("ngaygiaodich",list_itemGiaodich.get(position).getNgaygiaodich());
                 Intent i = new Intent(v.getContext(), ChiTietHoaDon.class);
+                i.putExtras(bundle);
                 mContext.startActivity(i);
             }
         });

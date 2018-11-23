@@ -43,6 +43,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"/>
 
+        <activity android:name=".Views.DangKiTaiKhoan"
+            android:parentActivityName=".Views.MainActivity"
+            android:label="Đăng kí tài khoản"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
