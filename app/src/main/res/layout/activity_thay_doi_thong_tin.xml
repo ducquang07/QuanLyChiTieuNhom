@@ -120,7 +120,7 @@
                             android:button="@drawable/custom_radiobuttonchecked"
                             android:text="Nữ"
                             android:textSize="15sp"
-                            android:checked="true"/>
+                            />
 
                     </RadioGroup>
 
