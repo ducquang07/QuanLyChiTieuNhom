@@ -1,13 +1,21 @@
 package vn.edu.uit.quanlychitieunhom.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class kychitieu {
+    @SerializedName("makychitieu")
     private int makychitieu;
+    @SerializedName("tenkichitieu")
     private String tenkychitieu;
+    @SerializedName("tungay")
     private Date tungay;
+    @SerializedName("denngay")
     private Date denngay;
+    @SerializedName("hanmucchitieu")
     private Double hanmucchitieu;
+    @SerializedName("manhomchitieu")
     private int manhomchitieu;
 
     public kychitieu() {
@@ -69,4 +77,5 @@ public class kychitieu {
     public void setManhomchitieu(int manhomchitieu) {
         this.manhomchitieu = manhomchitieu;
     }
+
 }
