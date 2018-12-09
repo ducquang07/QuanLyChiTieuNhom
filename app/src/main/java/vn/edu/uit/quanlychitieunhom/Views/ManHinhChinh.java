@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -25,8 +26,16 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
+import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
+import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
 import vn.edu.uit.quanlychitieunhom.R;
+import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -76,22 +85,36 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setDisplayShowTitleEnabled(false);
-
         tabLayout.setupWithViewPager(viewPager);
-        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),this);
-        viewPager.setAdapter(simpleFragmentPagerAdapter);
-        viewPager.setCurrentItem(6,false);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
-                startActivity(i);
-//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            }
-        });
 
+        try {
+            KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
+            Call<List<kychitieu>> call = service.getAllKyChiTieu();
+            call.enqueue(new Callback<List<kychitieu>>() {
+                @Override
+                public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
+
+                    SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
+                    viewPager.setAdapter(simpleFragmentPagerAdapter);
+                    viewPager.setCurrentItem(6,false);
+
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                            startActivity(i);
+                        }
+                    });
+                }
+                @Override
+                public void onFailure(Call<List<kychitieu>> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.d("Test", "Exception");
+        }
     }
 
 

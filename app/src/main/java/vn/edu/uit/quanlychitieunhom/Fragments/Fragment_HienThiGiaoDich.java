@@ -36,8 +36,8 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     private List<list_giaodich> List_GiaoDichTheoNgay;
     Util util = new Util();
 
-
-
+    public Fragment_HienThiGiaoDich() {
+    }
 
     @Nullable
     @Override
@@ -62,13 +62,11 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                     List_GiaoDich = response.body();
                     List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
-
                 }
 
                 @Override
                 public void onFailure(Call<List<giaodich>> call, Throwable t) {
-//                    progressDoalog.dismiss();
-                    Toast.makeText(getContext(),"Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
