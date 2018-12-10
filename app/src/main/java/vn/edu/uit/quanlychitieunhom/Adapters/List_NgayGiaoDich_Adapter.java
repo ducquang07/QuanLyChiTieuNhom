@@ -62,7 +62,7 @@ public class List_NgayGiaoDich_Adapter extends BaseAdapter {
         TextView tvDate = (TextView) v.findViewById(R.id.tvDate);
         TextView tvDay = (TextView) v.findViewById(R.id.tvDay);
         ListView lv_item = (ListView) v.findViewById(R.id.lv_item);
-
+        TextView lv_Total = (TextView) v.findViewById(R.id.tvTotal);
 
         tvDay.setText(
                 mDateTransactionList.get(position).getNgaygiaodich().getDate()>=10?
@@ -72,7 +72,7 @@ public class List_NgayGiaoDich_Adapter extends BaseAdapter {
 
         tvDate.setText("Tháng " + util.DateStringByFormat(mDateTransactionList.get(position).getNgaygiaodich(),"MM yyyy"));
 
-
+        lv_Total.setText(String.valueOf(mDateTransactionList.get(position).TongTien()));
 
         list_itemGiaodich = new ArrayList<>();
         list_itemGiaodich = (ArrayList<giaodich>) mDateTransactionList.get(position).getDanhsachchitieu();

@@ -33,8 +33,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int i) {
-        Fragment_HienThiGiaoDich fragmentDemo = new Fragment_HienThiGiaoDich();
+    public Fragment getItem(int position) {
+        Fragment_HienThiGiaoDich fragmentDemo = new Fragment_HienThiGiaoDich(List_KyChiTieu.get(position).getMakychitieu());
         return fragmentDemo;
     }
 

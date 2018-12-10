@@ -1,5 +1,6 @@
 package vn.edu.uit.quanlychitieunhom.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,15 +29,18 @@ import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 
+@SuppressLint("ValidFragment")
 public class Fragment_HienThiGiaoDich extends Fragment {
 
+    private int MaKyChiTieu;
     private ListView lvTransaction;
     private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
     private List<giaodich> List_GiaoDich;
     private List<list_giaodich> List_GiaoDichTheoNgay;
     Util util = new Util();
 
-    public Fragment_HienThiGiaoDich() {
+    public Fragment_HienThiGiaoDich(int MaKyChiTieu) {
+        this.MaKyChiTieu = MaKyChiTieu;
     }
 
     @Nullable
@@ -45,7 +49,6 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hien_thi_giao_dich,container,false);
         /* Get list view component from view */
         lvTransaction = (ListView) view.findViewById(R.id.lv_transaction);
-
         List_GiaoDich = new ArrayList<>();
         getGiaoDich();
         return view;
@@ -55,15 +58,15 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     public void getGiaoDich(){
         try {
             GiaoDich_Service service = RetrofitClientInstance.getRetrofitInstance().create(GiaoDich_Service.class);
-            Call<List<giaodich>> call = service.getAllTransaction();
+            Call<List<giaodich>> call = service.getGiaoDichOfKyChiTieu(this.MaKyChiTieu);
             call.enqueue(new Callback<List<giaodich>>() {
                 @Override
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
                     List_GiaoDich = response.body();
+                    Log.d("test", String.valueOf(MaKyChiTieu));
                     List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
                 }
-
                 @Override
                 public void onFailure(Call<List<giaodich>> call, Throwable t) {
                     Toast.makeText(getContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
