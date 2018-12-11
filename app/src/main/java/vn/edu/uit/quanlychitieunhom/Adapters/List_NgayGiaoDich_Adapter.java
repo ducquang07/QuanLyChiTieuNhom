@@ -72,7 +72,7 @@ public class List_NgayGiaoDich_Adapter extends BaseAdapter {
 
         tvDate.setText("Tháng " + util.DateStringByFormat(mDateTransactionList.get(position).getNgaygiaodich(),"MM yyyy"));
 
-        lv_Total.setText(String.valueOf(mDateTransactionList.get(position).TongTien()));
+        lv_Total.setText(util.IntegerToStringByFormat(mDateTransactionList.get(position).TongTien(),"#,###")+"đ");
 
         list_itemGiaodich = new ArrayList<>();
         list_itemGiaodich = (ArrayList<giaodich>) mDateTransactionList.get(position).getDanhsachchitieu();

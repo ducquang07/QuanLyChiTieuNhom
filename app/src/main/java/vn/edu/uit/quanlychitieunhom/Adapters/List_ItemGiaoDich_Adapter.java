@@ -53,15 +53,18 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
 
         tvTransactionName.setText(list_itemGiaodich.get(position).getGhichu());
 //        tvCharge.setText(numberFormat.format(list_itemGiaodich.get(position).getSotien()));
-        tvCharge.setText(util.DoubleToStringByFormat(list_itemGiaodich.get(position).getSotien(),"#,###,###"));
+        tvCharge.setText(util.DoubleToStringByFormat(list_itemGiaodich.get(position).getSotien(),"#,###,###")+"đ");
         LinearLayout ln_item = (LinearLayout) v.findViewById(R.id.ln_item);
         ln_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("create_by","Thái Nguyễn");
+                bundle.putString("tentaikhoan",list_itemGiaodich.get(position).getTaikhoan().getTentaikhoan());
+                bundle.putString("tennguoidung",list_itemGiaodich.get(position).getTaikhoan().getTennguoidung());
                 bundle.putDouble("sotien",list_itemGiaodich.get(position).getSotien());
                 bundle.putSerializable("ngaygiaodich",list_itemGiaodich.get(position).getNgaygiaodich());
+                bundle.putInt("manhomchitieu",list_itemGiaodich.get(position).getNhomchitieu().getManhomchitieu());
+                bundle.putString("tennhomchitieu",list_itemGiaodich.get(position).getNhomchitieu().getTennhomchitieu());
                 Intent i = new Intent(v.getContext(), ChiTietHoaDon.class);
                 i.putExtras(bundle);
                 mContext.startActivity(i);

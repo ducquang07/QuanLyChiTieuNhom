@@ -39,6 +39,15 @@ public class Util {
         return temp;
     }
 
+    public String IntegerToStringByFormat(int num, String format){
+        numberFormat = new DecimalFormat(format);
+        String temp = numberFormat.format(num);
+        if(temp.isEmpty()){
+            return "null";
+        }
+        return temp;
+    }
+
 
 
     public List<list_giaodich> deployKyChiTieu(List<giaodich> inputGiaoDich){

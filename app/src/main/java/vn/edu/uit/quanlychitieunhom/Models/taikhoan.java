@@ -99,4 +99,23 @@ public class taikhoan {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    @Override
+    public String toString() {
+        if(this.tentaikhoan != null && !this.tentaikhoan.equals("")){
+            return "taikhoan{" +
+                    "tentaikhoan='" + tentaikhoan + '\'' +
+                    ", matkhau='" + matkhau + '\'' +
+                    ", tennguoidung='" + tennguoidung + '\'' +
+                    ", ngaysinh=" + ngaysinh +
+                    ", gioitinh='" + gioitinh + '\'' +
+                    ", sodienthoai='" + sodienthoai + '\'' +
+                    ", email='" + email + '\'' +
+                    ", ngaydangky=" + ngaydangky +
+                    ", avatar='" + avatar + '\'' +
+                    '}';
+        }
+        return "null";
+
+    }
 }

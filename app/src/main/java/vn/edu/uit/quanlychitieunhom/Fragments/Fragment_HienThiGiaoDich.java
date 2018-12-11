@@ -63,7 +63,7 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                 @Override
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
                     List_GiaoDich = response.body();
-                    Log.d("test", String.valueOf(MaKyChiTieu));
+                    Log.d("test", String.valueOf(response.body()));
                     List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
                 }
