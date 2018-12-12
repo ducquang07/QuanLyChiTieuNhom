@@ -30,7 +30,6 @@ import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 
-@SuppressLint("ValidFragment")
 public class Fragment_HienThiGiaoDich extends Fragment {
     ProgressBar progressBar;
     private int MaKyChiTieu;
@@ -40,9 +39,7 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     private List<list_giaodich> List_GiaoDichTheoNgay;
     Util util = new Util();
 
-    public Fragment_HienThiGiaoDich(int MaKyChiTieu) {
-        this.MaKyChiTieu = MaKyChiTieu;
-    }
+
 
     @Nullable
     @Override
@@ -56,6 +53,10 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         List_GiaoDich = new ArrayList<>();
         getGiaoDich();
         return view;
+    }
+
+    public void setMaKiChiTieu(int makichitieu){
+        this.MaKyChiTieu = makichitieu;
     }
 
     /*Get list giao dich by request API*/

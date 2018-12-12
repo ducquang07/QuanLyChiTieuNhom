@@ -1,6 +1,9 @@
 package vn.edu.uit.quanlychitieunhom.Views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -30,5 +33,10 @@ public class ChiTietHoaDon extends AppCompatActivity {
         sotien.setText(util.DoubleToStringByFormat(i.getDoubleExtra("sotien",0),"#,###")+"đ");
         ngaygiaodich.setText(util.DateStringByFormat(ngay,"dd/MM/yyyy"));
         tennhomchitieu.setText(i.getStringExtra("tennhomchitieu"));
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(getString(R.string.user));
+        editor.apply();
     }
 }

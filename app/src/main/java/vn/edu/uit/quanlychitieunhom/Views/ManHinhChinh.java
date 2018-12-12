@@ -1,10 +1,15 @@
 package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -26,6 +31,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -49,7 +56,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private FloatingActionButton fab;
     private LinearLayout header_container;
     private NavigationView nav_view;
-
 
 
     protected void ReferenceById(){
@@ -87,18 +93,15 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         actionbar.setDisplayShowTitleEnabled(false);
         tabLayout.setupWithViewPager(viewPager);
 
-
         try {
             KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
             Call<List<kychitieu>> call = service.getAllKyChiTieu();
             call.enqueue(new Callback<List<kychitieu>>() {
                 @Override
                 public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
-
                     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
                     viewPager.setAdapter(simpleFragmentPagerAdapter);
                     viewPager.setCurrentItem(6,false);
-
                     fab.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -185,5 +188,26 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Sổ giao dịch",Toast.LENGTH_LONG).show();
         }
         return true;
+    }
+
+    boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

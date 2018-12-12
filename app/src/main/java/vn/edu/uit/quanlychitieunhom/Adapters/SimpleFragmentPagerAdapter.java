@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlychitieunhom.Adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -21,7 +22,7 @@ import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] tabTitle = new String[]{"Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng trước","Tháng này","Tương lai"};
+//    private String[] tabTitle = new String[]{"Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng trước","Tháng này","Tương lai"};
     Context context;
     private int pagecount = 8;
     private List<kychitieu> List_KyChiTieu;
@@ -34,8 +35,12 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment_HienThiGiaoDich fragmentDemo = new Fragment_HienThiGiaoDich(List_KyChiTieu.get(position).getMakychitieu());
-        return fragmentDemo;
+        Fragment_HienThiGiaoDich fragment_hienThiGiaoDich = new Fragment_HienThiGiaoDich();
+        fragment_hienThiGiaoDich.setMaKiChiTieu(List_KyChiTieu.get(position).getMakychitieu());
+//        Bundle args = new Bundle();
+//        args.putInt("makychitieu", List_KyChiTieu.get(position).getMakychitieu());
+//        fragment_hienThiGiaoDich.setArguments(args);
+        return fragment_hienThiGiaoDich;
     }
 
     @Override
