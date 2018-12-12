@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
@@ -31,7 +32,7 @@ import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 @SuppressLint("ValidFragment")
 public class Fragment_HienThiGiaoDich extends Fragment {
-
+    ProgressBar progressBar;
     private int MaKyChiTieu;
     private ListView lvTransaction;
     private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
@@ -48,6 +49,9 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hien_thi_giao_dich,container,false);
         /* Get list view component from view */
+        progressBar = (ProgressBar) view.findViewById(R.id.proBarManHinhChinh);
+        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         lvTransaction = (ListView) view.findViewById(R.id.lv_transaction);
         List_GiaoDich = new ArrayList<>();
         getGiaoDich();
@@ -63,7 +67,7 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                 @Override
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
                     List_GiaoDich = response.body();
-                    Log.d("test", String.valueOf(response.body()));
+//                    Log.d("test", String.valueOf(response.body()));
                     List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
                 }
@@ -84,5 +88,6 @@ public class Fragment_HienThiGiaoDich extends Fragment {
 
         /*Set adapter for listview*/
         lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }

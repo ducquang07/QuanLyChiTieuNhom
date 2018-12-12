@@ -1,16 +1,27 @@
 package vn.edu.uit.quanlychitieunhom.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class taikhoan {
+    @SerializedName("tentaikhoan")
     private String tentaikhoan;
+    @SerializedName("matkhau")
     private String matkhau;
+    @SerializedName("tennguoidung")
     private String tennguoidung;
+    @SerializedName("ngaysinh")
     private Date ngaysinh;
+    @SerializedName("gioitinh")
     private String gioitinh;
+    @SerializedName("sodienthoai")
     private String sodienthoai;
+    @SerializedName("email")
     private String email;
+    @SerializedName("ngaydangky")
     private Date ngaydangky;
+    @SerializedName("avatar")
     private String avatar;
 
     public taikhoan() {
