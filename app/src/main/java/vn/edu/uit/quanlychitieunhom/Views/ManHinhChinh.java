@@ -64,7 +64,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
         viewPager = (ViewPager) findViewById(R.id.view_paper);
         fab = findViewById(R.id.fb);
-//        header_container = findViewById(R.id.header_container);
         nav_view = findViewById(R.id.nav_view);
         if (nav_view != null) {
             nav_view.setNavigationItemSelectedListener(this);
@@ -75,8 +74,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        makeTranslucentStatusBar();
         super.onCreate(savedInstanceState);
+        makeTranslucentStatusBar();
         setContentView(R.layout.activity_man_hinh_chinh);
 
         /* Get component from view*/
@@ -190,24 +189,5 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    boolean doubleBackToExitPressedOnce = false;
 
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
-    }
 }
