@@ -1,6 +1,7 @@
 package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,12 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import vn.edu.uit.quanlychitieunhom.R;
+import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 
 public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
 
+    Util util = new Util();
     private ImageButton mPickDate;
     private TextView mDateDisplay;
     private CheckBox checkboxPwd;
@@ -26,34 +30,48 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
     private LinearLayout backgroundChangePwd;
     private ImageButton btnClear;
     private EditText txtName;
+    private EditText txtSodienthoai;
+
     int year;
     int month;
     int day;
     Calendar calendar;
+    Date ngaysinh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thay_doi_thong_tin);
+        GetComponentByID();
+        setInfoUser();
         addControls();
-
-
-
     }
 
-    private void addControls()
-    {
+
+    public void GetComponentByID(){
         mPickDate = (ImageButton) findViewById(R.id.pickDate);
         mDateDisplay = (TextView) findViewById(R.id.dateDisplay);
         checkboxPwd = findViewById(R.id.ckb_password);
         backgroundChangePwd = findViewById(R.id.background_pwd);
         btnClear = findViewById(R.id.btnclear);
         txtName = findViewById(R.id.txtName);
+        txtSodienthoai = findViewById(R.id.txtSodienthoai);
+    }
 
+    public void setInfoUser(){
+        Intent i= getIntent();
+
+        txtName.setText(i.getStringExtra("tennguoidung"));
+        txtSodienthoai.setText(i.getStringExtra("sodienthoai"));
+        mDateDisplay.setText((i.getSerializableExtra("ngaysinh").equals(null))?"":util.DateStringByFormat((Date) i.getSerializableExtra("ngaysinh"),"dd/MM/yyyy"));
+    }
+
+
+    private void addControls()
+    {
         //Call when click button edit birthday
         mPickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // Get current day
                 calendar = Calendar.getInstance();
                 year = calendar.get(Calendar.YEAR);
@@ -68,10 +86,6 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
                             }
                         },year,month,day);
                 datePickerDialog.show();
-
-
-
-
             }
         });
 
@@ -83,7 +97,6 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
                     backgroundChangePwd.setVisibility(View.VISIBLE);
                 else
                     backgroundChangePwd.setVisibility(View.INVISIBLE);
-
             }
         });
 
