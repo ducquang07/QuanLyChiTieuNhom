@@ -185,6 +185,15 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_so_giao_dich){
             Toast.makeText(getApplicationContext(),"Sổ giao dịch",Toast.LENGTH_LONG).show();
+        }else if(id==R.id.nav_log_out){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(getString(R.string.user));
+            editor.apply();
+
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(i);
+            finish();
         }
         return true;
     }

@@ -33,10 +33,5 @@ public class ChiTietHoaDon extends AppCompatActivity {
         sotien.setText(util.DoubleToStringByFormat(i.getDoubleExtra("sotien",0),"#,###")+"đ");
         ngaygiaodich.setText(util.DateStringByFormat(ngay,"dd/MM/yyyy"));
         tennhomchitieu.setText(i.getStringExtra("tennhomchitieu"));
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.remove(getString(R.string.user));
-        editor.apply();
     }
 }

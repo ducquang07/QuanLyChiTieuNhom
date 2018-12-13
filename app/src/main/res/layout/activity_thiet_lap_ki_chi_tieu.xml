@@ -191,19 +191,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#EEEEEE"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_margin="10dp"
+            android:background="#EEEEEE">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:background="@drawable/btn"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:background="@drawable/btn"
                 android:text="THÊM KỲ CHI TIÊU" />
         </RelativeLayout>
 

@@ -85,13 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Gson gson = new Gson();
         user_admin = gson.fromJson(exist_user, taikhoan.class);
         if(exist_user.equals("")){
-            setContentView(R.layout.activity_main);
-            userId = (EditText) findViewById(R.id.textUserID);
-            password = (EditText) findViewById(R.id.textPassWord);
-            progressBar = (ProgressBar) findViewById(R.id.proBarLogin);
-            mLinearLayout = (LinearLayout) findViewById(R.id.mLinearLayout);
-            progressBar.setVisibility(View.GONE);
-            addControls();
+            makeTranslucentStatusBar();
+            this.openLoginView();
         }
         else{
             this.openMainView();
@@ -162,7 +157,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             String json = gson.toJson(response.body()); // taikhoan - instance of taikhoan
                             editor.putString(getString(R.string.user),json);
                             editor.apply();
-                            openMainView();
+//                            openMainView();
+                            Intent intent = new Intent(getApplicationContext(),ManHinhChinh.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
 
@@ -179,12 +177,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // TODO: register the new account here.
             return (StatusCode == 200)? true : false;
         }
+    }
 
-//        @Override
-//        protected void onPostExecute(Boolean success) {
-//            super.onPreExecute();
-////            progressBar.setVisibility(GONE);
-//        }
+    public class  getKyChiTieu extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected Boolean  doInBackground(String... params) {
+            try {
+                KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
+                Call<List<kychitieu>> call = service.getAllKyChiTieu();
+                call.enqueue(new Callback<List<kychitieu>>() {
+                    @Override
+                    public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
+                        StatusCode = response.code();
+                        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
+                        viewPager.setAdapter(simpleFragmentPagerAdapter);
+                        viewPager.setCurrentItem(6,false);
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                                startActivity(i);
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call<List<kychitieu>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Test", "Exception");
+            }
+            // TODO: register the new account here.
+            return (StatusCode == 200)? true : false;
+        }
     }
 
     public void showProgress(boolean BOOL){
@@ -243,8 +274,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Nhóm",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_xu_huong){
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
-        }else if(id == R.id.nav_so_giao_dich){
+        }
+        else if(id == R.id.nav_so_giao_dich){
             Toast.makeText(getApplicationContext(),"Sổ giao dịch",Toast.LENGTH_LONG).show();
+        }
+        else if(id==R.id.nav_log_out){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(getString(R.string.user));
+            editor.apply();
+            this.openLoginView();
         }
         return true;
     }
@@ -310,18 +349,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void openMainView(){
-        makeTranslucentStatusBar();
         setContentView(R.layout.activity_man_hinh_chinh);
-
-        /* Get component from view*/
         ReferenceById();
-
         setSupportActionBar(toolbar);
-
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
         actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setDisplayShowTitleEnabled(false);
@@ -333,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             call.enqueue(new Callback<List<kychitieu>>() {
                 @Override
                 public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
+                    StatusCode = response.code();
                     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
                     viewPager.setAdapter(simpleFragmentPagerAdapter);
                     viewPager.setCurrentItem(6,false);
@@ -352,6 +386,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } catch (Exception e) {
             Log.d("Test", "Exception");
         }
+
+    }
+
+    public void openLoginView(){
+        setContentView(R.layout.activity_main);
+        userId = (EditText) findViewById(R.id.textUserID);
+        password = (EditText) findViewById(R.id.textPassWord);
+        progressBar = (ProgressBar) findViewById(R.id.proBarLogin);
+        mLinearLayout = (LinearLayout) findViewById(R.id.mLinearLayout);
+        progressBar.setVisibility(View.GONE);
+        addControls();
     }
 }
 

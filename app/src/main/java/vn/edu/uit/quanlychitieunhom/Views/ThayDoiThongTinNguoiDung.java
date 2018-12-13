@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -31,6 +32,8 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
     private ImageButton btnClear;
     private EditText txtName;
     private EditText txtSodienthoai;
+    private RadioButton rbtnNam;
+    private RadioButton rbtnNu;
 
     int year;
     int month;
@@ -55,6 +58,8 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
         btnClear = findViewById(R.id.btnclear);
         txtName = findViewById(R.id.txtName);
         txtSodienthoai = findViewById(R.id.txtSodienthoai);
+        rbtnNam = findViewById(R.id.rbtnNam);
+        rbtnNu = findViewById(R.id.rbtnNu);
     }
 
     public void setInfoUser(){
@@ -62,6 +67,14 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
 
         txtName.setText(i.getStringExtra("tennguoidung"));
         txtSodienthoai.setText(i.getStringExtra("sodienthoai"));
+        String gioitinh = i.getStringExtra("gioitinh");
+        if(gioitinh != null){
+            if(gioitinh.equals("Nam")){
+                rbtnNam.setChecked(true);
+            }
+            else rbtnNu.setChecked(true);
+        }
+
         mDateDisplay.setText((i.getSerializableExtra("ngaysinh").equals(null))?"":util.DateStringByFormat((Date) i.getSerializableExtra("ngaysinh"),"dd/MM/yyyy"));
     }
 
