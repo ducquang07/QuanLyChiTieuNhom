@@ -75,7 +75,7 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
             else rbtnNu.setChecked(true);
         }
 
-        mDateDisplay.setText((i.getSerializableExtra("ngaysinh").equals(null))?"":util.DateStringByFormat((Date) i.getSerializableExtra("ngaysinh"),"dd/MM/yyyy"));
+        mDateDisplay.setText(!(i.getSerializableExtra("ngaysinh") != null)?"":util.DateStringByFormat((Date) i.getSerializableExtra("ngaysinh"),"dd/MM/yyyy"));
     }
 
 

@@ -68,7 +68,6 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                 @Override
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
                     List_GiaoDich = response.body();
-//                    Log.d("test", String.valueOf(response.body()));
                     List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
                 }
@@ -91,4 +90,6 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
         progressBar.setVisibility(View.INVISIBLE);
     }
+
+
 }

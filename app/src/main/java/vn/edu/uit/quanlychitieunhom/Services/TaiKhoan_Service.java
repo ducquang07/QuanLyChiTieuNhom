@@ -16,4 +16,13 @@ public interface TaiKhoan_Service {
     @FormUrlEncoded
     Call<taikhoan> login(@Field("tentaikhoan") String tentaikhoan,
                          @Field("matkhau") String matkhau);
+
+
+
+    @POST("/api/taikhoan/insert")
+    @FormUrlEncoded
+    Call<Void> signup(@Field("email") String email,
+                      @Field("tennguoidung") String tennguoidung,
+                      @Field("tentaikhoan") String tentaikhoan,
+                      @Field("matkhau") String matkhau);
 }

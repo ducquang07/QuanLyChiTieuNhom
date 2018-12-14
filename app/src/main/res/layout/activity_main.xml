@@ -6,6 +6,7 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
 
+
     <LinearLayout
         android:id="@+id/mLinearLayout"
         android:layout_width="match_parent"
@@ -59,7 +60,6 @@
             android:text="ĐĂNG KÍ"
             android:textColor="@android:color/background_light" />
     </LinearLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"

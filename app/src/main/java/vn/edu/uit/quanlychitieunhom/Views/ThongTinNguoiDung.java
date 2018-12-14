@@ -69,7 +69,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
         txttennguoidung.setText(user_admin.getTennguoidung());
         txttentaikhoan.setText(user_admin.getTentaikhoan());
         txtgioitinh.setText((user_admin.getGioitinh() != null)?user_admin.getGioitinh():"Chưa cập nhật");
-        txtngaysinh.setText((user_admin.getNgaysinh().equals(null))?"Chưa cập nhật":util.DateStringByFormat(user_admin.getNgaysinh(),"dd/MM/yyyy"));
+        txtngaysinh.setText((user_admin.getNgaysinh() != null )?util.DateStringByFormat(user_admin.getNgaysinh(),"dd/MM/yyyy"):"Chưa cập nhật");
         txtsodienthoai.setText((user_admin.getSodienthoai() != null)?user_admin.getSodienthoai():"Chưa cập nhật");
         txtngaydangki.setText((user_admin.getNgaydangky() != null)?util.DateStringByFormat(user_admin.getNgaydangky(),"dd/MM/yyyy"):"Chưa cập nhật");
     }

@@ -79,13 +79,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        makeTranslucentStatusBar();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String exist_user = sharedPref.getString(getString(R.string.user),"");
         Gson gson = new Gson();
         user_admin = gson.fromJson(exist_user, taikhoan.class);
         if(exist_user.equals("")){
-            makeTranslucentStatusBar();
             this.openLoginView();
         }
         else{
@@ -293,6 +292,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
         viewPager = (ViewPager) findViewById(R.id.view_paper);
+        viewPager.setOffscreenPageLimit(3);
         fab = findViewById(R.id.fb);
         nav_view = findViewById(R.id.nav_view);
         if (nav_view != null) {

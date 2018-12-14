@@ -1,19 +1,15 @@
 package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -26,13 +22,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,7 +37,7 @@ import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
 import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
-
+import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,13 +50,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private FloatingActionButton fab;
     private LinearLayout header_container;
     private NavigationView nav_view;
-
+    private taikhoan user_admin = new taikhoan();
 
     protected void ReferenceById(){
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
         tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
         viewPager = (ViewPager) findViewById(R.id.view_paper);
+        viewPager.setOffscreenPageLimit(3);
         fab = findViewById(R.id.fb);
         nav_view = findViewById(R.id.nav_view);
         if (nav_view != null) {
@@ -82,7 +77,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         ReferenceById();
 
         setSupportActionBar(toolbar);
-
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -92,31 +86,40 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         actionbar.setDisplayShowTitleEnabled(false);
         tabLayout.setupWithViewPager(viewPager);
 
-        try {
-            KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
-            Call<List<kychitieu>> call = service.getAllKyChiTieu();
-            call.enqueue(new Callback<List<kychitieu>>() {
-                @Override
-                public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
-                    SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
-                    viewPager.setAdapter(simpleFragmentPagerAdapter);
-                    viewPager.setCurrentItem(6,false);
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
-                            startActivity(i);
-                        }
-                    });
-                }
-                @Override
-                public void onFailure(Call<List<kychitieu>> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (Exception e) {
-            Log.d("Test", "Exception");
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String exist_user = sharedPref.getString(getString(R.string.user),"");
+        Gson gson = new Gson();
+        user_admin = gson.fromJson(exist_user, taikhoan.class);
+
+        if(user_admin != null){
+            try {
+                KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
+                Call<List<kychitieu>> call = service.getAllKyChiTieu();
+                call.enqueue(new Callback<List<kychitieu>>() {
+                    @Override
+                    public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
+                        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
+                        viewPager.setAdapter(simpleFragmentPagerAdapter);
+                        viewPager.setCurrentItem(6,false);
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                                startActivity(i);
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call<List<kychitieu>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Test", "Exception");
+            }
         }
+
+
     }
 
 
