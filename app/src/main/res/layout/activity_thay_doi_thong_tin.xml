@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE"
@@ -8,75 +9,94 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dip"
+            android:layout_height="wrap_content"
             android:background="@color/mautrang"
             android:gravity="center|bottom"
-            android:layout_weight="1">
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:src="@drawable/hoaanhdao" />-->
+            <!--</LinearLayout>-->
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_weight="1"
-                >
+                android:showDividers="middle">
 
-                <ImageView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/hoaanhdao" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:divider="?android:dividerHorizontal"
-                android:orientation="vertical"
-                android:showDividers="middle"
-                android:layout_weight="3">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mật khẩu mới" />
+                </FrameLayout>
 
-                <RelativeLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
 
                     <EditText
                         android:id="@+id/txtName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:backgroundTint="#4EA1D1"
                         android:inputType="text"
                         android:text="Trần Thị Ngọc Diễm"
-                        android:backgroundTint="#4EA1D1"
-                        android:textCursorDrawable="@null"
-                        style="@style/title"/>
+                        android:textCursorDrawable="@null" />
 
                     <ImageButton
                         android:id="@+id/btnclear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical|right"
                         android:background="@null"
+                        android:padding="10dp"
                         android:src="@drawable/ic_clear" />
-                </RelativeLayout>
+                </FrameLayout>
 
-                <RelativeLayout
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số điện thoại" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
 
                     <EditText
 
                         android:id="@+id/txtSodienthoai"
-                        style="@style/title"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#4EA1D1"
                         android:inputType="number"
@@ -87,41 +107,54 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical|right"
                         android:background="@null"
+                        android:padding="10dp"
                         android:src="@drawable/ic_phone" />
-                </RelativeLayout>
+                </FrameLayout>
 
-
-                <RelativeLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giới tính" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
 
                     <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/rbtnNam"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:button="@drawable/custom_radiobuttonchecked"
-                            android:text="Nam"
+                            android:text=" Nam"
                             android:textSize="15sp" />
 
                         <RadioButton
                             android:id="@+id/rbtnNu"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:button="@drawable/custom_radiobuttonchecked"
-                            android:text="Nữ"
+                            android:text=" Nữ"
                             android:textSize="15sp" />
 
                     </RadioGroup>
@@ -129,39 +162,54 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="12dp"
+                        android:layout_gravity="center_vertical|right"
                         android:src="@drawable/ic_gender" />
 
-                </RelativeLayout>
-                <RelativeLayout
+                </FrameLayout>
+
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày sinh" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp">
 
                     <TextView
                         android:id="@+id/dateDisplay"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_vertical"
                         android:text="15/11/1996"
                         android:textColor="#111111"
-                        android:textSize="14sp"
-                        />
+                        android:textSize="18sp" />
 
                     <ImageButton
                         android:id="@+id/pickDate"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
                         android:background="@null"
                         android:clickable="true"
                         android:focusable="true"
-                        android:src="@drawable/ic_edit_button" />
+                        android:paddingRight="5dp"
+                        android:src="@drawable/icons8_calendar" />
 
-                </RelativeLayout>
+                </FrameLayout>
 
             </LinearLayout>
 
@@ -171,30 +219,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
             android:orientation="vertical"
-            android:layout_weight="1"
-            >
+            android:padding="5dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:background="#FFFFFF">
+
                 <CheckBox
                     android:id="@+id/ckb_password"
                     android:layout_width="wrap_content"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:button="@drawable/custom_radiobuttonchecked"
-                    android:text="Đổi mật khẩu" />
-            </RelativeLayout>
+                    android:text=" Đổi mật khẩu" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/background_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:background="#FFFFFF"
                 android:orientation="vertical"
                 android:visibility="invisible">
@@ -202,31 +253,37 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_margin="5dp"
                     android:text="Mật khẩu cũ:" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtOldPassword"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:autofillHints=""
                     android:backgroundTint="#4EA1D1"
                     android:hint="Nhập mật khẩu cũ"
                     android:inputType="textPassword"
                     android:textColor="#111111"
                     android:textCursorDrawable="@null"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    tools:targetApi="o" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_margin="5dp"
                     android:text="Mật khẩu mới" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtNewPassword"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:backgroundTint="#4EA1D1"
                     android:hint="Nhập mật khẩu mới"
                     android:inputType="textPassword"
@@ -235,26 +292,34 @@
                     android:textSize="15sp" />
 
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center|bottom"
-            android:layout_weight="0.5">
-
-            <Button
-                android:id="@+id/btn_doithongtin"
+            <ProgressBar
+                android:id="@+id/proBarCapNhatThongTin"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn"
-                android:text="CẬP NHẬT" />
+                android:layout_gravity="top"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_doithongtin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/btn"
+                    android:text="CẬP NHẬT" />
+
+            </LinearLayout>
         </LinearLayout>
+
 
     </LinearLayout>
 

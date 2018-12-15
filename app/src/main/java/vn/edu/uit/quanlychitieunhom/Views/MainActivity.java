@@ -150,12 +150,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         else {
                             showProgress(false);
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công !", Toast.LENGTH_SHORT).show();
+                            //TODO:SAVE LOCAL STORAGE
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             SharedPreferences.Editor editor = preferences.edit();
                             Gson gson = new Gson();
                             String json = gson.toJson(response.body()); // taikhoan - instance of taikhoan
                             editor.putString(getString(R.string.user),json);
                             editor.apply();
+                            //TODO:SAVE LOCAL STORAGE
 //                            openMainView();
                             Intent intent = new Intent(getApplicationContext(),ManHinhChinh.class);
                             startActivity(intent);

@@ -198,4 +198,9 @@ public class ThongTinNguoiDung extends AppCompatActivity {
         return _separated[0] +"-" + separated[1] +"-" + separated[0];
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GetInfoUser();
+    }
 }

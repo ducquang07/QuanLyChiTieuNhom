@@ -115,6 +115,7 @@ public class DangKiTaiKhoan extends AppCompatActivity {
 
         @Override
         protected Boolean  doInBackground(String... params) {
+            // TODO: register the new account here.
             try {
                 Thread.sleep(2000);
                 TaiKhoan_Service service = RetrofitClientInstance.getRetrofitInstance().create(TaiKhoan_Service.class);
@@ -148,8 +149,6 @@ public class DangKiTaiKhoan extends AppCompatActivity {
             } catch (Exception e) {
                 Log.d("ERROR", e.toString());
             }
-
-            // TODO: register the new account here.
             return (StatusCode == 201)? true : false;
         }
     }

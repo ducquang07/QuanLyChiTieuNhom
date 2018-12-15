@@ -8,24 +8,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:background="@color/mautrang"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dip"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:gravity="center|bottom"
-            android:layout_weight="1">
+            android:gravity="center|bottom">
 
             <ImageView
 
                 android:layout_width="100dp"
-                android:layout_height= "match_parent"
-                android:src="@drawable/hoaanhdao"
-                android:layout_marginBottom="5dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                />
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/hoaanhdao" />
 
 
         </LinearLayout>
@@ -34,11 +33,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="4"
             android:background="@color/mautrang"
             android:divider="?android:dividerHorizontal"
             android:orientation="vertical"
-            android:showDividers="middle"
-            android:layout_weight="4">
+            android:showDividers="middle">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -70,8 +69,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/title"
@@ -84,15 +82,14 @@
                     android:text="Tên tài khoản :" />
 
                 <TextView
-                    style="@style/content"
                     android:id="@+id/txttentaikhoan"
+                    style="@style/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="ngocdiem"
-                    />
+                    android:text="ngocdiem" />
 
 
             </RelativeLayout>
@@ -100,8 +97,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/title"
@@ -113,15 +109,14 @@
                     android:text="Giới tính:" />
 
                 <TextView
-                    style="@style/content"
                     android:id="@+id/txtgioitinh"
+                    style="@style/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="Nữ"
-                    />
+                    android:text="Nữ" />
 
 
             </RelativeLayout>
@@ -129,8 +124,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/title"
@@ -139,12 +133,11 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="38dp"
-                    android:text="Ngày sinh:"
-                    />
+                    android:text="Ngày sinh:" />
 
                 <TextView
-                    style="@style/content"
                     android:id="@+id/txtngaysinh"
+                    style="@style/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -160,8 +153,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/title"
@@ -173,15 +165,14 @@
                     android:text="Số điện thoại:" />
 
                 <TextView
-                    style="@style/content"
                     android:id="@+id/txtsodienthoai"
+                    style="@style/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="0123456789"
-                    />
+                    android:text="0123456789" />
 
 
             </RelativeLayout>
@@ -190,8 +181,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/title"
@@ -204,39 +194,38 @@
                     android:text="Ngày đăng kí:" />
 
                 <TextView
-                    style="@style/content"
                     android:id="@+id/txtngaydangki"
+                    style="@style/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="43dp"
-                    android:text="1-1-2018"
-                    />
+                    android:text="1-1-2018" />
 
 
             </RelativeLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:gravity="center|bottom">-->
+
+        <Button
+            android:id="@+id/btn_doithongtin"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center|bottom"
-            android:layout_weight="0.5">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:text="ÐỔI THÔNG TIN" />
 
-            <Button
-                android:id="@+id/btn_doithongtin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn"
-                android:text="ÐỔI THÔNG TIN" />
-
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
     </LinearLayout>
 
