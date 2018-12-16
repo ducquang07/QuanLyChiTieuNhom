@@ -58,6 +58,12 @@
             android:label="Tạo kì chi tiêu"
             android:exported="true"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Views.HienThiNhomChiTieu"
+            android:parentActivityName=".Views.MainActivity"
+            android:label="Nhóm chi tiêu"/>
+        <activity android:name=".Views.ThemNhomChiTieu"
+            android:parentActivityName=".Views.HienThiNhomChiTieu"
+            android:label="Thêm nhóm chi tiêu"/>
 
     </application>
 
