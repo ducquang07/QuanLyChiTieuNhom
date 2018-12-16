@@ -94,7 +94,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         if(user_admin != null){
             try {
                 KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
-                Call<List<kychitieu>> call = service.getAllKyChiTieu();
+                Call<List<kychitieu>> call = service.getAllKyChiTieu(user_admin.getTentaikhoan());
                 call.enqueue(new Callback<List<kychitieu>>() {
                     @Override
                     public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
