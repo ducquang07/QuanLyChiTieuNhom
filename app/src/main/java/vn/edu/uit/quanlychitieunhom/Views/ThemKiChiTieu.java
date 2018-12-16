@@ -53,7 +53,7 @@ public class ThemKiChiTieu extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {
-                                mDateDisplayFrom.setText(day + "/" + month + "/" + year);
+                                mDateDisplayFrom.setText(day + "/" + (month + 1) + "/" + year);
                             }
                         },year,month,day);
                 datePickerDialog.show();
@@ -73,7 +73,7 @@ public class ThemKiChiTieu extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {
-                                mDateDisplayTo.setText(day + "/" + month + "/" + year);
+                                mDateDisplayTo.setText(day + "/" + (month + 1) + "/" + year);
                             }
                         },year,month,day);
                 datePickerDialog.show();
