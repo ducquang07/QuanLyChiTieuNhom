@@ -9,9 +9,13 @@ import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
 
 public interface KyChiTieu_Service {
 
-    @GET("/api/kychitieu/list")
-    Call<List<kychitieu>> getAllKyChiTieu();
+//    @GET("/api/kychitieu/list")
+//    Call<List<kychitieu>> getAllKyChiTieu();
 
 //    @GET("/api/nhomchitieu/getallnhomchitieuoftaikhoan/{tentaikhoan}")
 //    Call<List<kychitieu>> getAllKyChiTieu(@Path("tentaikhoan") String tentaikhoan);
+
+    @GET("/api/kychitieu/getAll/{tentaikhoan}")
+    Call<List<kychitieu>> getAllKyChiTieu(@Path("tentaikhoan") String tentaikhoan);
+
 }

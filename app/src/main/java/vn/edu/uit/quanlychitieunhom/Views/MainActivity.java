@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         protected Boolean  doInBackground(String... params) {
             try {
                 KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
-                Call<List<kychitieu>> call = service.getAllKyChiTieu();
+                Call<List<kychitieu>> call = service.getAllKyChiTieu(user_admin.getTentaikhoan());
                 call.enqueue(new Callback<List<kychitieu>>() {
                     @Override
                     public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
@@ -364,32 +364,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setDisplayShowTitleEnabled(false);
         tabLayout.setupWithViewPager(viewPager);
 
-        try {
-            KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
-            Call<List<kychitieu>> call = service.getAllKyChiTieu();
-            call.enqueue(new Callback<List<kychitieu>>() {
-                @Override
-                public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
-                    StatusCode = response.code();
-                    SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
-                    viewPager.setAdapter(simpleFragmentPagerAdapter);
-                    viewPager.setCurrentItem(6,false);
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
-                            startActivity(i);
-                        }
-                    });
-                }
-                @Override
-                public void onFailure(Call<List<kychitieu>> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (Exception e) {
-            Log.d("Test", "Exception");
-        }
+        new getKyChiTieu().execute();
 
     }
 

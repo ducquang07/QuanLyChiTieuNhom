@@ -137,7 +137,7 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {
-                                mDateDisplay.setText(day + "/" + month + "/" + year);
+                                mDateDisplay.setText(day + "/" + (month + 1) + "/" + year);
                             }
                         },year,month,day);
                 datePickerDialog.show();
