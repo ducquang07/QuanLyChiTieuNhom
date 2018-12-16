@@ -1,26 +1,12 @@
 package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-//import com.android.volley.Request;
-//import com.android.volley.RequestQueue;
-//import com.android.volley.Response;
-//import com.android.volley.VolleyError;
-//import com.android.volley.toolbox.JsonObjectRequest;
-//import com.android.volley.toolbox.Volley;
-
-import com.google.gson.Gson;
-
-import org.json.JSONObject;
 
 
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
@@ -37,10 +23,9 @@ public class ThongTinNguoiDung extends AppCompatActivity {
     private TextView txttentaikhoan;
     private TextView txtgioitinh;
     private TextView txtsodienthoai;
+    private TextView txtEmail;
     private taikhoan user_admin;
 
-//    private String url = "http://192.168.1.103:8080/api/taikhoan/hoaithanh";
-    //private Taikhoan taikhoan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +44,14 @@ public class ThongTinNguoiDung extends AppCompatActivity {
         txtngaysinh = (TextView) findViewById(R.id.txtngaysinh);
         txtsodienthoai = (TextView) findViewById(R.id.txtsodienthoai);
         txtngaydangki =(TextView) findViewById(R.id.txtngaydangki);
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
     }
 
     public void GetInfoUser(){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String exist_user = sharedPref.getString(getString(R.string.user),"");
-        Gson gson = new Gson();
-        user_admin = gson.fromJson(exist_user, taikhoan.class);
+        user_admin = util.getUserLocalStorage(getApplicationContext());
         txttennguoidung.setText(user_admin.getTennguoidung());
         txttentaikhoan.setText(user_admin.getTentaikhoan());
+        txtEmail.setText(user_admin.getEmail());
         txtgioitinh.setText((user_admin.getGioitinh() != null)?user_admin.getGioitinh():"Chưa cập nhật");
         txtngaysinh.setText((user_admin.getNgaysinh() != null )?util.DateStringByFormat(user_admin.getNgaysinh(),"dd/MM/yyyy"):"Chưa cập nhật");
         txtsodienthoai.setText((user_admin.getSodienthoai() != null)?user_admin.getSodienthoai():"Chưa cập nhật");
@@ -91,106 +75,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
             }
         });
     }
-    /*private void getData(String url)
-     {
-         txtgioitinh = findViewById(R.id.txtgioitinh);
-         txtngaydangki = findViewById(R.id.txtngaydangki);
-         txtngaysinh = findViewById(R.id.txtngaysinh);
-         txtsodienthoai = findViewById(R.id.txtsodienthoai);
-         txttennguoidung = findViewById(R.id.txttennguoidung);
-         txttentaikhoan = findViewById(R.id.txttentaikhoan);
-         RequestQueue requestQueue = Volley.newRequestQueue(this);
-         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, url,null,
-                 new Response.Listener<JSONObject>(){
 
-                     @Override
-                     public void onResponse(JSONObject response) {
-
-                         taikhoan = new Taikhoan(response.optString("tentaikhoan"),response.optString("tennguoidung"),response.optString("gioitinh"),response.optString("ngaysinh"),response.optString("sodienthoai"),response.optString("ngaydangki"),response.optString("email"));
-                         txttentaikhoan.setText(taikhoan.getTentaikhoan());
-                         txttennguoidung.setText(taikhoan.getTennguoidung());
-                         txtsodienthoai.setText(taikhoan.getSodienthoai());
-                         txtngaysinh.setText(getDay(taikhoan.getNgaysinh()));
-                         txtngaydangki.setText(getDay(taikhoan.getNgaydangki()));
-                         txtgioitinh.setText(taikhoan.getGioitinh());
-
-                     }
-                 },
-                 new Response.ErrorListener()
-                 {
-
-                     @Override
-                     public void onErrorResponse(VolleyError error) {
-                         Toast.makeText(ThongTinNguoiDung.this,error.toString(), Toast.LENGTH_SHORT).show();
-                     }
-                 });
-         requestQueue.add(jsonArrayRequest);
-
-     }*/
-   /* public interface VolleyCallback {
-        void onSuccessResponse(Taikhoan result);
-    }
-
-    private class FetchData extends AsyncTask<String,Integer,Taikhoan>
-    {
-        private TextView txtgioitinh = findViewById(R.id.txtgioitinh);
-        private TextView txtngaydangki = findViewById(R.id.txtngaydangki);
-        private TextView txtngaysinh = findViewById(R.id.txtngaysinh);
-        private TextView txtsodienthoai = findViewById(R.id.txtsodienthoai);
-        private TextView txttennguoidung = findViewById(R.id.txttennguoidung);
-        private TextView txttentaikhoan = findViewById(R.id.txttentaikhoan);
-        private Taikhoan taikhoan;
-        private final VolleyCallback callback;
-
-        private FetchData(VolleyCallback callback) {
-            this.callback = callback;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-
-        @Override
-        protected Taikhoan doInBackground(String... strings) {
-            String url = strings[0];
-
-            JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, url,null,
-                    new Response.Listener<JSONObject>(){
-
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            taikhoan = new Taikhoan(response.optString("tentaikhoan"),response.optString("tennguoidung"),response.optString("gioitinh"),response.optString("ngaysinh"),response.optString("sodienthoai"),response.optString("ngaydangki"),response.optString("email"));
-                            callback.onSuccessResponse(taikhoan);
-                        }
-                    },
-                    new Response.ErrorListener()
-                    {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(ThongTinNguoiDung.this,error.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            return  taikhoan;
-
-        }
-
-        @Override
-        protected void onPostExecute(Taikhoan taikhoan) {
-            super.onPostExecute(taikhoan);
-            txttentaikhoan.setText(taikhoan.getTentaikhoan());
-            txttennguoidung.setText(taikhoan.getTennguoidung());
-            txtsodienthoai.setText(taikhoan.getSodienthoai());
-            txtngaysinh.setText(getDay(taikhoan.getNgaysinh()));
-            txtngaydangki.setText(getDay(taikhoan.getNgaydangki()));
-            txtgioitinh.setText(taikhoan.getGioitinh());
-        }
-
-    }*/
-    //Format Day (dd-mm-yyyy)
     private String getDay(String ngay)
     {
         String[] separated = ngay.split("-");

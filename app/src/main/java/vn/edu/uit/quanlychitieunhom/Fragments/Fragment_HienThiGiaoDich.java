@@ -1,6 +1,5 @@
 package vn.edu.uit.quanlychitieunhom.Fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -79,6 +77,9 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         } catch (Exception e) {
             Log.d("Test", "Exception");
         }
+        finally {
+            util.setFlagNewGiaoDich(getContext(),false);
+        }
     }
 
     /*Create List Giao Dich adapter to set up listview */
@@ -91,5 +92,13 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         progressBar.setVisibility(View.INVISIBLE);
     }
 
+
+    @Override
+    public void onResume() {
+        if(util.getFlagNewGiaoDich(getContext())){
+            getGiaoDich();
+        }
+        super.onResume();
+    }
 
 }

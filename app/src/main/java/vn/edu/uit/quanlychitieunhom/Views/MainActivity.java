@@ -46,6 +46,7 @@ import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Services.TaiKhoan_Service;
+import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 import static android.view.View.GONE;
 
@@ -53,7 +54,7 @@ import static android.view.View.GONE;
  * A login screen that offers login via email/password.
  */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
+    Util util = new Util();
     //Login
     private EditText userId;
     private EditText password;
@@ -80,11 +81,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         makeTranslucentStatusBar();
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String exist_user = sharedPref.getString(getString(R.string.user),"");
-        Gson gson = new Gson();
-        user_admin = gson.fromJson(exist_user, taikhoan.class);
-        if(exist_user.equals("")){
+        user_admin = util.getUserLocalStorage(getApplicationContext());
+        if(user_admin == null){
             this.openLoginView();
         }
         else{
@@ -150,15 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         else {
                             showProgress(false);
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công !", Toast.LENGTH_SHORT).show();
-                            //TODO:SAVE LOCAL STORAGE
-                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                            SharedPreferences.Editor editor = preferences.edit();
-                            Gson gson = new Gson();
-                            String json = gson.toJson(response.body()); // taikhoan - instance of taikhoan
-                            editor.putString(getString(R.string.user),json);
-                            editor.apply();
-                            //TODO:SAVE LOCAL STORAGE
-//                            openMainView();
+                            util.setUserLocalStorage(getApplicationContext(),response.body());
                             Intent intent = new Intent(getApplicationContext(),ManHinhChinh.class);
                             startActivity(intent);
                             finish();
@@ -185,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         protected void onPreExecute() {
         }
-
         @Override
         protected Boolean  doInBackground(String... params) {
             try {
@@ -193,15 +182,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Call<List<kychitieu>> call = service.getAllKyChiTieu(user_admin.getTentaikhoan());
                 call.enqueue(new Callback<List<kychitieu>>() {
                     @Override
-                    public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
+                    public void onResponse(Call<List<kychitieu>> call, final Response<List<kychitieu>> response) {
                         StatusCode = response.code();
+                        List<kychitieu> ListKyChiTieu = response.body();
                         SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
                         viewPager.setAdapter(simpleFragmentPagerAdapter);
-                        viewPager.setCurrentItem(6,false);
+//                        viewPager.setCurrentItem(6,false);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                Gson gson = new Gson();
+                                String json = gson.toJson(response.body().get(viewPager.getCurrentItem()).getNhomchitieu()); //TODO: convert to JSON and pass to ThemGiaoDich.class
+                                bundle.putString("nhomchitieu",json);
                                 Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                                i.putExtras(bundle);
                                 startActivity(i);
                             }
                         });

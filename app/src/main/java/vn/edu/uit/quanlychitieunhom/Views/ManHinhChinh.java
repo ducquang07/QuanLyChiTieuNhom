@@ -38,9 +38,10 @@ import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
+import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    Util util = new Util();
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar toolbar;
@@ -86,10 +87,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         actionbar.setDisplayShowTitleEnabled(false);
         tabLayout.setupWithViewPager(viewPager);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String exist_user = sharedPref.getString(getString(R.string.user),"");
-        Gson gson = new Gson();
-        user_admin = gson.fromJson(exist_user, taikhoan.class);
+        user_admin = util.getUserLocalStorage(getApplicationContext());
 
         if(user_admin != null){
             try {
@@ -97,14 +95,19 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
                 Call<List<kychitieu>> call = service.getAllKyChiTieu(user_admin.getTentaikhoan());
                 call.enqueue(new Callback<List<kychitieu>>() {
                     @Override
-                    public void onResponse(Call<List<kychitieu>> call, Response<List<kychitieu>> response) {
+                    public void onResponse(Call<List<kychitieu>> call, final Response<List<kychitieu>> response) {
                         SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
                         viewPager.setAdapter(simpleFragmentPagerAdapter);
                         viewPager.setCurrentItem(6,false);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                Gson gson = new Gson();
+                                String json = gson.toJson(response.body().get(viewPager.getCurrentItem()).getNhomchitieu()); //TODO: convert to JSON and pass to ThemGiaoDich.class
+                                bundle.putString("nhomchitieu",json);
                                 Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                                i.putExtras(bundle);
                                 startActivity(i);
                             }
                         });

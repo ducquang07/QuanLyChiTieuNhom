@@ -42,8 +42,7 @@ public class giaodich {
         this.manhomchitieu = manhomchitieu;
     }
 
-    public giaodich(int magiaodich, Date ngaygiaodich, Double sotien, String ghichu, String anhhoadon, vn.edu.uit.quanlychitieunhom.Models.nhomchitieu nhomchitieu, vn.edu.uit.quanlychitieunhom.Models.taikhoan taikhoan, vn.edu.uit.quanlychitieunhom.Models.loaigiaodich loaigiaodich) {
-        this.magiaodich = magiaodich;
+    public giaodich(Date ngaygiaodich, Double sotien, String ghichu, String anhhoadon, nhomchitieu nhomchitieu, taikhoan taikhoan, loaigiaodich loaigiaodich) {
         this.ngaygiaodich = ngaygiaodich;
         this.sotien = sotien;
         this.ghichu = ghichu;
@@ -51,6 +50,9 @@ public class giaodich {
         this.nhomchitieu = nhomchitieu;
         this.taikhoan = taikhoan;
         this.loaigiaodich = loaigiaodich;
+        this.tentaikhoan = taikhoan.getTentaikhoan();
+        this.maloaigiaodich = loaigiaodich.getMaloaigiaodich();
+        this.manhomchitieu = nhomchitieu.getManhomchitieu();
     }
 
     public int getMagiaodich() {

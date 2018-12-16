@@ -33,7 +33,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,7 +68,6 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
     int day;
     Calendar calendar;
     int StatusCode;
-    taikhoan user;
     taikhoan user_admin;
     int ERR = 0;
 
@@ -77,10 +75,7 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thay_doi_thong_tin);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String exist_user = sharedPref.getString(getString(R.string.user),"");
-        Gson gson = new Gson();
-        user_admin = gson.fromJson(exist_user, taikhoan.class);
+        user_admin = util.getUserLocalStorage(getApplicationContext());
         GetComponentByID();
         progressBar.setVisibility(GONE);
         setInfoUser();
@@ -209,14 +204,7 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
 
                         StatusCode = response.code();
                         if(StatusCode == 200){
-                            //TODO:SAVE LOCAL STORAGE
-                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                            SharedPreferences.Editor editor = preferences.edit();
-                            Gson gson = new Gson();
-                            String json = gson.toJson(response.body()); // taikhoan - instance of taikhoan
-                            editor.putString(getString(R.string.user),json);
-                            editor.apply();
-                            //TODO:SAVE LOCAL STORAGE
+                            util.setUserLocalStorage(getApplicationContext(),response.body());
                             showProgress(false);
                             Toast.makeText(getApplicationContext(), "Cập nhật thành công !", Toast.LENGTH_SHORT).show();
                         }
@@ -245,7 +233,7 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
             } catch (Exception e) {
                 Log.d("ERROR", e.toString());
             }
-            return (StatusCode == 201)? true : false;
+            return (StatusCode == 200)? true : false;
         }
     }
 

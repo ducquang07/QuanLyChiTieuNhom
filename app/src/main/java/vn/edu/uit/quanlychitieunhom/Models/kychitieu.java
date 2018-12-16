@@ -17,6 +17,9 @@ public class kychitieu {
     private Double hanmucchitieu;
     @SerializedName("manhomchitieu")
     private int manhomchitieu;
+    @SerializedName("nhomchitieu")
+    private nhomchitieu nhomchitieu;
+
 
     public kychitieu() {
     }
@@ -78,4 +81,25 @@ public class kychitieu {
         this.manhomchitieu = manhomchitieu;
     }
 
+    public nhomchitieu getNhomchitieu() {
+        return nhomchitieu;
+    }
+
+    public void setNhomchitieu(nhomchitieu nhomchitieu) {
+        this.nhomchitieu = nhomchitieu;
+    }
+
+
+    @Override
+    public String toString() {
+        return "kychitieu{" +
+                "makychitieu=" + makychitieu +
+                ", tenkychitieu='" + tenkychitieu + '\'' +
+                ", tungay=" + tungay +
+                ", denngay=" + denngay +
+                ", hanmucchitieu=" + hanmucchitieu +
+                ", manhomchitieu=" + manhomchitieu +
+                ", nhomchitieu=" + nhomchitieu +
+                '}';
+    }
 }
