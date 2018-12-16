@@ -273,6 +273,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(id == R.id.nav_nhom){
             Toast.makeText(getApplicationContext(),"Nhóm",Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getApplicationContext(), HienThiNhomChiTieu.class);
+            startActivity(i);
         }else if(id == R.id.nav_xu_huong){
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }
