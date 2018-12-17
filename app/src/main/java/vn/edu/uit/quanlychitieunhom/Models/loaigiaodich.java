@@ -5,6 +5,11 @@ public class loaigiaodich {
     private String tenloaigiaodich;
     private String nhom;
 
+//    public loaigiaodich(int maloaigiaodich, String tenloaigiaodich) {
+//        this.maloaigiaodich = maloaigiaodich;
+//        this.tenloaigiaodich = tenloaigiaodich;
+//    }
+
     public loaigiaodich() {
     }
 
@@ -37,4 +42,16 @@ public class loaigiaodich {
     public void setNhom(String nhom) {
         this.nhom = nhom;
     }
+
+    @Override
+    public String toString() {
+//        return "loaigiaodich{" +
+//                "maloaigiaodich=" + maloaigiaodich +
+//                ", tenloaigiaodich='" + tenloaigiaodich + '\'' +
+//                ", nhom='" + nhom + '\'' +
+//                '}';
+        return tenloaigiaodich;
+    }
+
+
 }

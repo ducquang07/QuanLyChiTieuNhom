@@ -37,4 +37,13 @@ public class nhomchitieu {
     public void setQuy(Double quy) {
         this.quy = quy;
     }
+
+    @Override
+    public String toString() {
+        return "nhomchitieu{" +
+                "manhomchitieu=" + manhomchitieu +
+                ", tennhomchitieu='" + tennhomchitieu + '\'' +
+                ", quy=" + quy +
+                '}';
+    }
 }

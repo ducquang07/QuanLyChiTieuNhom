@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Views.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,30 +24,46 @@
             android:name=".Views.ThemGiaoDich"
             android:parentActivityName=".Views.ManHinhChinh"
             android:label="@string/title_activity_them_giao_dich"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Views.ChiTietHoaDon"
             android:parentActivityName=".Views.ManHinhChinh"
             android:theme="@style/AppTheme.NoActionBar"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".Views.ThongTinNguoiDung"
             android:parentActivityName=".Views.ManHinhChinh"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Views.ThayDoiThongTinNguoiDung"
             android:parentActivityName=".Views.ThongTinNguoiDung"
             android:label="Chỉnh sửa thông tin"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".Views.ManHinhChinh"
             android:theme="@style/AppTheme.NoActionBar"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".Views.DangKiTaiKhoan"
             android:parentActivityName=".Views.MainActivity"
             android:label="Đăng kí tài khoản"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Views.ThemKiChiTieu"
+            android:label="Tạo kì chi tiêu"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Views.HienThiNhomChiTieu"
+            android:parentActivityName=".Views.MainActivity"
+            android:label="Nhóm chi tiêu"/>
+        <activity android:name=".Views.ThemNhomChiTieu"
+            android:parentActivityName=".Views.HienThiNhomChiTieu"
+            android:label="Thêm nhóm chi tiêu"/>
 
         <activity
             android:name=".Views.LichSuNapTien"

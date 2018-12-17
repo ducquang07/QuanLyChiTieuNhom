@@ -1,0 +1,555 @@
+{
+	"info": {
+		"_postman_id": "a67cdc90-8280-40c8-97e5-4557efdd423b",
+		"name": "QuanLyChiTieuNhom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TaiKhoan",
+			"item": [
+				{
+					"name": "findtaikhoan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/taikhoan/ducquang",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"taikhoan",
+								"ducquang"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GiaoDich",
+			"item": [
+				{
+					"name": "findgiaodich",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/giaodich/1",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"giaodich",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findallgiaodich",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/giaodich/list",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"giaodich",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "savegiaodich",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ngaygiaodich\": null,\n    \"sotien\": 100000,\n    \"ghichu\": \"Muua thức ăn\",\n    \"anhhoadon\": null,\n    \"nhomchitieu\": null,\n    \"taikhoan\": null,\n    \"loaigiaodich\": null\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/giaodich",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"giaodich"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updategiaodich",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"magiaodich\": 1,\n    \"ngaygiaodich\": null,\n    \"sotien\": 50000,\n    \"ghichu\": \"Muua thức ăn\",\n    \"anhhoadon\": null,\n    \"nhomchitieu\": null,\n    \"taikhoan\": null,\n    \"loaigiaodich\": null\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/giaodich",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"giaodich"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletegiaodich",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"magiaodich\": 1,\n    \"ngaygiaodich\": null,\n    \"sotien\": 50000,\n    \"ghichu\": \"Muua thức ăn\",\n    \"anhhoadon\": null,\n    \"nhomchitieu\": null,\n    \"taikhoan\": null,\n    \"loaigiaodich\": null\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/giaodich",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"giaodich"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findallbykychitieu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/giaodich/kychitieu/1",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"giaodich",
+								"kychitieu",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LoaiGiaoDich",
+			"item": [
+				{
+					"name": "findallloaigiaodich",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/loaigiaodich/list",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"loaigiaodich",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findloaigiaodich",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/loaigiaodich/1",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"loaigiaodich",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveloaigiaodich",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tenloaigiaodich\": \"Mua nước bình\",\n    \"nhom\": \"thu\"\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/loaigiaodich/",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"loaigiaodich",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateloaigiaodich",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"maloaigiaodich\": 18,\n    \"tenloaigiaodich\": \"Mua nước bình\",\n    \"nhom\": \"thu\"\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/loaigiaodich/",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"loaigiaodich",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteloaigiaodich",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"maloaigiaodich\": 18,\n    \"tenloaigiaodich\": \"Mua nước bình\",\n    \"nhom\": \"thu\"\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/loaigiaodich/",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"loaigiaodich",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteloaigiaodichbyid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/loaigiaodich/20",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"loaigiaodich",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "KyChiTieu",
+			"item": [
+				{
+					"name": "findallkychitieu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/kychitieu/list",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"kychitieu",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findkychitieu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/kychitieu/1",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"kychitieu",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatekychitieu",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/kychitieu/",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"kychitieu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletekychitieu",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/kychitieu/",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"kychitieu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "savekychitieu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tenkichitieu\": \"bbbbb\",\n    \"tungay\": \"2018-11-01\",\n    \"denngay\": \"2018-11-30\",\n    \"hanmucchitieu\": 3000000,\n    \"nhomchitieu\": {\n        \"manhomchitieu\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "https://quanlychitieunhom.herokuapp.com/api/kychitieu/",
+							"protocol": "https",
+							"host": [
+								"quanlychitieunhom",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"kychitieu",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

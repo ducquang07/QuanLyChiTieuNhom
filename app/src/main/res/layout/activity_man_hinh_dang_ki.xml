@@ -1,101 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
     android:background="@drawable/background_color"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="40dp"
-    android:paddingTop="50dp"
-    android:paddingRight="40dp">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
-    <EditText
-        android:id="@+id/editText1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:drawableLeft="@drawable/ic_action_mail"
-        android:ems="10"
-        android:hint="Địa chỉ mail"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="@android:color/background_light"
-        android:textColorHint="@android:color/background_light"
-        android:textStyle="italic"
-        android:textSize="18dp"/>
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:drawableLeft="@drawable/ic_action_user"
-        android:ems="10"
-        android:hint="Tên người dùng"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="@android:color/background_light"
-        android:textColorHint="@android:color/background_light"
-        android:textStyle="italic"
-        android:textSize="18dp"/>
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_action_mail"
+            android:ems="10"
+            android:hint="Địa chỉ mail"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="italic" />
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:drawableLeft="@drawable/ic_action_user"
-        android:ems="10"
-        android:hint="Tên đăng nhập"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="@android:color/background_light"
-        android:textColorHint="@android:color/background_light"
-        android:textStyle="italic"
-        android:textSize="18dp"/>
+        <EditText
+            android:id="@+id/txtTenNguoiDung"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_action_user"
+            android:ems="10"
+            android:hint="Tên người dùng"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="italic" />
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:drawableLeft="@drawable/ic_action_password"
-        android:ems="10"
-        android:hint="Mật khẩu"
-        android:inputType="textPassword"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="@android:color/background_light"
-        android:textColorHint="@android:color/background_light"
-        android:textStyle="italic"
-        android:textSize="18dp"/>
+        <EditText
+            android:id="@+id/txtTenDangNhap"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_action_user"
+            android:ems="10"
+            android:hint="Tên đăng nhập"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/btn"
-        android:text="ĐĂNG KÍ"
-        android:textColor="@android:color/background_light" />
+        <EditText
+            android:id="@+id/txtMatKhau"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_action_password"
+            android:ems="10"
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/btnRegister"
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn"
+            android:text="ĐĂNG KÍ"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn"
-        android:text="ĐĂNG NHẬP"
-        android:textColor="@android:color/background_light" />
+        android:layout_gravity="bottom">
+
+        <ProgressBar
+            android:id="@+id/proBarSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp" />
+    </RelativeLayout>
 
     <!--<RelativeLayout-->
     <!--android:layout_width="match_parent"-->
@@ -113,4 +107,4 @@
     <!--</RelativeLayout>-->
 
 
-</LinearLayout>
+</FrameLayout>

@@ -81,13 +81,45 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="left"
+                    android:text="Nhóm chi tiêu"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tvTenNhomChiTieu"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="0dp"
-                    android:gravity="center"
+                    android:gravity="left"
+                    android:text="Nhóm chi tiêu"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="left"
                     android:text="Tên người nhập"
                     android:textColor="#000"
                     android:textSize="20sp" />
@@ -99,7 +131,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="0dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:textColor="#000"
                     android:text="AAAAA"
                     android:textSize="20sp"
@@ -110,14 +142,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="0dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="Ngày hóa đơn"
                     android:textColor="#000"
                     android:textSize="20sp" />
@@ -129,7 +162,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="0dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="Ngày hóa đơn"
                     android:textColor="#000"
                     android:textSize="20sp"
@@ -140,14 +173,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="0dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="Tổng tiền mua"
                     android:textColor="#000"
                     android:textSize="20sp" />
@@ -159,13 +193,13 @@
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="0dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="Tổng tiền mua"
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
-            </LinearLayout>
 
+            </LinearLayout>
         </LinearLayout>
 
 

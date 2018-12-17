@@ -2,20 +2,26 @@ package vn.edu.uit.quanlychitieunhom.Utils;
 
 
 
-import java.lang.reflect.Array;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.google.gson.Gson;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 import vn.edu.uit.quanlychitieunhom.Models.list_giaodich;
+import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 
 public class Util {
     SimpleDateFormat dateFormat;
@@ -30,7 +36,20 @@ public class Util {
         return temp;
     }
 
+    public Date StringToDate(String dateString, String format ) throws ParseException {
+        return new SimpleDateFormat(format).parse(dateString);
+    }
+
     public String DoubleToStringByFormat(Double num, String format){
+        numberFormat = new DecimalFormat(format);
+        String temp = numberFormat.format(num);
+        if(temp.isEmpty()){
+            return "null";
+        }
+        return temp;
+    }
+
+    public String IntegerToStringByFormat(int num, String format){
         numberFormat = new DecimalFormat(format);
         String temp = numberFormat.format(num);
         if(temp.isEmpty()){
@@ -77,6 +96,40 @@ public class Util {
                 }
             }
         }
+    }
+
+
+    public boolean checkMailFormat(String email){
+        final Pattern EMAIL_REGEX = Pattern.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", Pattern.CASE_INSENSITIVE);
+        return EMAIL_REGEX.matcher(email).matches();
+    }
+
+    public taikhoan getUserLocalStorage(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String exist_user = sharedPref.getString("user","");
+        Gson gson = new Gson();
+        return gson.fromJson(exist_user, taikhoan.class);
+    }
+
+    public void setUserLocalStorage(Context context,taikhoan user){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(user); // taikhoan - instance of taikhoan
+        editor.putString("user",json);
+        editor.apply();
+    }
+
+    public void setFlagNewGiaoDich(Context context,boolean flag){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("new_giaodich_flag",true);
+        editor.apply();
+    }
+
+    public boolean getFlagNewGiaoDich(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPref.getBoolean("new_giaodich_flag",false);
     }
 
 }

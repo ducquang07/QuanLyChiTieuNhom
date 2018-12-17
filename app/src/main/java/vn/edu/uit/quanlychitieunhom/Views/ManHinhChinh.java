@@ -2,13 +2,14 @@ package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,21 +17,31 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
-import vn.edu.uit.quanlychitieunhom.R;
+import com.google.gson.Gson;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
+import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
+import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
+import vn.edu.uit.quanlychitieunhom.R;
+import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
+import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
+import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    Util util = new Util();
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar toolbar;
@@ -40,7 +51,11 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private FloatingActionButton fab;
     private LinearLayout header_container;
     private NavigationView nav_view;
+
     private LinearLayout vLsNapTien;
+
+
+    private taikhoan user_admin = new taikhoan();
 
 
     protected void ReferenceById(){
@@ -48,8 +63,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
         viewPager = (ViewPager) findViewById(R.id.view_paper);
+        viewPager.setOffscreenPageLimit(3);
         fab = findViewById(R.id.fb);
-//        header_container = findViewById(R.id.header_container);
         nav_view = findViewById(R.id.nav_view);
         if (nav_view != null) {
             nav_view.setNavigationItemSelectedListener(this);
@@ -60,15 +75,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        makeTranslucentStatusBar();
         super.onCreate(savedInstanceState);
+        makeTranslucentStatusBar();
         setContentView(R.layout.activity_man_hinh_chinh);
 
         /* Get component from view*/
         ReferenceById();
 
         setSupportActionBar(toolbar);
-
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -76,21 +90,43 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setDisplayShowTitleEnabled(false);
-
         tabLayout.setupWithViewPager(viewPager);
-        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),this);
-        viewPager.setAdapter(simpleFragmentPagerAdapter);
-        viewPager.setCurrentItem(6,false);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
-                startActivity(i);
-//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+        user_admin = util.getUserLocalStorage(getApplicationContext());
+
+        if(user_admin != null){
+            try {
+                KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
+                Call<List<kychitieu>> call = service.getAllKyChiTieu(user_admin.getTentaikhoan());
+                call.enqueue(new Callback<List<kychitieu>>() {
+                    @Override
+                    public void onResponse(Call<List<kychitieu>> call, final Response<List<kychitieu>> response) {
+                        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
+                        viewPager.setAdapter(simpleFragmentPagerAdapter);
+                        viewPager.setCurrentItem(6,false);
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                Gson gson = new Gson();
+                                String json = gson.toJson(response.body().get(viewPager.getCurrentItem()).getNhomchitieu()); //TODO: convert to JSON and pass to ThemGiaoDich.class
+                                bundle.putString("nhomchitieu",json);
+                                Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                                i.putExtras(bundle);
+                                startActivity(i);
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call<List<kychitieu>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Test", "Exception");
             }
-        });
+        }
+
 
         vLsNapTien = findViewById(R.id.LsNapTien);
         vLsNapTien.setOnClickListener(new View.OnClickListener() {
@@ -169,11 +205,25 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_so_giao_dich){
             Toast.makeText(getApplicationContext(),"Sổ giao dịch",Toast.LENGTH_LONG).show();
+
         }else if(id == R.id.nav_thong_ke){
             Toast.makeText(getApplicationContext(),"Thống kê",Toast.LENGTH_LONG).show();
             Intent iThongke = new Intent(getApplicationContext(), ThongKe.class);
             startActivity(iThongke);
+
+        }else if(id==R.id.nav_log_out){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(getString(R.string.user));
+            editor.apply();
+
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(i);
+            finish();
+
         }
         return true;
     }
+
+
 }

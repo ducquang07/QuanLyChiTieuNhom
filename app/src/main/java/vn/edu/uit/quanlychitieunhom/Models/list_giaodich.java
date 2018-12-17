@@ -34,6 +34,14 @@ public class list_giaodich {
         this.danhsachchitieu = danhsachchitieu;
     }
 
+    public int TongTien (){
+        int tongtien = 0;
+        for (giaodich e : danhsachchitieu) {
+            tongtien += e.getSotien();
+        }
+        return tongtien;
+    }
+
     public void addToDanhsachchitieu(giaodich giaodich){
         this.danhsachchitieu.add(giaodich);
     }

@@ -3,8 +3,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_so_giao_dich"
-            android:title="Sổ giao dịch"
-            android:icon="@drawable/ic_account_balance_wallet_black_24dp"/>
+            android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+            android:title="Sổ giao dịch" />
         <item
             android:id="@+id/nav_xu_huong"
             android:title="Xu hướng"
@@ -14,8 +14,14 @@
             android:title="Nhóm"
             android:icon="@drawable/ic_group_black_24dp"/>
         <item
+
             android:id="@+id/nav_thong_ke"
             android:title="Thống kê"
             android:icon="@drawable/calendar"/>
+
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_logout_black_24dp"
+            android:title="Đăng xuất" />
+
     </group>
 </menu>

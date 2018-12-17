@@ -1,16 +1,27 @@
 package vn.edu.uit.quanlychitieunhom.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class taikhoan {
+    @SerializedName("tentaikhoan")
     private String tentaikhoan;
+    @SerializedName("matkhau")
     private String matkhau;
+    @SerializedName("tennguoidung")
     private String tennguoidung;
+    @SerializedName("ngaysinh")
     private Date ngaysinh;
+    @SerializedName("gioitinh")
     private String gioitinh;
+    @SerializedName("sodienthoai")
     private String sodienthoai;
+    @SerializedName("email")
     private String email;
+    @SerializedName("ngaydangky")
     private Date ngaydangky;
+    @SerializedName("avatar")
     private String avatar;
 
     public taikhoan() {
@@ -98,5 +109,24 @@ public class taikhoan {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    @Override
+    public String toString() {
+        if(this.tentaikhoan != null && !this.tentaikhoan.equals("")){
+            return "taikhoan{" +
+                    "tentaikhoan='" + tentaikhoan + '\'' +
+                    ", matkhau='" + matkhau + '\'' +
+                    ", tennguoidung='" + tennguoidung + '\'' +
+                    ", ngaysinh=" + ngaysinh +
+                    ", gioitinh='" + gioitinh + '\'' +
+                    ", sodienthoai='" + sodienthoai + '\'' +
+                    ", email='" + email + '\'' +
+                    ", ngaydangky=" + ngaydangky +
+                    ", avatar='" + avatar + '\'' +
+                    '}';
+        }
+        return "null";
+
     }
 }
