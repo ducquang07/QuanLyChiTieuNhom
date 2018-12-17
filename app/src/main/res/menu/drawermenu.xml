@@ -13,5 +13,9 @@
             android:id="@+id/nav_nhom"
             android:title="Nhóm"
             android:icon="@drawable/ic_group_black_24dp"/>
+        <item
+            android:id="@+id/nav_thong_ke"
+            android:title="Thống kê"
+            android:icon="@drawable/calendar"/>
     </group>
 </menu>

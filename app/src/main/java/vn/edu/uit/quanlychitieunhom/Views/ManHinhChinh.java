@@ -40,7 +40,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private FloatingActionButton fab;
     private LinearLayout header_container;
     private NavigationView nav_view;
-
+    private LinearLayout vLsNapTien;
 
 
     protected void ReferenceById(){
@@ -89,6 +89,15 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
 //                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
+            }
+        });
+
+        vLsNapTien = findViewById(R.id.LsNapTien);
+        vLsNapTien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), LichSuNapTien.class);
+                startActivity(i);
             }
         });
 
@@ -160,6 +169,10 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_so_giao_dich){
             Toast.makeText(getApplicationContext(),"Sổ giao dịch",Toast.LENGTH_LONG).show();
+        }else if(id == R.id.nav_thong_ke){
+            Toast.makeText(getApplicationContext(),"Thống kê",Toast.LENGTH_LONG).show();
+            Intent iThongke = new Intent(getApplicationContext(), ThongKe.class);
+            startActivity(iThongke);
         }
         return true;
     }

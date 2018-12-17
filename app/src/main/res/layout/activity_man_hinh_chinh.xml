@@ -36,8 +36,10 @@
                 android:paddingLeft="100dp">
 
                 <LinearLayout
+                    android:id="@+id/LsNapTien"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:clickable="true"
                     android:orientation="vertical">
 
                     <TextView
@@ -72,10 +74,10 @@
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
+                        android:contentDescription="@string/notification_btn"
                         android:orientation="vertical"
                         android:padding="12dp"
-                        android:src="@drawable/ic_notifications_black_24dp"
-                        android:contentDescription="@string/notification_btn"></ImageView>
+                        android:src="@drawable/ic_notifications_black_24dp"></ImageView>
 
                 </LinearLayout>
 

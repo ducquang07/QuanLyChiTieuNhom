@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Quản lý chi tiêu nhóm</string>
     <string name="title_activity_them_giao_dich">Thêm giao dịch</string>
-
-
+    <string name="title_activity_lich_su_gd">Lịch sử nạp tiền</string>
+    <string name="title_activity_thong_ke_gd">Thống kê giao dịch</string>
+    <string name="title_activity_time_option">Chọn ngày</string>
     <!--Thai add-->
     <string name="open">Open</string>
     <string name="close">Close</string>
