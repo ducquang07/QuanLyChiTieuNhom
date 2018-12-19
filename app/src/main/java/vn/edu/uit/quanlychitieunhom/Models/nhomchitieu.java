@@ -1,24 +1,29 @@
 package vn.edu.uit.quanlychitieunhom.Models;
 
 public class nhomchitieu {
-    private int manhomchitieu;
+    private Integer manhomchitieu;
     private String tennhomchitieu;
     private Double quy;
 
     public nhomchitieu() {
     }
 
-    public nhomchitieu(int manhomchitieu, String tennhomchitieu, Double quy) {
+    public nhomchitieu(Integer manhomchitieu, String tennhomchitieu, Double quy) {
         this.manhomchitieu = manhomchitieu;
         this.tennhomchitieu = tennhomchitieu;
         this.quy = quy;
     }
 
-    public int getManhomchitieu() {
+    public nhomchitieu(String tennhomchitieu, Double quy) {
+        this.tennhomchitieu = tennhomchitieu;
+        this.quy = quy;
+    }
+
+    public Integer getManhomchitieu() {
         return manhomchitieu;
     }
 
-    public void setManhomchitieu(int manhomchitieu) {
+    public void setManhomchitieu(Integer manhomchitieu) {
         this.manhomchitieu = manhomchitieu;
     }
 

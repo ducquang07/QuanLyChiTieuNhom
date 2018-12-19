@@ -70,6 +70,12 @@
         android:gravity="center|bottom"
         android:orientation="vertical">
 
+        <ProgressBar
+            android:id="@+id/progressBar_ThemNhom"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/btnThemNhom"
             android:layout_width="match_parent"
@@ -77,7 +83,6 @@
             android:background="@drawable/btn"
             android:text="Thêm"
             android:textColor="@color/colorTextWhite" />
-
 
     </LinearLayout>
 </LinearLayout>
