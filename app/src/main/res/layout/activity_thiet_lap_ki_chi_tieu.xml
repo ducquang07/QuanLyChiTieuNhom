@@ -70,6 +70,7 @@
                 android:src="@drawable/icons8_group" />
 
             <Spinner
+                android:id="@+id/spNhomChiTieu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -94,6 +95,7 @@
                 android:src="@drawable/icons8_calendar" />
 
             <EditText
+                android:id="@+id/txtTenKyChiTieu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -217,6 +219,7 @@
         android:padding="5dp">
 
         <Button
+            android:id="@+id/btnThemKyChiTieu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

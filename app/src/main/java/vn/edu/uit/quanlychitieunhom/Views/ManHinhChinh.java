@@ -218,7 +218,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
                 NhomChiTieu = spinnerAdapter.getItem(position);//TODO: event click to selected item from spinner
-//                Toast.makeText(getApplicationContext(),spinnerAdapter.getItem(position).toString(),Toast.LENGTH_LONG).show();
                 new getKyChiTieu().execute();
             }
             @Override

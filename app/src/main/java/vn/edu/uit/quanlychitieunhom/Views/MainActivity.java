@@ -1,7 +1,6 @@
 package vn.edu.uit.quanlychitieunhom.Views;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -47,12 +46,10 @@ import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
 import vn.edu.uit.quanlychitieunhom.Adapters.SpinnerNhomChiTieu_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
 import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
-import vn.edu.uit.quanlychitieunhom.Models.loaigiaodich;
 import vn.edu.uit.quanlychitieunhom.Models.nhomchitieu;
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
-import vn.edu.uit.quanlychitieunhom.Services.LoaiGiaoDich_Service;
 import vn.edu.uit.quanlychitieunhom.Services.NhomChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Services.TaiKhoan_Service;
 import vn.edu.uit.quanlychitieunhom.Utils.Util;
@@ -76,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     //ManHinhChinh
-    boolean reload = false;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar toolbar;
@@ -386,7 +382,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
                 NhomChiTieu = spinnerAdapter.getItem(position);//TODO: event click to selected item from spinner
-                reload = true;
                 new getKyChiTieu().execute();
             }
             @Override
