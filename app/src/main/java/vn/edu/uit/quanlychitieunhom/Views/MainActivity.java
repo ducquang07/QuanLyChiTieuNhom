@@ -300,6 +300,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent i = new Intent(getApplicationContext(), ThietLapKiChiTieu.class);
             startActivity(i);
         }
+        else if(id == R.id.nav_thong_ke){
+            Toast.makeText(getApplicationContext(),"Thống kê",Toast.LENGTH_LONG).show();
+            Intent iThongke = new Intent(getApplicationContext(), ThongKe.class);
+            startActivity(iThongke);
+
+        }
         else if(id==R.id.nav_log_out){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = preferences.edit();
