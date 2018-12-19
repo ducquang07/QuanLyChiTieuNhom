@@ -14,8 +14,14 @@
             android:title="Nhóm"
             android:icon="@drawable/ic_group_black_24dp"/>
         <item
+
+            android:id="@+id/nav_thong_ke"
+            android:title="Thống kê"
+            android:icon="@drawable/calendar"/>
+        <item
             android:id="@+id/nav_log_out"
             android:icon="@drawable/ic_logout_black_24dp"
             android:title="Đăng xuất" />
+
     </group>
 </menu>

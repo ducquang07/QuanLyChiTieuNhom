@@ -65,6 +65,18 @@
             android:parentActivityName=".Views.HienThiNhomChiTieu"
             android:label="Thêm nhóm chi tiêu"/>
 
+        <activity
+            android:name=".Views.LichSuNapTien"
+            android:parentActivityName=".Views.ManHinhChinh"
+            android:label="@string/title_activity_lich_su_gd"
+            android:exported="true"/>
+        <activity
+            android:name=".Views.ThongKe"
+            android:parentActivityName=".Views.ManHinhChinh"
+            android:label="@string/title_activity_thong_ke_gd"
+
+            android:exported="true"/>
+
     </application>
 
 </manifest>
