@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -13,13 +14,14 @@ import java.util.Calendar;
 
 import vn.edu.uit.quanlychitieunhom.R;
 
-public class ThemKiChiTieu extends AppCompatActivity {
+public class ThietLapKiChiTieu extends AppCompatActivity {
 
     private ImageButton mPickDateFrom;
     private TextView mDateDisplayFrom;
     private ImageButton mPickDateTo;
     private TextView mDateDisplayTo;
     private DatePickerDialog datePickerDialog;
+    private EditText txtHanmucchitieu;
     int year;
     int month;
     int day;
@@ -36,6 +38,7 @@ public class ThemKiChiTieu extends AppCompatActivity {
     {
         mPickDateFrom =  findViewById(R.id.pickDateFrom);
         mDateDisplayFrom = findViewById(R.id.dateDisplayFrom);
+        txtHanmucchitieu = findViewById(R.id.txtHanmucchitieu);
 
         mPickDateTo = findViewById(R.id.pickDateTo);
         mDateDisplayTo= findViewById(R.id.dateDisplayTo);
@@ -49,7 +52,7 @@ public class ThemKiChiTieu extends AppCompatActivity {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 //
-                datePickerDialog = new DatePickerDialog(ThemKiChiTieu.this,
+                datePickerDialog = new DatePickerDialog(ThietLapKiChiTieu.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -69,7 +72,7 @@ public class ThemKiChiTieu extends AppCompatActivity {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 //
-                datePickerDialog = new DatePickerDialog(ThemKiChiTieu.this,
+                datePickerDialog = new DatePickerDialog(ThietLapKiChiTieu.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {

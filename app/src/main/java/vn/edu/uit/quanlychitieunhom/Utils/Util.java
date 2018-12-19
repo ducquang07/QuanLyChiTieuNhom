@@ -120,16 +120,35 @@ public class Util {
         editor.apply();
     }
 
-    public void setFlagNewGiaoDich(Context context,boolean flag){
+    public void setFlagNewGiaoDich(Context context,boolean flag,int makychitieu){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("new_giaodich_flag",true);
+        Gson gson = new Gson();
+        String json = gson.toJson(new FlagNewGiaoDich(flag,makychitieu));
+        editor.putString("new_giaodich_flag",json);
         editor.apply();
     }
 
-    public boolean getFlagNewGiaoDich(Context context){
+    public FlagNewGiaoDich getFlagNewGiaoDich(Context context){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPref.getBoolean("new_giaodich_flag",false);
+        String flag = sharedPref.getString("new_giaodich_flag","");
+        Gson gson = new Gson();
+        return gson.fromJson(flag, FlagNewGiaoDich.class);
+    }
+
+    public class FlagNewGiaoDich{
+        boolean flag;
+        int makychitieu;
+
+        public FlagNewGiaoDich(boolean flag, int makychitieu) {
+            this.flag = flag;
+            this.makychitieu = makychitieu;
+        }
+
+        public boolean isFlag() { return flag; }
+        public void setFlag(boolean flag) { this.flag = flag; }
+        public int getMakychitieu() { return makychitieu; }
+        public void setMakychitieu(int makychitieu) { this.makychitieu = makychitieu; }
     }
 
 }

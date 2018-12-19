@@ -12,11 +12,12 @@ import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 
 public interface GiaoDich_Service {
 
-    @GET("/api/giaodich/list")
-    Call<List<giaodich>> getAllTransaction();
+//    @GET("/api/giaodich/list")
+//    Call<List<giaodich>> getAllTransaction();
 
-    @GET("/api/giaodich/kychitieu/{makychitieu}")
-    Call<List<giaodich>> getGiaoDichOfKyChiTieu(@Path("makychitieu") int makychitieu);
+    @GET("/api/giaodich/kychitieu/{makychitieu}/{manhomchitieu}")
+    Call<List<giaodich>> getGiaoDichOfKyChiTieu(@Path("makychitieu") int makychitieu,
+                                                @Path("manhomchitieu") int manhomchitieu);
 
     @POST("/api/giaodich/")
     Call<Void> insert(@Body giaodich body);

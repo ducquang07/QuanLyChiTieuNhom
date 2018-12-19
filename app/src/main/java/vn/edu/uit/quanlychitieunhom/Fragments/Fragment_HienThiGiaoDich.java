@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +32,14 @@ import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 public class Fragment_HienThiGiaoDich extends Fragment {
     ProgressBar progressBar;
-    private int MaKyChiTieu;
+    protected int MaKyChiTieu;
+    protected  int MaNhomChiTieu;
     private ListView lvTransaction;
     private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
     private List<giaodich> List_GiaoDich;
     private List<list_giaodich> List_GiaoDichTheoNgay;
     Util util = new Util();
-
+    public int position;
 
 
     @Nullable
@@ -56,16 +59,19 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     public void setMaKiChiTieu(int makichitieu){
         this.MaKyChiTieu = makichitieu;
     }
-
+    public void setMaNhomChiTieu(int manhomchitieu){this.MaNhomChiTieu = manhomchitieu;}
     /*Get list giao dich by request API*/
     public void getGiaoDich(){
         try {
             GiaoDich_Service service = RetrofitClientInstance.getRetrofitInstance().create(GiaoDich_Service.class);
-            Call<List<giaodich>> call = service.getGiaoDichOfKyChiTieu(this.MaKyChiTieu);
+            Call<List<giaodich>> call = service.getGiaoDichOfKyChiTieu(this.MaKyChiTieu,this.MaNhomChiTieu);
             call.enqueue(new Callback<List<giaodich>>() {
                 @Override
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
+                    Gson gson = new Gson();
                     List_GiaoDich = response.body();
+//                    Log.d("TEST_MAGIAODICH",String.valueOf(MaKyChiTieu)+"/"+String.valueOf(MaNhomChiTieu));
+//                    Log.d("TEST_GIAODICH",gson.toJson(response.body()));
                     List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
                 }
@@ -78,7 +84,7 @@ public class Fragment_HienThiGiaoDich extends Fragment {
             Log.d("Test", "Exception");
         }
         finally {
-            util.setFlagNewGiaoDich(getContext(),false);
+            util.setFlagNewGiaoDich(getContext(),false,0);
         }
     }
 
@@ -86,7 +92,6 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     public void GeneratedAdapter(){
         /*Pass param for list_adapter*/
         list_ngaygiaoDich_adapter = new List_NgayGiaoDich_Adapter(getContext(),List_GiaoDichTheoNgay);
-
         /*Set adapter for listview*/
         lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
         progressBar.setVisibility(View.INVISIBLE);
@@ -95,10 +100,14 @@ public class Fragment_HienThiGiaoDich extends Fragment {
 
     @Override
     public void onResume() {
-        if(util.getFlagNewGiaoDich(getContext())){
-            getGiaoDich();
+        Util.FlagNewGiaoDich flag = util.getFlagNewGiaoDich(getContext());
+        if(flag.getMakychitieu() == MaKyChiTieu ){
+            if(flag.isFlag()){
+                getGiaoDich();
+            }
         }
         super.onResume();
     }
+
 
 }
