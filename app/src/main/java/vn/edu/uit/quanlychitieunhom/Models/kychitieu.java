@@ -33,6 +33,15 @@ public class kychitieu {
         this.manhomchitieu = manhomchitieu;
     }
 
+    public kychitieu(String tenkychitieu, Date tungay, Date denngay, Double hanmucchitieu, vn.edu.uit.quanlychitieunhom.Models.nhomchitieu nhomchitieu) {
+        this.tenkychitieu = tenkychitieu;
+        this.tungay = tungay;
+        this.denngay = denngay;
+        this.hanmucchitieu = hanmucchitieu;
+        this.nhomchitieu = nhomchitieu;
+        this.manhomchitieu = nhomchitieu.getManhomchitieu();
+    }
+
     public int getMakychitieu() {
         return makychitieu;
     }
