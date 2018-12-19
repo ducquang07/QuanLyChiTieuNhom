@@ -1,8 +1,14 @@
 package vn.edu.uit.quanlychitieunhom.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class nhomchitieu {
+
+    @SerializedName("manhomchitieu")
     private Integer manhomchitieu;
+    @SerializedName("tennhomchitieu")
     private String tennhomchitieu;
+    @SerializedName("quy")
     private Double quy;
 
     public nhomchitieu() {

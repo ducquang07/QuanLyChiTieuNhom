@@ -54,7 +54,7 @@
             android:label="Đăng kí tài khoản"
             android:exported="true"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Views.ThemKiChiTieu"
+        <activity android:name=".Views.ThietLapKiChiTieu"
             android:label="Tạo kì chi tiêu"
             android:exported="true"
             android:screenOrientation="portrait"/>

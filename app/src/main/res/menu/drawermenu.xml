@@ -4,7 +4,7 @@
         <item
             android:id="@+id/nav_so_giao_dich"
             android:icon="@drawable/ic_account_balance_wallet_black_24dp"
-            android:title="Sổ giao dịch" />
+            android:title="Thiết lập kỳ chi tiêu" />
         <item
             android:id="@+id/nav_xu_huong"
             android:title="Xu hướng"

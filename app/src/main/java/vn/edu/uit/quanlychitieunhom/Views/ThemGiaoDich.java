@@ -63,6 +63,7 @@ public class ThemGiaoDich extends AppCompatActivity {
     Util util = new Util();
     int StatusCode;
 
+
     private ProgressBar progressBar;
     private Spinner spLoaiChiTieu;
     private EditText txtDate;
@@ -73,6 +74,7 @@ public class ThemGiaoDich extends AppCompatActivity {
     private int mMonth;
     private int mDay;
 
+    private kychitieu kychitieu;
     private List<loaigiaodich> List_LoaiGiaoDich = new ArrayList<>();
     private nhomchitieu NhomChiTieu = new nhomchitieu();
     private giaodich new_giaodich ;
@@ -87,6 +89,7 @@ public class ThemGiaoDich extends AppCompatActivity {
         GetComponentByID();
         addControls();
         GetNhomChiTieu();
+        GetKyChiTieu();
     }
 
 
@@ -96,6 +99,13 @@ public class ThemGiaoDich extends AppCompatActivity {
         Gson gson = new Gson();
         String json_nhomchitieu = i.getStringExtra("nhomchitieu");
         NhomChiTieu =  gson.fromJson(json_nhomchitieu, nhomchitieu.class);
+    }
+
+    public void GetKyChiTieu(){
+        Intent i = getIntent();
+        Gson gson = new Gson();
+        String json_kychitieu = i.getStringExtra("kychitieu");
+        kychitieu = gson.fromJson(json_kychitieu,kychitieu.class);
     }
 
     public void addControls(){
@@ -194,7 +204,8 @@ public class ThemGiaoDich extends AppCompatActivity {
                                     null,
                                     NhomChiTieu,
                                     create_by,
-                                    LoaiGiaoDich);
+                                    LoaiGiaoDich,
+                                    kychitieu);
     }
 
 
@@ -296,7 +307,7 @@ public class ThemGiaoDich extends AppCompatActivity {
                 Log.d("ERROR", e.toString());
             }
             finally {
-                util.setFlagNewGiaoDich(getApplicationContext(),true);
+                util.setFlagNewGiaoDich(getApplicationContext(),true, kychitieu.getMakychitieu());
             }
             return (StatusCode == 200)? true : false;
         }

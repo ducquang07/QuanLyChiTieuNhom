@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,26 +23,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
+import vn.edu.uit.quanlychitieunhom.Adapters.SpinnerNhomChiTieu_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
 import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
+import vn.edu.uit.quanlychitieunhom.Models.nhomchitieu;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
+import vn.edu.uit.quanlychitieunhom.Services.NhomChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Util util = new Util();
+    int StatusCode;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar toolbar;
@@ -51,14 +59,15 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private FloatingActionButton fab;
     private LinearLayout header_container;
     private NavigationView nav_view;
-
     private LinearLayout vLsNapTien;
-
-
+    private Spinner spNhomChiTieu;
     private taikhoan user_admin = new taikhoan();
+    private List<nhomchitieu> List_NhomChiTieu = new ArrayList<>();
+    private nhomchitieu NhomChiTieu = new nhomchitieu();
 
 
     protected void ReferenceById(){
+        spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
         tabLayout = (TabLayout)  findViewById(R.id.tab_Layout);
@@ -95,36 +104,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         user_admin = util.getUserLocalStorage(getApplicationContext());
 
         if(user_admin != null){
-            try {
-                KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
-                Call<List<kychitieu>> call = service.getAllKyChiTieu(user_admin.getTentaikhoan());
-                call.enqueue(new Callback<List<kychitieu>>() {
-                    @Override
-                    public void onResponse(Call<List<kychitieu>> call, final Response<List<kychitieu>> response) {
-                        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
-                        viewPager.setAdapter(simpleFragmentPagerAdapter);
-                        viewPager.setCurrentItem(6,false);
-                        fab.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Bundle bundle = new Bundle();
-                                Gson gson = new Gson();
-                                String json = gson.toJson(response.body().get(viewPager.getCurrentItem()).getNhomchitieu()); //TODO: convert to JSON and pass to ThemGiaoDich.class
-                                bundle.putString("nhomchitieu",json);
-                                Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
-                                i.putExtras(bundle);
-                                startActivity(i);
-                            }
-                        });
-                    }
-                    @Override
-                    public void onFailure(Call<List<kychitieu>> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } catch (Exception e) {
-                Log.d("Test", "Exception");
-            }
+            new getNhomChiTieuTask().execute();
+            new getKyChiTieu().execute();
         }
 
 
@@ -201,10 +182,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
 
         if(id == R.id.nav_nhom){
             Toast.makeText(getApplicationContext(),"Nhóm",Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getApplicationContext(), HienThiNhomChiTieu.class);
+            startActivity(i);
         }else if(id == R.id.nav_xu_huong){
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_so_giao_dich){
-            Toast.makeText(getApplicationContext(),"Sổ giao dịch",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Thiết lập kỳ chi tiêu",Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getApplicationContext(), ThietLapKiChiTieu.class);
+            startActivity(i);
 
         }else if(id == R.id.nav_thong_ke){
             Toast.makeText(getApplicationContext(),"Thống kê",Toast.LENGTH_LONG).show();
@@ -225,5 +210,103 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public void setSpinnerAdapter(){
+        final SpinnerNhomChiTieu_Adapter spinnerAdapter = new SpinnerNhomChiTieu_Adapter(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item ,List_NhomChiTieu);
+        spNhomChiTieu.setAdapter(spinnerAdapter);
+        spNhomChiTieu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                NhomChiTieu = spinnerAdapter.getItem(position);//TODO: event click to selected item from spinner
+//                Toast.makeText(getApplicationContext(),spinnerAdapter.getItem(position).toString(),Toast.LENGTH_LONG).show();
+                new getKyChiTieu().execute();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapter) {  }
+        });
+    }
 
+    public class  getNhomChiTieuTask extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected Boolean  doInBackground(String... params) {
+            try {
+                NhomChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(NhomChiTieu_Service.class);
+                Call<List<nhomchitieu>> call = service.getAllNhomChiTieu(user_admin.getTentaikhoan());
+                call.enqueue(new Callback<List<nhomchitieu>>() {
+                    @Override
+                    public void onResponse(Call<List<nhomchitieu>> call, Response<List<nhomchitieu>> response) {
+                        StatusCode = response.code();
+                        if(StatusCode== 200){
+                            List_NhomChiTieu = response.body();
+                            setSpinnerAdapter();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<nhomchitieu>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Test", "Exception");
+            }
+            // TODO: register the new account here.
+            return (StatusCode == 200)? true : false;
+        }
+    }
+
+
+    public class  getKyChiTieu extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+        }
+        @Override
+        protected Boolean  doInBackground(String... params) {
+            try {
+                KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
+                Call<List<kychitieu>> call = service.getAllKyChiTieu(NhomChiTieu.getManhomchitieu());
+                call.enqueue(new Callback<List<kychitieu>>() {
+                    @Override
+                    public void onResponse(Call<List<kychitieu>> call, final Response<List<kychitieu>> response) {
+                        StatusCode = response.code();
+                        List<kychitieu> ListKyChiTieu = response.body();
+                        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
+                        viewPager.setAdapter(simpleFragmentPagerAdapter);
+//                        viewPager.setCurrentItem(6,false);
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(response.body().size() > 0) {
+                                    Bundle bundle = new Bundle();
+                                    Gson gson = new Gson();
+                                    String json = gson.toJson(response.body().get(viewPager.getCurrentItem()).getNhomchitieu()); //TODO: convert to JSON and pass to ThemGiaoDich.class
+                                    bundle.putString("nhomchitieu", json);
+                                    json = gson.toJson(response.body().get(viewPager.getCurrentItem()));
+                                    bundle.putString("kychitieu", json);
+                                    Intent i = new Intent(getApplicationContext(), ThemGiaoDich.class);
+                                    i.putExtras(bundle);
+                                    startActivity(i);
+                                }else {
+                                    Toast.makeText(getApplicationContext(),"Không tìm thấy kỳ chi tiêu nào để tạo giao dịch", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call<List<kychitieu>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Test", "Exception");
+            }
+            // TODO: register the new account here.
+            return (StatusCode == 200)? true : false;
+        }
+    }
 }

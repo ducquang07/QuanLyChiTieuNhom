@@ -27,6 +27,8 @@ public class giaodich {
     private taikhoan taikhoan;
     @SerializedName("loaigiaodich")
     private  loaigiaodich loaigiaodich;
+    @SerializedName("kychitieu")
+    private kychitieu kychitieu;
 
     public giaodich() {
     }
@@ -42,7 +44,7 @@ public class giaodich {
         this.manhomchitieu = manhomchitieu;
     }
 
-    public giaodich(Date ngaygiaodich, Double sotien, String ghichu, String anhhoadon, nhomchitieu nhomchitieu, taikhoan taikhoan, loaigiaodich loaigiaodich) {
+    public giaodich(Date ngaygiaodich, Double sotien, String ghichu, String anhhoadon, nhomchitieu nhomchitieu, taikhoan taikhoan, loaigiaodich loaigiaodich,kychitieu kychitieu) {
         this.ngaygiaodich = ngaygiaodich;
         this.sotien = sotien;
         this.ghichu = ghichu;
@@ -53,6 +55,7 @@ public class giaodich {
         this.tentaikhoan = taikhoan.getTentaikhoan();
         this.maloaigiaodich = loaigiaodich.getMaloaigiaodich();
         this.manhomchitieu = nhomchitieu.getManhomchitieu();
+        this.kychitieu = kychitieu;
     }
 
     public int getMagiaodich() {
@@ -131,6 +134,14 @@ public class giaodich {
         return loaigiaodich;
     }
 
+    public vn.edu.uit.quanlychitieunhom.Models.kychitieu getKychitieu() {
+        return kychitieu;
+    }
+
+    public void setKychitieu(vn.edu.uit.quanlychitieunhom.Models.kychitieu kychitieu) {
+        this.kychitieu = kychitieu;
+    }
+
     public void setNhomchitieu(vn.edu.uit.quanlychitieunhom.Models.nhomchitieu nhomchitieu) {
         this.nhomchitieu = nhomchitieu;
     }
@@ -157,6 +168,8 @@ public class giaodich {
             str += "taikhoan='" + this.taikhoan.toString() + '\'';
         if(this.loaigiaodich != null)
             str += "loaigiaodich" + this.loaigiaodich.toString() +'\'';
-        return str+'}';
+        if(this.kychitieu != null)
+            str += "kychitieu" + this.kychitieu.toString() +'\'';
+        return str +'}';
     }
 }

@@ -12,10 +12,10 @@ public interface KyChiTieu_Service {
 //    @GET("/api/kychitieu/list")
 //    Call<List<kychitieu>> getAllKyChiTieu();
 
-//    @GET("/api/nhomchitieu/getallnhomchitieuoftaikhoan/{tentaikhoan}")
+//    @GET("/api/kychitieu/getAll/{tentaikhoan}")
 //    Call<List<kychitieu>> getAllKyChiTieu(@Path("tentaikhoan") String tentaikhoan);
 
-    @GET("/api/kychitieu/getAll/{tentaikhoan}")
-    Call<List<kychitieu>> getAllKyChiTieu(@Path("tentaikhoan") String tentaikhoan);
+    @GET("api/kychitieu/getAllKyByNhom/{manhomchitieu}")
+    Call<List<kychitieu>> getAllKyChiTieu(@Path("manhomchitieu") int manhomchitieu);
 
 }
