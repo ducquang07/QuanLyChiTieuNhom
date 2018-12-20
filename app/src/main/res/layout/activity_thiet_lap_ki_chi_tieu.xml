@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -31,7 +32,7 @@
 
             <EditText
                 android:id="@+id/txtHanmucchitieu"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/money"
                 android:backgroundTint="#4EA1D1"
@@ -43,12 +44,15 @@
                 android:textCursorDrawable="@null" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/txtHanmucchitieu"
-                android:text="VNĐ"
-                android:textSize="10pt" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:gravity="right"
+                android:text="vnđ" />
+
         </RelativeLayout>
 
 
@@ -92,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="5dp"
-                android:src="@drawable/icons8_calendar" />
+                android:src="@drawable/ic_new_releases_black_24dp" />
 
             <EditText
                 android:id="@+id/txtTenKyChiTieu"
@@ -133,13 +137,10 @@
                 <TextView
                     android:id="@+id/dateDisplayFrom"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:text="Chọn ngày bắt đầu"
+                    android:padding="20dp"
                     android:textSize="7pt"
                     android:textStyle="bold" />
 
@@ -153,7 +154,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="20dp"
-                    android:src="@drawable/ic_edit_button" />
+                    android:src="@drawable/icons8_calendar" />
             </LinearLayout>
         </LinearLayout>
 
@@ -182,13 +183,10 @@
 
                     android:id="@+id/dateDisplayTo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:text="Chọn ngày kết thúc"
+                    android:padding="20dp"
                     android:textSize="7pt"
                     android:textStyle="bold" />
 
@@ -202,7 +200,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="20dp"
-                    android:src="@drawable/ic_edit_button" />
+                    android:src="@drawable/icons8_calendar" />
 
             </LinearLayout>
 
@@ -217,6 +215,13 @@
         android:gravity="bottom"
         android:orientation="vertical"
         android:padding="5dp">
+
+        <ProgressBar
+            android:id="@+id/proBarThemKyChiTieu"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp" />
 
         <Button
             android:id="@+id/btnThemKyChiTieu"

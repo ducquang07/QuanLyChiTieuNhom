@@ -132,9 +132,14 @@ public class Util {
     public FlagNewGiaoDich getFlagNewGiaoDich(Context context){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String flag = sharedPref.getString("new_giaodich_flag","");
+        if(flag.equals("")) {
+            return null;
+        }
         Gson gson = new Gson();
         return gson.fromJson(flag, FlagNewGiaoDich.class);
     }
+
+
 
     public class FlagNewGiaoDich{
         boolean flag;
@@ -149,6 +154,61 @@ public class Util {
         public void setFlag(boolean flag) { this.flag = flag; }
         public int getMakychitieu() { return makychitieu; }
         public void setMakychitieu(int makychitieu) { this.makychitieu = makychitieu; }
+    }
+
+
+
+
+
+    public void setFlagNewKyChiTieu(Context context,boolean flag,int manhom){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(new FlagNewKyChiTieu(flag,manhom));
+        editor.putString("new_kychitieu_flag",json);
+        editor.apply();
+    }
+
+    public FlagNewKyChiTieu getFlagNewKyChiTieu(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String flag = sharedPref.getString("new_kychitieu_flag","");
+        if(flag.equals("")) {
+            return new FlagNewKyChiTieu();
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(flag, FlagNewKyChiTieu.class);
+    }
+
+
+
+    public class FlagNewKyChiTieu{
+        boolean flag;
+        int manhom;
+
+        public FlagNewKyChiTieu(){
+            this.flag = false;
+            this.manhom =0;
+        }
+
+        public FlagNewKyChiTieu(boolean flag, int manhom) {
+            this.flag = flag;
+            this.manhom = manhom;
+        }
+
+        public boolean isFlag() {
+            return flag;
+        }
+        public void setFlag(boolean flag) {this.flag = flag;}
+        public int getManhom() {return manhom;}
+        public void setManhom(int manhom) {this.manhom = manhom;}
+
+        @Override
+        public String toString() {
+            return "FlagNewKyChiTieu{" +
+                    "flag=" + flag +
+                    ", manhom=" + manhom +
+                    '}';
+        }
     }
 
 }

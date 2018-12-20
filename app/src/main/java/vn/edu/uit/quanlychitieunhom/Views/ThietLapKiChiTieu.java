@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -42,6 +45,8 @@ import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Services.NhomChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
+import static android.view.View.GONE;
+
 public class ThietLapKiChiTieu extends AppCompatActivity {
     Util util = new Util();
     int StatusCode;
@@ -56,6 +61,7 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
     private EditText txtTenKyChiTieu;
     private Spinner spNhomChiTieu;
     private Button btnThemKyChiTieu;
+    private ProgressBar progressBar;
 
     int year;
     int month;
@@ -89,10 +95,15 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         txtTenKyChiTieu = findViewById(R.id.txtTenKyChiTieu);
         btnThemKyChiTieu = findViewById(R.id.btnThemKyChiTieu);
+        progressBar = findViewById(R.id.proBarThemKyChiTieu);
     }
 
 
     private void addControls() {
+        progressBar.setVisibility(GONE);
+        mDateDisplayTo.setText(util.DateStringByFormat(new Date(),"dd/MM/yyyy"));
+        mDateDisplayFrom.setText(util.DateStringByFormat(new Date(),"dd/MM/yyyy"));
+
 
         mPickDateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,14 +148,15 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
         btnThemKyChiTieu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checkValidate("Số tiền",txtSotien);
-                Gson gson = new Gson();
-                new insertKyChiTieuTask().execute();
-                Toast.makeText(getApplicationContext(),gson.toJson(new_kychitieu),Toast.LENGTH_LONG).show();
+                checkValidate("Hạn mức chi tiêu ",txtHanmucchitieu,null,true,false);
+                checkValidate("Tên kỳ chi tiêu ",txtTenKyChiTieu,null,false,false);
+                checkValidate("Ngày bắt đầu kỳ chi tiêu ",null,mDateDisplayFrom,false,true);
+                checkValidate("Ngày kết thúc kỳ chi tiêu ",null,mDateDisplayTo,false,true);
 
                 if(ERR == 0){
                     //TODO:
 //                    new ThemGiaoDich.insertGiaoDichTask().execute();
+                    new insertKyChiTieuTask().execute();
                 }
                 else{
                     ERR = 0;
@@ -221,7 +233,7 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
         protected void onPreExecute() {
 
             try {
-//                showProgress(true);
+                showProgress(true);
                 GetInputKyChiTieu();
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -240,8 +252,8 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         StatusCode = response.code();
                         if(StatusCode == 200){
-//                            showProgress(false);
-//                            clearInput();
+                            showProgress(false);
+                            clearInput();
                             Toast.makeText(getApplicationContext(), "Thêm thành công !", Toast.LENGTH_SHORT).show();
                         }
                         else{
@@ -254,14 +266,14 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             Log.d("test",String.valueOf(response.code()));
-//                            showProgress(false);
+                            showProgress(false);
                             Toast.makeText(getApplicationContext(), "Thêm thất bại !", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-//                        showProgress(false);
+                        showProgress(false);
                         Log.d("ERR",t.getMessage());
                         Toast.makeText(getApplicationContext(), "Có lỗi xảy ra. Vui lòng thao tác lại sau !", Toast.LENGTH_SHORT).show();
                     }
@@ -270,7 +282,9 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
                 Log.d("ERROR", e.toString());
             }
             finally {
-//                util.setFlagNewGiaoDich(getApplicationContext(),true, kychitieu.getMakychitieu());
+                util.setFlagNewKyChiTieu(getApplicationContext(),true, NhomChiTieu.getManhomchitieu());
+                Log.d("manhom",String.valueOf(NhomChiTieu));
+                Log.d("TEST",util.getFlagNewKyChiTieu(getApplicationContext()).toString());
             }
             return (StatusCode == 200)? true : false;
         }
@@ -278,6 +292,55 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
     }
 
 
+    public int checkValidate(String label,EditText editText,TextView textView,boolean isMoney,boolean isDate){
+        if(editText!=null ){
+            if(editText.getText().toString().equals(null)||editText.getText().equals("") || editText.getText().toString().isEmpty()){
+                editText.setError(label+ " không được để trống");
+                return ERR++;
+            }
+            if(isMoney && editText.getText().toString().equals("0")){
+                editText.setError("Số tiền nhập không hợp lệ");
+                return ERR++;
+            }
+            editText.setError(null);
+        }
+        if(textView!=null) {
+            if (textView.getText().toString().equals(null) || textView.getText().equals("") || textView.getText().toString().isEmpty()) {
+                textView.setError(label + " không được để trống");
+                return ERR++;
+            }
+            if(!textView.getText().toString().matches("^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$")){
+                textView.setError("Chưa chọn ngày cho hạng mục");
+                return ERR++;
+            }
+            textView.setError(null);
+        }
 
+        return ERR;
+    }
+
+    public void showProgress(boolean BOOL){
+        if(BOOL){
+            progressBar.setVisibility(GONE);
+            progressBar.setVisibility(View.VISIBLE);
+
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            getWindow().setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+            );
+        }
+        else{
+            progressBar.setVisibility(GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
+    }
+
+    public void clearInput(){
+        txtHanmucchitieu.setText("0");
+        txtTenKyChiTieu.setText("");
+        mDateDisplayFrom.setText(util.DateStringByFormat(new Date(),"dd/MM/yyyy"));
+        mDateDisplayTo.setText(util.DateStringByFormat(new Date(),"dd/MM/yyyy"));
+    }
 
 }

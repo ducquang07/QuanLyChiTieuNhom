@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         List<kychitieu> ListKyChiTieu = response.body();
                         simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
                         viewPager.setAdapter(simpleFragmentPagerAdapter);
+                        viewPager.setCurrentItem(response.body().size() - 1,true);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -226,6 +227,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
             } catch (Exception e) {
                 Log.d("Test", "Exception");
+            }
+            finally {
+                util.setFlagNewKyChiTieu(getApplicationContext(),false,0);
             }
             // TODO: register the new account here.
             return (StatusCode == 200)? true : false;
@@ -292,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }
         else if(id == R.id.nav_so_giao_dich){
-            Toast.makeText(getApplicationContext(),"Thiết lập kỳ chi tiêu",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),"Thiết lập kỳ chi tiêu",Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(), ThietLapKiChiTieu.class);
             startActivity(i);
         }
@@ -448,6 +452,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mLinearLayout = (LinearLayout) findViewById(R.id.mLinearLayout);
         progressBar.setVisibility(View.GONE);
         addControls();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Util.FlagNewKyChiTieu flagNewKyChiTieu = util.getFlagNewKyChiTieu(getApplicationContext());
+        if(flagNewKyChiTieu.isFlag() && flagNewKyChiTieu.getManhom() == NhomChiTieu.getManhomchitieu()){
+            new getKyChiTieu().execute();
+        }
+
+
     }
 }
 

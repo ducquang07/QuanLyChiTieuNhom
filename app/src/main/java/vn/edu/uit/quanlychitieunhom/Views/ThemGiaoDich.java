@@ -93,7 +93,6 @@ public class ThemGiaoDich extends AppCompatActivity {
     }
 
 
-
     public void GetNhomChiTieu(){
         Intent i = getIntent();
         Gson gson = new Gson();

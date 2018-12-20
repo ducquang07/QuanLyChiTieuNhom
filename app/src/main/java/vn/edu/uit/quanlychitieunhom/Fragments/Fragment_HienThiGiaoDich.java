@@ -101,11 +101,14 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     @Override
     public void onResume() {
         Util.FlagNewGiaoDich flag = util.getFlagNewGiaoDich(getContext());
-        if(flag.getMakychitieu() == MaKyChiTieu ){
-            if(flag.isFlag()){
-                getGiaoDich();
+        if(flag != null){
+            if(flag.getMakychitieu() == MaKyChiTieu ){
+                if(flag.isFlag()){
+                    getGiaoDich();
+                }
             }
         }
+
         super.onResume();
     }
 

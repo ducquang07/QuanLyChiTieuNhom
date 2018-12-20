@@ -276,7 +276,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
                         List<kychitieu> ListKyChiTieu = response.body();
                         SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),response.body());
                         viewPager.setAdapter(simpleFragmentPagerAdapter);
-//                        viewPager.setCurrentItem(6,false);
+                        viewPager.setCurrentItem(response.body().size() - 1,true);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -303,9 +303,20 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
                 });
             } catch (Exception e) {
                 Log.d("Test", "Exception");
+            }finally {
+                util.setFlagNewKyChiTieu(getApplicationContext(),false,0);
             }
             // TODO: register the new account here.
             return (StatusCode == 200)? true : false;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Util.FlagNewKyChiTieu flagNewKyChiTieu = util.getFlagNewKyChiTieu(getApplicationContext());
+        if(flagNewKyChiTieu.isFlag() && flagNewKyChiTieu.getManhom() == NhomChiTieu.getManhomchitieu()){
+            new getKyChiTieu().execute();
         }
     }
 }
