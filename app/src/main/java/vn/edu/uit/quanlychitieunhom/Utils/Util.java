@@ -4,10 +4,21 @@ package vn.edu.uit.quanlychitieunhom.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
+import android.util.Base64;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -19,9 +30,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
+import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
 import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 import vn.edu.uit.quanlychitieunhom.Models.list_giaodich;
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
+import vn.edu.uit.quanlychitieunhom.Services.Image_Service;
 
 public class Util {
     SimpleDateFormat dateFormat;
@@ -210,5 +228,66 @@ public class Util {
                     '}';
         }
     }
+
+
+    public void getImageByUrl(final Context context, String url){
+        try {
+            Image_Service service = RetrofitClientInstance.getRetrofitInstance().create(Image_Service.class);
+            Call<ResponseBody> call = service.getImage(url);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            // display the image data in a ImageView or save it
+                            Bitmap bmp = BitmapFactory.decodeStream(response.body().byteStream());
+                            setImageUserLocalStorage(context,bmp);
+                        } else {
+                            // TODO: GET IMAGE DEFAULT
+                        }
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(context,"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.d("Test", "Exception");
+        }
+    }
+
+    public void setImageUserLocalStorage(Context context,Bitmap bitmap){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("image_user",encodeTobase64(bitmap));
+        editor.apply();
+    }
+
+
+    //TODO: method for bitmap to base64
+    public String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+        return imageEncoded;
+    }
+
+    //TODO: method for base64 to bitmap
+    public static Bitmap decodeBase64(String input) {
+        byte[] decodedByte = Base64.decode(input, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
+    }
+
+    public Bitmap getImageUser(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String string_img_user = sharedPref.getString("image_user","");
+        Log.d("IMAGE",string_img_user);
+        return decodeBase64(string_img_user);
+    }
+
 
 }

@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -61,12 +62,18 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private NavigationView nav_view;
     private LinearLayout vLsNapTien;
     private Spinner spNhomChiTieu;
+    private ImageView imageViewUser;
+
+
     private taikhoan user_admin = new taikhoan();
     private List<nhomchitieu> List_NhomChiTieu = new ArrayList<>();
     private nhomchitieu NhomChiTieu = new nhomchitieu();
 
 
     protected void ReferenceById(){
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        imageViewUser = (ImageView) hView.findViewById(R.id.imgUser_navigation);
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
@@ -117,6 +124,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
             }
         });
+
+        imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
 
     }
 
