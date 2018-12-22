@@ -44,6 +44,8 @@ public class ThemNhomChiTieu extends AppCompatActivity {
     private String viewValue;
     private nhomchitieu new_nhomchitieu;
     private EditText txtTenNhom;
+    private EditText txtQuy;
+    int ERR = 0;
     Util util = new Util();
     nhomchitieu NhomChiTieu = new nhomchitieu();
     int StatusCode;
@@ -61,6 +63,7 @@ public class ThemNhomChiTieu extends AppCompatActivity {
         btnThemthanhvien = findViewById(R.id.btnThemThanhVien);
         btnThemNhom = findViewById(R.id.btnThemNhom);
         txtTenNhom = findViewById(R.id.txtTenNhom);
+        txtQuy = findViewById(R.id.txtQuy);
         progressBar = findViewById(R.id.progressBar_ThemNhom);
     }
 
@@ -83,7 +86,15 @@ public class ThemNhomChiTieu extends AppCompatActivity {
         btnThemNhom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new insertNhomChiTieuTask().execute();
+                checkValidate("Tên nhóm",txtTenNhom);
+                if (ERR==0){
+                    checkValidate("Quỹ",txtQuy);
+                    if (ERR==0){
+                        new insertNhomChiTieuTask().execute();
+                    }
+                }
+
+
 
             }
         });
@@ -150,8 +161,8 @@ public class ThemNhomChiTieu extends AppCompatActivity {
                             }catch (Exception e) {
                                 Log.d("ERROR", e.toString());
                             }
-
                             Toast.makeText(getApplicationContext(), "Thêm thành công !", Toast.LENGTH_SHORT).show();
+                            finish();
                         }else{
                             try {
                                 JSONObject jObjError = new JSONObject(response.errorBody().string());
@@ -183,7 +194,7 @@ public class ThemNhomChiTieu extends AppCompatActivity {
     public void GetInputNhomChiTieu() throws ParseException {
 //        new_nhomchitieu = new nhomchitieu();
 //        taikhoan create_by = util.getUserLocalStorage(getApplicationContext());
-        new_nhomchitieu = new nhomchitieu(txtTenNhom.getText().toString(),0.0);
+        new_nhomchitieu = new nhomchitieu(txtTenNhom.getText().toString(),Double.parseDouble(txtQuy.getText().toString()));
     }
 
     public void showProgress(boolean BOOL){
@@ -201,5 +212,15 @@ public class ThemNhomChiTieu extends AppCompatActivity {
             progressBar.setVisibility(GONE);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
+    }
+
+    public int checkValidate(String label,EditText editText){
+        ERR = 0;
+        if(editText.getText().toString().equals(null)||editText.getText().equals("") || editText.getText().toString().isEmpty()){
+            editText.setError(label+ " không được để trống");
+            return ERR++;
+        }
+        editText.setError(null);
+        return ERR;
     }
 }

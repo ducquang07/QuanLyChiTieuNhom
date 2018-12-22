@@ -23,21 +23,21 @@
                 android:hint="Tên nhóm chi tiêu"
                 android:inputType="textPersonName" />
         </LinearLayout>
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Chọn số thành viên: "/>-->
-            <!--<Spinner-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"></Spinner>-->
-        <!--</LinearLayout>-->
-        <!--<FrameLayout-->
-            <!--android:id="@+id/thanhvien_fragment_container"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quỹ nhóm: "/>
+
+            <EditText
+                android:id="@+id/txtQuy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quỹ nhóm"
+                android:inputType="number"/>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/parent_linear_layout"
             android:layout_width="match_parent"
