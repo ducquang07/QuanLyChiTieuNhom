@@ -39,6 +39,13 @@ public class taikhoan {
         this.avatar = avatar;
     }
 
+    public  taikhoan (String tentaikhoan, String tennguoidung, String avatar)
+    {
+        this.tentaikhoan = tentaikhoan;
+        this.tennguoidung = tennguoidung;
+        this.avatar = avatar;
+    }
+
     public String getTentaikhoan() {
         return tentaikhoan;
     }

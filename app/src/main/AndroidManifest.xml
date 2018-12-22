@@ -84,6 +84,8 @@
             android:label="@string/title_activity_thong_ke_gd"
             android:parentActivityName=".Views.ManHinhChinh" />
         <activity android:name=".Fragments.Fragment_NhomChiTieu_Item"></activity>
+
+        <activity android:name=".Views.ThongTinNhom"></activity>
     </application>
 
 </manifest>
