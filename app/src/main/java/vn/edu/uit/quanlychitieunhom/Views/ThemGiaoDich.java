@@ -99,6 +99,7 @@ public class ThemGiaoDich extends AppCompatActivity {
     private int mMonth;
     private int mDay;
     private Uri downloadUri;
+    private Boolean Flag = true;//co xac dinh nhan upload hay chua (true da nhan upload anh va da upload xg)
 
     private kychitieu kychitieu;
     private List<loaigiaodich> List_LoaiGiaoDich = new ArrayList<>();
@@ -152,7 +153,12 @@ public class ThemGiaoDich extends AppCompatActivity {
                 checkValidate("Số tiền",txtSotien);
                 if(ERR == 0){
                     //TODO:
-                    new insertGiaoDichTask().execute();
+                    if (Flag){
+                        new insertGiaoDichTask().execute();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"Vui lòng nhấn upload ảnh hoặc chờ upload hoàn thành trước khi thêm giao dịch",Toast.LENGTH_LONG).show();
+                    }
                 }
                 else{
                     ERR = 0;
@@ -193,7 +199,10 @@ public class ThemGiaoDich extends AppCompatActivity {
         updateDisplay();
     }
 
+    //[BEGIN UPLOAD IMAGE]
+
     private void uploadImage() {
+        Flag = false;//chac chan co là false. xac dinh chua upload xg
         if(filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -218,6 +227,7 @@ public class ThemGiaoDich extends AppCompatActivity {
                         downloadUri = task.getResult();
                         progressDialog.dismiss();
                         Toast.makeText(ThemGiaoDich.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        Flag = true;//xac nhan nguoi dung da uload anh
                     } else {
                         // Handle failures
                         // ...
@@ -247,6 +257,7 @@ public class ThemGiaoDich extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        Flag = false;// danh dau false neu ham duọc goi. de xac dinh nguoi dung co chon anh hay khong (false la da chon anh)
     }
 
     @Override
@@ -267,7 +278,7 @@ public class ThemGiaoDich extends AppCompatActivity {
         }
     }
 
-    //end upload Image
+    //[END UPLOAD IMAGE]
 
     public void GetComponentByID(){
         txtDate = (EditText) findViewById(R.id.txtDate);
@@ -315,12 +326,18 @@ public class ThemGiaoDich extends AppCompatActivity {
 
     //TODO:Get information GiaoDich to insert
     public void GetInputGiaoDich() throws ParseException {
+        String linkImage;
+        if (downloadUri != null){
+            linkImage = downloadUri.toString();
+        }else {
+            linkImage = null;
+        }
         new_giaodich = new giaodich();
         taikhoan create_by = util.getUserLocalStorage(getApplicationContext());
         new_giaodich = new giaodich(util.StringToDate(txtDate.getText().toString(),"dd/MM/yyyy"),
                                     Double.parseDouble(txtSotien.getText().toString()),
                                     txtGhichu.getText().toString(),
-                                    downloadUri.toString(),
+                                    linkImage,
                                     NhomChiTieu,
                                     create_by,
                                     LoaiGiaoDich,
@@ -366,6 +383,9 @@ public class ThemGiaoDich extends AppCompatActivity {
     public void clearInput(){
         txtSotien.setText("");
         txtGhichu.setText("");
+        imageView.setImageDrawable(null);
+        filePath = null;
+        downloadUri = null;
     }
 
 
