@@ -26,9 +26,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
 import vn.edu.uit.quanlychitieunhom.Models.nhomchitieu;
+import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.NhomChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Services.ThanhVienNhom_Service;
+import vn.edu.uit.quanlychitieunhom.Utils.Util;
 
 import static android.view.View.GONE;
 
@@ -42,6 +44,7 @@ public class ThemNhomChiTieu extends AppCompatActivity {
     private String viewValue;
     private nhomchitieu new_nhomchitieu;
     private EditText txtTenNhom;
+    Util util = new Util();
     nhomchitieu NhomChiTieu = new nhomchitieu();
     int StatusCode;
     @Override
@@ -101,6 +104,7 @@ public class ThemNhomChiTieu extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... strings) {
             try {
+                final taikhoan user = util.getUserLocalStorage(getApplicationContext());
                 NhomChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(NhomChiTieu_Service.class);
                 Call<nhomchitieu> call = service.insert(new_nhomchitieu);
                 call.enqueue(new Callback<nhomchitieu>() {
@@ -113,14 +117,25 @@ public class ThemNhomChiTieu extends AppCompatActivity {
                             //them thanh vien vao nhom
                             try {
                                 ThanhVienNhom_Service thanhVienNhomService = RetrofitClientInstance.getRetrofitInstance().create(ThanhVienNhom_Service.class);
+                                Call<Void> call1 = thanhVienNhomService.insert(NhomChiTieu.getManhomchitieu(),user.getTentaikhoan());
+                                call1.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        StatusCode = response.code();
+                                    }
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+                                        Log.d("ERR",t.getMessage());
+                                    }
+                                });
                                 int count = parentLinearLayout.getChildCount();//lay ra so con cua layout "parentLinearLayout"
                                 for (int i = 0; i < count; i++) {
                                     View view = parentLinearLayout.getChildAt(i);//lay ra con thu i cua "parentLinearLayout"
                                     if (view instanceof EditText) {// kiem tra xem co phai la edit text
                                         viewValue = ((EditText) view).getText().toString();//lay value tu edit text
 //                                        Log.i("Value Edit",viewValue);
-                                        Call<Void> call1 = thanhVienNhomService.insert(NhomChiTieu.getManhomchitieu(),viewValue);// lap lai viẹc them cho den khi het field edit text
-                                        call1.enqueue(new Callback<Void>() {
+                                        Call<Void> call2 = thanhVienNhomService.insert(NhomChiTieu.getManhomchitieu(),viewValue);// lap lai viẹc them cho den khi het field edit text
+                                        call2.enqueue(new Callback<Void>() {
                                             @Override
                                             public void onResponse(Call<Void> call, Response<Void> response) {
                                                 StatusCode = response.code();
