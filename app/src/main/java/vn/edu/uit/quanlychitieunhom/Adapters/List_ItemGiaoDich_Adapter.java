@@ -51,7 +51,7 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
         TextView tvTransactionName = (TextView) v.findViewById(R.id.tvTransactionName);
         TextView tvCharge = (TextView) v.findViewById(R.id.tvCharge);
 
-        tvTransactionName.setText(list_itemGiaodich.get(position).getGhichu());
+        tvTransactionName.setText(list_itemGiaodich.get(position).getLoaigiaodich().getTenloaigiaodich());
 //        tvCharge.setText(numberFormat.format(list_itemGiaodich.get(position).getSotien()));
         tvCharge.setText(util.DoubleToStringByFormat(list_itemGiaodich.get(position).getSotien(),"#,###,###")+"đ");
         LinearLayout ln_item = (LinearLayout) v.findViewById(R.id.ln_item);
@@ -65,6 +65,8 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
                 bundle.putSerializable("ngaygiaodich",list_itemGiaodich.get(position).getNgaygiaodich());
                 bundle.putInt("manhomchitieu",list_itemGiaodich.get(position).getNhomchitieu().getManhomchitieu());
                 bundle.putString("tennhomchitieu",list_itemGiaodich.get(position).getNhomchitieu().getTennhomchitieu());
+                bundle.putString("tenloaigiaodich",list_itemGiaodich.get(position).getLoaigiaodich().getTenloaigiaodich());
+                bundle.putString("ghichu",list_itemGiaodich.get(position).getGhichu());
                 Intent i = new Intent(v.getContext(), ChiTietHoaDon.class);
                 i.putExtras(bundle);
                 mContext.startActivity(i);

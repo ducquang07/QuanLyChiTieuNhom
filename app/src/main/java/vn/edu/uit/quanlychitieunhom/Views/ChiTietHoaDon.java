@@ -28,10 +28,14 @@ public class ChiTietHoaDon extends AppCompatActivity {
         TextView sotien = (TextView) findViewById(R.id.tvTongTien);
         TextView ngaygiaodich = (TextView) findViewById(R.id.tvNgayGiaoDich);
         TextView tennhomchitieu = (TextView) findViewById(R.id.tvTenNhomChiTieu);
+        TextView tenloaichitieu = (TextView) findViewById(R.id.tvLoaiChiTieu);
+        TextView ghichu = (TextView) findViewById(R.id.tvGhiChu);
 
         create_by.setText(i.getStringExtra("tennguoidung"));
         sotien.setText(util.DoubleToStringByFormat(i.getDoubleExtra("sotien",0),"#,###")+"đ");
         ngaygiaodich.setText(util.DateStringByFormat(ngay,"dd/MM/yyyy"));
         tennhomchitieu.setText(i.getStringExtra("tennhomchitieu"));
+        tenloaichitieu.setText(i.getStringExtra("tenloaigiaodich"));
+        ghichu.setText(i.getStringExtra("ghichu"));
     }
 }
