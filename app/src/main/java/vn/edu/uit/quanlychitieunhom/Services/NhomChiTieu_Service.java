@@ -7,6 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import vn.edu.uit.quanlychitieunhom.Models.nhomchitieu;
+import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 
 public interface NhomChiTieu_Service {
 
@@ -15,5 +16,8 @@ public interface NhomChiTieu_Service {
 
     @GET("/api/nhomchitieu/getallnhomchitieuoftaikhoan/{tentaikhoan}")
     Call<List<nhomchitieu>> getAllNhomChiTieu(@Path("tentaikhoan") String tentaikhoan);
+
+    @GET("/api/thanhviennhom/getthanhvien/{manhomchitieu}")
+    Call<List<taikhoan>> getAllThanhVien(@Path("manhomchitieu") int manhomchitieu);
 
 }

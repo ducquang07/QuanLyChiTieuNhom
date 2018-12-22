@@ -11,16 +11,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 import vn.edu.uit.quanlychitieunhom.R;
 
 public class RecyclerView_ThanhVienNhom_Adapter extends RecyclerView.Adapter<RecyclerView_ThanhVienNhom_Adapter.ViewHolder>{
 
-    ArrayList<taikhoan> taikhoanlist;
+    List<taikhoan> taikhoanlist;
     Context context;
 
-    public RecyclerView_ThanhVienNhom_Adapter(ArrayList<taikhoan> taikhoanlist, Context context) {
+    public RecyclerView_ThanhVienNhom_Adapter(List<taikhoan> taikhoanlist, Context context) {
         this.taikhoanlist = taikhoanlist;
         this.context = context;
     }

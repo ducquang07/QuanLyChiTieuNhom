@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ln_nhom_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Fragment_NhomChiTieu_Item"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:context=".Fragments.Fragment_NhomChiTieu_Item">
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -16,8 +18,8 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Tên nhóm"
-            android:textSize="23sp"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:textSize="23sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -30,9 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Số lượng thành viên"
-            android:textSize="23sp"
             android:textAlignment="textStart"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:textSize="23sp" />
     </RelativeLayout>
 </LinearLayout>
