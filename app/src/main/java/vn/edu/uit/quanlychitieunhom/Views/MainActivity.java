@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView nav_view;
     private Spinner spNhomChiTieu;
     private ImageView imageViewUser;
+    private TextView mailUser;
     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
 
     private List<nhomchitieu> List_NhomChiTieu = new ArrayList<>();
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         makeTranslucentStatusBar();
         user_admin = util.getUserLocalStorage(getApplicationContext());
-        util.getImageByUrl(getApplicationContext(),"https://quanlychitieunhom.herokuapp.com/images/avatar/thanhthai.jpg");
+        util.getImageUserLocalStorage(getApplicationContext(),"https://quanlychitieunhom.herokuapp.com/images/avatar/thanhthai.jpg");
         if(user_admin == null){
             this.openLoginView();
         }
@@ -323,6 +325,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
         imageViewUser = (ImageView) hView.findViewById(R.id.imgUser_navigation);
+        mailUser = (TextView) hView.findViewById(R.id.tvMailUser);
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
@@ -446,20 +449,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setDisplayShowTitleEnabled(false);
         tabLayout.setupWithViewPager(viewPager);
 
-
-
-
         imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
-
-//        if(imageViewUser == null ){
-//            Log.d("TEST","NULL");
-//            imageViewUser = (ImageView) findViewById(R.id.imgUser_navigation);
-//            imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
-//        }
-
-
-
-
+        mailUser.setText(user_admin.getEmail());
         new getNhomChiTieuTask().execute();
         new getKyChiTieu().execute();
 

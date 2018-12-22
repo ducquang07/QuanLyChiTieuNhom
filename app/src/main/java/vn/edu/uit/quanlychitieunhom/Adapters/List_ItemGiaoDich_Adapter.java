@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -59,14 +62,10 @@ public class List_ItemGiaoDich_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("tentaikhoan",list_itemGiaodich.get(position).getTaikhoan().getTentaikhoan());
-                bundle.putString("tennguoidung",list_itemGiaodich.get(position).getTaikhoan().getTennguoidung());
-                bundle.putDouble("sotien",list_itemGiaodich.get(position).getSotien());
-                bundle.putSerializable("ngaygiaodich",list_itemGiaodich.get(position).getNgaygiaodich());
-                bundle.putInt("manhomchitieu",list_itemGiaodich.get(position).getNhomchitieu().getManhomchitieu());
-                bundle.putString("tennhomchitieu",list_itemGiaodich.get(position).getNhomchitieu().getTennhomchitieu());
-                bundle.putString("tenloaigiaodich",list_itemGiaodich.get(position).getLoaigiaodich().getTenloaigiaodich());
-                bundle.putString("ghichu",list_itemGiaodich.get(position).getGhichu());
+
+                Gson gson = new Gson();
+                String giaodich = gson.toJson(list_itemGiaodich.get(position));
+                bundle.putString("giaodich",giaodich);
                 Intent i = new Intent(v.getContext(), ChiTietHoaDon.class);
                 i.putExtras(bundle);
                 mContext.startActivity(i);

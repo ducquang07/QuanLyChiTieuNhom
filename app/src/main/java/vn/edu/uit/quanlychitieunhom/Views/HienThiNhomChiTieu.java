@@ -92,4 +92,7 @@ public class HienThiNhomChiTieu extends AppCompatActivity {
             return (StatusCode == 200)? true : false;
         }
     }
+
+
+
 }

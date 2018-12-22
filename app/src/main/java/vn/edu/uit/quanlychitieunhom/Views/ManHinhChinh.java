@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -63,6 +64,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private LinearLayout vLsNapTien;
     private Spinner spNhomChiTieu;
     private ImageView imageViewUser;
+    private TextView mailUser;
+
 
 
     private taikhoan user_admin = new taikhoan();
@@ -74,6 +77,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
         imageViewUser = (ImageView) hView.findViewById(R.id.imgUser_navigation);
+        mailUser = (TextView) hView.findViewById(R.id.tvMailUser);
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
@@ -126,7 +130,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         });
 
         imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
-
+        mailUser.setText(user_admin.getEmail());
     }
 
 

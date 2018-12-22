@@ -18,12 +18,13 @@
         android:src="@drawable/user" />
 
     <TextView
+        android:id="@+id/tvMailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="thainguyen@gmail.com"
-        android:textColor="@color/white"
-        android:textStyle="bold"
         android:paddingTop="5dp"
+        android:text="thainguyen@gmail.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textStyle="bold" />
 </LinearLayout>

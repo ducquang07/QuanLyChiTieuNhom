@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:label">
+        tools:replace="android:label"
+        android:largeHeap="true">
         <activity
             android:name=".Views.SplashScreen"
             android:screenOrientation="portrait"
@@ -37,7 +38,8 @@
             android:name=".Views.ChiTietHoaDon"
             android:exported="true"
             android:parentActivityName=".Views.ManHinhChinh"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".Views.ThongTinNguoiDung"
             android:exported="true"

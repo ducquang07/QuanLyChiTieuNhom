@@ -19,7 +19,7 @@ public class SplashScreen extends AppCompatActivity {
         EasySplashScreen config = new EasySplashScreen(SplashScreen.this)
                 .withFullScreen()
                 .withTargetActivity(MainActivity.class)
-                .withSplashTimeOut(5000)
+                .withSplashTimeOut(3000)
                 .withLogo(R.mipmap.ic_launcher)
                 .withHeaderText("")
                 .withFooterText("Copyright 2018")

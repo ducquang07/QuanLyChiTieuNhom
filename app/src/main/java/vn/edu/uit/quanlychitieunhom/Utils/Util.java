@@ -230,7 +230,38 @@ public class Util {
     }
 
 
-    public void getImageByUrl(final Context context, String url){
+    public void getImageByURL(final Context context, String url, final ImageView imageView){
+        try {
+            Image_Service service = RetrofitClientInstance.getRetrofitInstance().create(Image_Service.class);
+            Call<ResponseBody> call = service.getImage(url);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            //TODO:display the image data in a ImageView or save it
+                            Bitmap bmp = BitmapFactory.decodeStream(response.body().byteStream());
+                            imageView.setImageBitmap(bmp);
+
+                        } else {
+                            imageView.setImageBitmap(null);
+                        }
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    imageView.setImageBitmap(null);
+//                    Toast.makeText(context,"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            imageView.setImageBitmap(null);
+            Log.d("Test", "Exception");
+        }
+    }
+
+
+    public void getImageUserLocalStorage(final Context context, String url){
         try {
             Image_Service service = RetrofitClientInstance.getRetrofitInstance().create(Image_Service.class);
             Call<ResponseBody> call = service.getImage(url);
