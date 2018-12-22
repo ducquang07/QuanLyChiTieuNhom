@@ -37,8 +37,7 @@
             android:name=".Views.ChiTietHoaDon"
             android:exported="true"
             android:parentActivityName=".Views.ManHinhChinh"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Views.ThongTinNguoiDung"
             android:exported="true"

@@ -8,58 +8,58 @@
     tools:context=".Views.ChiTietHoaDon">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--tools:layout_editor_absoluteX="0dp"-->
+        <!--tools:layout_editor_absoluteY="0dp">-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:background="@color/colorPrimary">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="54dp"-->
+            <!--android:background="@color/colorPrimary">-->
 
-            <ImageButton
-                android:id="@+id/btn_contact"
-                android:layout_width="34dp"
-                android:layout_height="match_parent"
+            <!--<ImageButton-->
+                <!--android:id="@+id/btn_contact"-->
+                <!--android:layout_width="34dp"-->
+                <!--android:layout_height="match_parent"-->
 
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:background="@null"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:src="@mipmap/back" />
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:background="@null"-->
+                <!--android:paddingLeft="15dp"-->
+                <!--android:paddingRight="15dp"-->
+                <!--android:src="@mipmap/back" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="0dp"
-                android:gravity="center"
-                android:text="Ngày nhập ở đây"
-                android:textSize="20sp" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginBottom="0dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="Ngày nhập ở đây"-->
+                <!--android:textSize="20sp" />-->
 
-            <ImageButton
-                android:id="@+id/btn_refresh"
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
+            <!--<ImageButton-->
+                <!--android:id="@+id/btn_refresh"-->
+                <!--android:layout_width="45dp"-->
+                <!--android:layout_height="match_parent"-->
 
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:background="@null"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:src="@mipmap/refresh" />
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:layout_marginEnd="0dp"-->
+                <!--android:background="@null"-->
+                <!--android:paddingLeft="15dp"-->
+                <!--android:paddingRight="15dp"-->
+                <!--android:src="@mipmap/refresh" />-->
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -137,6 +137,71 @@
                     android:textSize="20sp"
                     android:textStyle="bold"/>
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="left"
+                    android:text="Loại chi tiêu"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tvLoaiChiTieu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="left"
+                    android:textColor="#000"
+                    android:text="AAAAA"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="left"
+                    android:text="Ghi chú"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tvGhiChu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="left"
+                    android:textColor="#000"
+                    android:text="AAAAA"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
