@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -25,6 +26,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
     private TextView txtsodienthoai;
     private TextView txtEmail;
     private taikhoan user_admin;
+    private ImageView imageViewUser;
 
 
     @Override
@@ -45,6 +47,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
         txtsodienthoai = (TextView) findViewById(R.id.txtsodienthoai);
         txtngaydangki =(TextView) findViewById(R.id.txtngaydangki);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
+        imageViewUser = (ImageView) findViewById(R.id.ImageViewUser);
     }
 
     public void GetInfoUser(){
@@ -74,6 +77,7 @@ public class ThongTinNguoiDung extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
     }
 
     private String getDay(String ngay)

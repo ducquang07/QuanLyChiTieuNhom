@@ -26,7 +26,7 @@
         <activity
             android:name=".Views.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Views.ThemGiaoDich"
             android:exported="true"
@@ -84,6 +84,7 @@
             android:exported="true"
             android:label="@string/title_activity_thong_ke_gd"
             android:parentActivityName=".Views.ManHinhChinh" />
+        <activity android:name=".Fragments.Fragment_NhomChiTieu_Item"></activity>
     </application>
 
 </manifest>

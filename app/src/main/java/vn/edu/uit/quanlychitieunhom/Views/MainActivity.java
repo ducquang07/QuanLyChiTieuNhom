@@ -28,6 +28,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LinearLayout header_container;
     private NavigationView nav_view;
     private Spinner spNhomChiTieu;
+    private ImageView imageViewUser;
     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
 
     private List<nhomchitieu> List_NhomChiTieu = new ArrayList<>();
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         makeTranslucentStatusBar();
         user_admin = util.getUserLocalStorage(getApplicationContext());
+        util.getImageByUrl(getApplicationContext(),"https://quanlychitieunhom.herokuapp.com/images/avatar/thanhthai.jpg");
         if(user_admin == null){
             this.openLoginView();
         }
@@ -317,6 +320,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     protected void ReferenceById(){
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        imageViewUser = (ImageView) hView.findViewById(R.id.imgUser_navigation);
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
@@ -439,6 +445,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setDisplayShowTitleEnabled(false);
         tabLayout.setupWithViewPager(viewPager);
+
+
+
+
+        imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
+
+//        if(imageViewUser == null ){
+//            Log.d("TEST","NULL");
+//            imageViewUser = (ImageView) findViewById(R.id.imgUser_navigation);
+//            imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
+//        }
+
+
+
+
         new getNhomChiTieuTask().execute();
         new getKyChiTieu().execute();
 
