@@ -4,6 +4,12 @@
     <string name="title_activity_lich_su_gd">Lịch sử nạp tiền</string>
     <string name="title_activity_thong_ke_gd">Thống kê giao dịch</string>
     <string name="title_activity_time_option">Chọn ngày</string>
+    <!--thanh-->
+    <string name="enter_fromdate">Từ ngày</string>
+    <string name="enter_todate">Đến ngày</string>
+    <string name="han_muc">Hạn mức chi tiêu</string>
+    <string name="tong_chi">Tổng tiền chi</string>
+    <string name="con_lai">Còn lại</string>
     <!--Thai add-->
     <string name="open">Open</string>
     <string name="close">Close</string>

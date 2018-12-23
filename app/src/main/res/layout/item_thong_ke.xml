@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/colorPrimaryDark"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icons8_report_50" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txttennhom1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên nhóm:"
+                android:textColor="@color/colorTextWhite" />
+
+            <TextView
+                android:id="@+id/txttennhom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/txttennhom1"
+                android:text="Nhóm 1"
+                android:textColor="@color/colorTextWhite"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txttongchitieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng chi:"
+                android:textColor="@color/colorTextWhite" />
+
+            <TextView
+                android:id="@+id/txtTongTienChi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/txttongchitieu"
+                android:text="15000"
+                android:textColor="@color/colorTextWhite"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
