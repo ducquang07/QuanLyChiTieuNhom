@@ -394,7 +394,6 @@ public class ChiTietHoaDon extends AppCompatActivity {
         protected Boolean  doInBackground(String... params) {
             // TODO: register the new account here.
             try {
-                Thread.sleep(2000);
                 GiaoDich_Service service = RetrofitClientInstance.getRetrofitInstance().create(GiaoDich_Service.class);
                 Call<Void> call = service.delete(current_giaodich.getMagiaodich());
                 call.enqueue(new Callback<Void>() {

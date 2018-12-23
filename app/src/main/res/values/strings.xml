@@ -11,7 +11,8 @@
     <string name="sync">Bấm để đồng bộ</string>
     <string name="notification_btn">TODO</string>
     <string name="user">user</string>
-
+    <string name="remove">Xóa</string>
+    <string name="cancel">Hủy</string>
 
     <!--TEST-->
     <string name="country_prompt">Choose a country</string>

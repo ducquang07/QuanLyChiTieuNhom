@@ -87,7 +87,10 @@
             android:parentActivityName=".Views.ManHinhChinh" />
         <activity android:name=".Fragments.Fragment_NhomChiTieu_Item"></activity>
 
-        <activity android:name=".Views.ThongTinNhom"></activity>
+        <activity
+            android:name=".Views.ThongTinNhom"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

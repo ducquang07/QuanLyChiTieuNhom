@@ -94,5 +94,12 @@ public class HienThiNhomChiTieu extends AppCompatActivity {
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(util.getFlagEditNhom(getApplicationContext())){
+            new getNhomChiTieuTask().execute();
+            util.setFlagEditNhom(getApplicationContext(),false);
+        }
+    }
 }

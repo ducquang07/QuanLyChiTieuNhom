@@ -7,44 +7,6 @@
     android:background="@drawable/shape"
     android:orientation="vertical">
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@drawable/border_bottom"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvTransactionName"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:gravity="left"-->
-    <!--android:padding="10dp"-->
-    <!--android:text="Cà phê"-->
-    <!--android:textColor="#000"-->
-    <!--android:textSize="20sp" />-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvCharge"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="right"-->
-    <!--android:padding="10dp"-->
-    <!--android:text="2000"-->
-    <!--android:textColor="#000"-->
-    <!--android:textSize="20sp" />-->
-    <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/ln_title"
