@@ -19,7 +19,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:paddingTop="10dp"
-            android:text="Từ ngày"
+            android:text="@string/enter_fromdate"
             android:textColor="@color/mauden"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -41,6 +41,7 @@
             android:focusable="true"
             android:inputType="date" />
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -54,7 +55,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:paddingTop="10dp"
-            android:text="Đến ngày"
+            android:text="@string/enter_todate"
             android:textColor="@color/mauden"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -74,4 +75,5 @@
             android:inputType="date" />
 
     </LinearLayout>
+
 </LinearLayout>
