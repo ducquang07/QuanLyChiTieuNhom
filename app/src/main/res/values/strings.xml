@@ -7,6 +7,9 @@
     <!--thanh-->
     <string name="enter_fromdate">Từ ngày</string>
     <string name="enter_todate">Đến ngày</string>
+    <string name="han_muc">Hạn mức chi tiêu</string>
+    <string name="tong_chi">Tổng tiền chi</string>
+    <string name="con_lai">Còn lại</string>
     <!--Thai add-->
     <string name="open">Open</string>
     <string name="close">Close</string>
