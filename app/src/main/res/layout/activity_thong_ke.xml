@@ -35,7 +35,8 @@
             android:layout_toEndOf="@+id/textView1"
             android:gravity="center"
             android:ems="10"
-            android:focusable="true"
+            android:focusable="false"
+
             android:inputType="date" />
 
     </RelativeLayout>
@@ -84,7 +85,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:ems="10"
-            android:focusable="true"
+            android:focusable="false"
             android:inputType="date"
             android:layout_toEndOf="@+id/textView2"/>
 
