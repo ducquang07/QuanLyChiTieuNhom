@@ -193,7 +193,7 @@ public class ThayDoiThongTinNguoiDung extends AppCompatActivity {
         protected Boolean  doInBackground(String... params) {
             // TODO: register the new account here.
             try {
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 TaiKhoan_Service service = RetrofitClientInstance.getRetrofitInstance().create(TaiKhoan_Service.class);
                 getInputInfo();
                 Call<taikhoan> call = service.update(user_admin.getTentaikhoan(),user_admin);

@@ -408,7 +408,7 @@ public class ThemGiaoDich extends AppCompatActivity {
         protected Boolean  doInBackground(String... params) {
             // TODO: register the new account here.
             try {
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 GiaoDich_Service service = RetrofitClientInstance.getRetrofitInstance().create(GiaoDich_Service.class);
                 Call<Void> call = service.insert(new_giaodich);
                 call.enqueue(new Callback<Void>() {

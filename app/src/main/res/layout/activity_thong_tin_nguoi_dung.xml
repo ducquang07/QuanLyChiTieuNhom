@@ -17,6 +17,12 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:gravity="center|bottom">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center|bottom">
 
             <ImageView
 
@@ -25,11 +31,35 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/hoaanhdao" />
+                android:src="@drawable/noimage" />
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            android:gravity="center|bottom">
 
+            <Button
+                android:id="@+id/btnChonAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_button_doithongtin"
+                android:text="Chọn ảnh"/>
+
+            <Button
+                android:id="@+id/btnLuuAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_button_doithongtin"
+                android:text="Lưu"/>
+
+
+        </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

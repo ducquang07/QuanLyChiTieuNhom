@@ -244,7 +244,7 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
         protected Boolean  doInBackground(String... params) {
             // TODO: register the new account here.
             try {
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
                 Call<Void> call = service.insert(new_kychitieu);
                 call.enqueue(new Callback<Void>() {

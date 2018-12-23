@@ -117,7 +117,7 @@ public class DangKiTaiKhoan extends AppCompatActivity {
         protected Boolean  doInBackground(String... params) {
             // TODO: register the new account here.
             try {
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 TaiKhoan_Service service = RetrofitClientInstance.getRetrofitInstance().create(TaiKhoan_Service.class);
                 Call<Void> call = service.signup(params[0], params[1],params[2],params[3]);
                 call.enqueue(new Callback<Void>() {

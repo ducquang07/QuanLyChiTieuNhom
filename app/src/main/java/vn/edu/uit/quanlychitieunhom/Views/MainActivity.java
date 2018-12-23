@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView nav_view;
     private Spinner spNhomChiTieu;
     private ImageView imageViewUser;
-    private TextView mailUser;
+    private TextView nameUser;
     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
 
     private List<nhomchitieu> List_NhomChiTieu = new ArrayList<>();
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         protected Boolean  doInBackground(String... params) {
             try {
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 TaiKhoan_Service service = RetrofitClientInstance.getRetrofitInstance().create(TaiKhoan_Service.class);
                 Call<taikhoan> call = service.login(params[0], params[1]);
                 call.enqueue(new Callback<taikhoan>() {
@@ -296,10 +296,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Nhóm",Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(), HienThiNhomChiTieu.class);
             startActivity(i);
-        }else if(id == R.id.nav_xu_huong){
-            Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
-        }
-        else if(id == R.id.nav_so_giao_dich){
+        }else if(id == R.id.nav_so_giao_dich){
 //            Toast.makeText(getApplicationContext(),"Thiết lập kỳ chi tiêu",Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(), ThietLapKiChiTieu.class);
             startActivity(i);
@@ -324,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
         imageViewUser = (ImageView) hView.findViewById(R.id.imgUser_navigation);
-        mailUser = (TextView) hView.findViewById(R.id.tvMailUser);
+        nameUser = (TextView) hView.findViewById(R.id.tvNameUser);
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
@@ -447,9 +444,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setDisplayShowTitleEnabled(false);
         tabLayout.setupWithViewPager(viewPager);
-
-        imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
-        mailUser.setText(user_admin.getEmail());
+        if (user_admin.getAvatar()!=null)
+        {
+            util.getImageByURL(getApplicationContext(),user_admin.getAvatar(),imageViewUser);
+        }
+        nameUser.setText(user_admin.getTennguoidung());
         new getNhomChiTieuTask().execute();
         new getKyChiTieu().execute();
 

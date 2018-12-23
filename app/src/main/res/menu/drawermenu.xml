@@ -6,10 +6,6 @@
             android:icon="@drawable/ic_account_balance_wallet_black_24dp"
             android:title="Thiết lập kỳ chi tiêu" />
         <item
-            android:id="@+id/nav_xu_huong"
-            android:title="Xu hướng"
-            android:icon="@drawable/ic_show_chart_black_24dp"/>
-        <item
             android:id="@+id/nav_nhom"
             android:title="Nhóm"
             android:icon="@drawable/ic_group_black_24dp"/>

@@ -64,7 +64,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private LinearLayout vLsNapTien;
     private Spinner spNhomChiTieu;
     private ImageView imageViewUser;
-    private TextView mailUser;
+    private TextView nameUser;
 
 
 
@@ -77,7 +77,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
         imageViewUser = (ImageView) hView.findViewById(R.id.imgUser_navigation);
-        mailUser = (TextView) hView.findViewById(R.id.tvMailUser);
+        nameUser = (TextView) hView.findViewById(R.id.tvNameUser);
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
         mDrawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
@@ -129,8 +129,11 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        imageViewUser.setImageBitmap(util.getImageUser(getApplicationContext()));
-        mailUser.setText(user_admin.getEmail());
+        if (user_admin.getAvatar()!=null)
+        {
+            util.getImageByURL(getApplicationContext(),user_admin.getAvatar(),imageViewUser);
+        }
+        nameUser.setText(user_admin.getTennguoidung());
     }
 
 
@@ -197,8 +200,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(),"Nhóm",Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(), HienThiNhomChiTieu.class);
             startActivity(i);
-        }else if(id == R.id.nav_xu_huong){
-            Toast.makeText(getApplicationContext(),"Xu hướng",Toast.LENGTH_LONG).show();
         }else if(id == R.id.nav_so_giao_dich){
             Toast.makeText(getApplicationContext(),"Thiết lập kỳ chi tiêu",Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(), ThietLapKiChiTieu.class);
