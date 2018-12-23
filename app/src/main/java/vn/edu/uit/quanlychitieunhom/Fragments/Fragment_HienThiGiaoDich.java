@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -23,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.edu.uit.quanlychitieunhom.Adapters.List_NgayGiaoDich_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
+import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
 import vn.edu.uit.quanlychitieunhom.Models.list_giaodich;
 import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.GiaoDich_Service;
@@ -34,10 +36,23 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     ProgressBar progressBar;
     protected int MaKyChiTieu;
     protected  int MaNhomChiTieu;
+    protected kychitieu kychitieu;
     private ListView lvTransaction;
+    private TextView tvHanMucChiTieu;
+    private TextView tvTongTienChi;
+    private TextView tvConLai;
+    private View mheaderView;
+    private View mainView;
+    private TextView tvQuyNhom;
+    private TextView TuNgay;
+    private TextView DenNgay;
+
     private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
     private List<giaodich> List_GiaoDich;
     private List<list_giaodich> List_GiaoDichTheoNgay;
+
+
+
     Util util = new Util();
     public int position;
 
@@ -52,14 +67,29 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         lvTransaction = (ListView) view.findViewById(R.id.lv_transaction);
         List_GiaoDich = new ArrayList<>();
+
+
+        mheaderView = inflater.inflate(R.layout.fragment_thong_ke_ky_chi_tieu, null);
+        mainView = inflater.inflate(R.layout.activity_man_hinh_chinh,null);
+//        tvQuyNhom = (TextView) mainView.findViewById(R.id.tvQuyNhom);
+        tvHanMucChiTieu = (TextView) mheaderView.findViewById(R.id.tvHanMucCT);
+        tvTongTienChi = (TextView) mheaderView.findViewById(R.id.tvTongTienChi);
+        tvConLai = (TextView) mheaderView.findViewById(R.id.tvConLai);
+        lvTransaction.addHeaderView(mheaderView);
+        TuNgay = view.findViewById(R.id.tvTuNgay);
+        DenNgay = view.findViewById(R.id.tvDenNgay);
+
+//        lvTransaction.addHeaderView(mheaderView);
         getGiaoDich();
         return view;
     }
 
+    public void setKychitieu(kychitieu kychitieu){ this.kychitieu = kychitieu;}
     public void setMaKiChiTieu(int makichitieu){
         this.MaKyChiTieu = makichitieu;
     }
     public void setMaNhomChiTieu(int manhomchitieu){this.MaNhomChiTieu = manhomchitieu;}
+
     /*Get list giao dich by request API*/
     public void getGiaoDich(){
         try {
@@ -91,12 +121,18 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     /*Create List Giao Dich adapter to set up listview */
     public void GeneratedAdapter(){
         /*Pass param for list_adapter*/
+//        tvQuyNhom.setText(util.IntegerToStringByFormat(TinhQuyNhom(kychitieu,List_GiaoDich),"#,###"));
+        TuNgay.setText(util.DateStringByFormat(kychitieu.getTungay(),"dd/MM/yyyy"));
+        DenNgay.setText(util.DateStringByFormat(kychitieu.getDenngay(),"dd/MM/yyyy"));
+        tvHanMucChiTieu.setText(util.DoubleToStringByFormat(kychitieu.getHanmucchitieu(),"#,###"));
+        tvTongTienChi.setText(util.IntegerToStringByFormat(TongTienChi(List_GiaoDich),"#,###"));
+        tvConLai.setText(String.valueOf(util.IntegerToStringByFormat((int) (kychitieu.getHanmucchitieu()-TongTienChi(List_GiaoDich)),"#,###")));
         list_ngaygiaoDich_adapter = new List_NgayGiaoDich_Adapter(getContext(),List_GiaoDichTheoNgay);
         /*Set adapter for listview*/
         lvTransaction.setAdapter(list_ngaygiaoDich_adapter);
         progressBar.setVisibility(View.INVISIBLE);
-    }
 
+    }
 
     @Override
     public void onResume() {
@@ -108,8 +144,17 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                 }
             }
         }
-
         super.onResume();
+    }
+
+    public int TongTienChi(List<giaodich> list_GiaoDich){
+        int tongtien = 0;
+        for(giaodich item:list_GiaoDich){
+            if(item.getLoaigiaodich().getNhom().equals("chi")){
+                tongtien+=item.getSotien();
+            }
+        }
+        return tongtien;
     }
 
 

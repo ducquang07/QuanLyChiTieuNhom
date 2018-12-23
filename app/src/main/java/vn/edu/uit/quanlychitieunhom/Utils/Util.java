@@ -261,7 +261,7 @@ public class Util {
     }
 
 
-    public void getImageUserLocalStorage(final Context context, String url){
+    public void getImageUser(final Context context, String url){
         try {
             Image_Service service = RetrofitClientInstance.getRetrofitInstance().create(Image_Service.class);
             Call<ResponseBody> call = service.getImage(url);
@@ -288,6 +288,7 @@ public class Util {
         }
     }
 
+
     public void setImageUserLocalStorage(Context context,Bitmap bitmap){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
@@ -313,10 +314,12 @@ public class Util {
                 .decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 
-    public Bitmap getImageUser(Context context){
+    public Bitmap getImageUserLocalStorage(Context context){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String string_img_user = sharedPref.getString("image_user","");
-        Log.d("IMAGE",string_img_user);
+        if(string_img_user.equals("")){
+            return null;
+        }
         return decodeBase64(string_img_user);
     }
 

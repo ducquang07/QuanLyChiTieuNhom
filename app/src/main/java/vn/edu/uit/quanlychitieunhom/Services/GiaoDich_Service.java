@@ -21,6 +21,9 @@ public interface GiaoDich_Service {
     Call<List<giaodich>> getGiaoDichOfKyChiTieu(@Path("makychitieu") int makychitieu,
                                                 @Path("manhomchitieu") int manhomchitieu);
 
+    @GET("/api/giaodich/manhomchitieu/{manhomchitieu}")
+    Call<List<giaodich>> getAllGiaoDichNhom(@Path("manhomchitieu") int manhomchitieu);
+
     @POST("/api/giaodich/")
     Call<Void> insert(@Body giaodich body);
 

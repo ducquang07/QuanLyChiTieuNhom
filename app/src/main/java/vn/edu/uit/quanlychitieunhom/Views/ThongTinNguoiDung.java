@@ -107,6 +107,8 @@ public class ThongTinNguoiDung extends AppCompatActivity {
         {
             util.getImageByURL(getApplicationContext(),user_admin.getAvatar(),imageViewUser);
         }
+//        if (util.getImageUserLocalStorage(getApplicationContext()) != null)
+//            imageViewUser.setImageBitmap(util.getImageUserLocalStorage(getApplicationContext()));
     }
 
     private void addControls() {

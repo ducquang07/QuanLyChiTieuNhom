@@ -41,9 +41,11 @@ import retrofit2.Response;
 import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
 import vn.edu.uit.quanlychitieunhom.Adapters.SpinnerNhomChiTieu_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
+import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
 import vn.edu.uit.quanlychitieunhom.Models.nhomchitieu;
 import vn.edu.uit.quanlychitieunhom.R;
+import vn.edu.uit.quanlychitieunhom.Services.GiaoDich_Service;
 import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 import vn.edu.uit.quanlychitieunhom.Services.NhomChiTieu_Service;
@@ -65,6 +67,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private Spinner spNhomChiTieu;
     private ImageView imageViewUser;
     private TextView nameUser;
+    private TextView tvQuyNhom;
 
 
 
@@ -89,6 +92,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         if (nav_view != null) {
             nav_view.setNavigationItemSelectedListener(this);
         }
+        tvQuyNhom = findViewById(R.id.tvQuyNhom);
     }
 
 
@@ -281,6 +285,26 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         @Override
         protected Boolean  doInBackground(String... params) {
             try {
+                GiaoDich_Service service = RetrofitClientInstance.getRetrofitInstance().create(GiaoDich_Service.class);
+                Call<List<giaodich>> call = service.getAllGiaoDichNhom(NhomChiTieu.getManhomchitieu());
+                call.enqueue(new Callback<List<giaodich>>() {
+                    @Override
+                    public void onResponse(Call<List<giaodich>> call, final Response<List<giaodich>> response) {
+                        StatusCode = response.code();
+                        tvQuyNhom.setText(util.DoubleToStringByFormat(TinhQuyNhom(NhomChiTieu,response.body()),"#,###")+"đ");
+                    }
+                    @Override
+                    public void onFailure(Call<List<giaodich>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Test", "Exception");
+            }finally {
+                util.setFlagNewKyChiTieu(getApplicationContext(),false,0);
+            }
+
+            try {
                 KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
                 Call<List<kychitieu>> call = service.getAllKyChiTieu(NhomChiTieu.getManhomchitieu());
                 call.enqueue(new Callback<List<kychitieu>>() {
@@ -333,4 +357,17 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             new getKyChiTieu().execute();
         }
     }
+
+    public double TinhQuyNhom(nhomchitieu nhom,List<giaodich> list_GiaoDich){
+        double quynhom = nhom.getQuy();
+        for(giaodich item:list_GiaoDich){
+            if(item.getLoaigiaodich().getNhom().equals("chi")){
+                quynhom-=item.getSotien();
+            }else{
+                quynhom+=item.getSotien();
+            }
+        }
+        return quynhom;
+    }
+
 }

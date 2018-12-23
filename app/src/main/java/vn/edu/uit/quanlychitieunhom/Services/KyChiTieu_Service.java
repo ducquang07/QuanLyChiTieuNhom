@@ -18,7 +18,7 @@ public interface KyChiTieu_Service {
 //    @GET("/api/kychitieu/getAll/{tentaikhoan}")
 //    Call<List<kychitieu>> getAllKyChiTieu(@Path("tentaikhoan") String tentaikhoan);
 
-    @GET("api/kychitieu/getAllKyByNhom/{manhomchitieu}")
+    @GET("/api/kychitieu/getAllKyByNhom/{manhomchitieu}")
     Call<List<kychitieu>> getAllKyChiTieu(@Path("manhomchitieu") int manhomchitieu);
 
     @POST("/api/kychitieu/")

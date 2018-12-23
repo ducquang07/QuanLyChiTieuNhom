@@ -46,10 +46,12 @@ import retrofit2.Response;
 import vn.edu.uit.quanlychitieunhom.Adapters.SimpleFragmentPagerAdapter;
 import vn.edu.uit.quanlychitieunhom.Adapters.SpinnerNhomChiTieu_Adapter;
 import vn.edu.uit.quanlychitieunhom.ClientConfig.RetrofitClientInstance;
+import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 import vn.edu.uit.quanlychitieunhom.Models.kychitieu;
 import vn.edu.uit.quanlychitieunhom.Models.nhomchitieu;
 import vn.edu.uit.quanlychitieunhom.Models.taikhoan;
 import vn.edu.uit.quanlychitieunhom.R;
+import vn.edu.uit.quanlychitieunhom.Services.GiaoDich_Service;
 import vn.edu.uit.quanlychitieunhom.Services.KyChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Services.NhomChiTieu_Service;
 import vn.edu.uit.quanlychitieunhom.Services.TaiKhoan_Service;
@@ -86,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Spinner spNhomChiTieu;
     private ImageView imageViewUser;
     private TextView nameUser;
+    private TextView tvQuyNhom;
+
+
     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
 
     private List<nhomchitieu> List_NhomChiTieu = new ArrayList<>();
@@ -96,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         makeTranslucentStatusBar();
         user_admin = util.getUserLocalStorage(getApplicationContext());
-        util.getImageUserLocalStorage(getApplicationContext(),"https://quanlychitieunhom.herokuapp.com/images/avatar/thanhthai.jpg");
+//        util.getImageUserLocalStorage(getApplicationContext(),user_admin.getAvatar());
         if(user_admin == null){
             this.openLoginView();
         }
@@ -194,6 +199,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         @Override
         protected Boolean  doInBackground(String... params) {
+            try {
+                GiaoDich_Service service = RetrofitClientInstance.getRetrofitInstance().create(GiaoDich_Service.class);
+                Call<List<giaodich>> call = service.getAllGiaoDichNhom(NhomChiTieu.getManhomchitieu());
+                call.enqueue(new Callback<List<giaodich>>() {
+                    @Override
+                    public void onResponse(Call<List<giaodich>> call, final Response<List<giaodich>> response) {
+                        StatusCode = response.code();
+                        tvQuyNhom.setText(util.DoubleToStringByFormat(TinhQuyNhom(NhomChiTieu,response.body()),"#,###")+"đ");
+                    }
+                    @Override
+                    public void onFailure(Call<List<giaodich>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Có lỗi xảy ra. Vui lòng thao tác lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Test", "Exception");
+            }finally {
+                util.setFlagNewKyChiTieu(getApplicationContext(),false,0);
+            }
+
             try {
                 KyChiTieu_Service service = RetrofitClientInstance.getRetrofitInstance().create(KyChiTieu_Service.class);
                 Call<List<kychitieu>> call = service.getAllKyChiTieu(NhomChiTieu.getManhomchitieu());
@@ -320,6 +345,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void ReferenceById(){
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
+        tvQuyNhom = findViewById(R.id.tvQuyNhom);
         imageViewUser = (ImageView) hView.findViewById(R.id.imgUser_navigation);
         nameUser = (TextView) hView.findViewById(R.id.tvNameUser);
         spNhomChiTieu = findViewById(R.id.spNhomChiTieu);
@@ -474,6 +500,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+    }
+
+    public double TinhQuyNhom(nhomchitieu nhom,List<giaodich> list_GiaoDich){
+        double quynhom = nhom.getQuy();
+        for(giaodich item:list_GiaoDich){
+            if(item.getLoaigiaodich().getNhom().equals("chi")){
+                quynhom-=item.getSotien();
+            }else{
+                quynhom+=item.getSotien();
+            }
+        }
+        return quynhom;
     }
 }
 

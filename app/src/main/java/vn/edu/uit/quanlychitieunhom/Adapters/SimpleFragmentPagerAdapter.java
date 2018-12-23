@@ -49,6 +49,7 @@ public class SimpleFragmentPagerAdapter extends FragmentStatePagerAdapter {
         Fragment_HienThiGiaoDich fragment_hienThiGiaoDich = new Fragment_HienThiGiaoDich();
         fragment_hienThiGiaoDich.setMaKiChiTieu(List_KyChiTieu.get(position).getMakychitieu());
         fragment_hienThiGiaoDich.setMaNhomChiTieu(List_KyChiTieu.get(position).getNhomchitieu().getManhomchitieu());
+        fragment_hienThiGiaoDich.setKychitieu(List_KyChiTieu.get(position));
         return fragment_hienThiGiaoDich;
     }
 
