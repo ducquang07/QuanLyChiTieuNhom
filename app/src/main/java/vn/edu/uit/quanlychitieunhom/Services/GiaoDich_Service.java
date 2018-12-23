@@ -29,6 +29,11 @@ public interface GiaoDich_Service {
 
     @DELETE("/api/giaodich/{magiaodich}")
     Call<Void> delete(@Path("magiaodich") int magiaodich);
+
+    @GET("/api/giaodich/thongkegiaodich/{ngaybatdau}/{ngayketthuc}/{tentaikhoan}")
+    Call<List<giaodich>> getThongKe(@Path( "ngaybatdau" ) String ngaybatdau,
+                                    @Path("ngayketthuc") String ngayketthuc,
+                                    @Path("tentaikhoan") String tentaikhoan);
 }
 
 

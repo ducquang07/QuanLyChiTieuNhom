@@ -321,4 +321,15 @@ public class Util {
     }
 
 
+    public void setFlagEditNhom(Context context,boolean bool){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("flag_edit_nhom",bool);
+        editor.apply();
+    }
+
+    public boolean getFlagEditNhom(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPref.getBoolean("flag_edit_nhom",false);
+    }
 }

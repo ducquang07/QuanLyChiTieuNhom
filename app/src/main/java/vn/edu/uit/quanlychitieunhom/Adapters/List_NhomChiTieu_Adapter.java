@@ -79,8 +79,8 @@ public class List_NhomChiTieu_Adapter  extends BaseAdapter {
                                     public void onClick(View v) {
                                     Bundle bundle = new Bundle();
                                     Gson gson = new Gson();
-                                    String list_thanhvien = gson.toJson(response.body());
-                                    bundle.putString("list_thanhvien",list_thanhvien);
+                                    bundle.putString("list_thanhvien",gson.toJson(response.body()));
+                                    bundle.putString("nhomchitieu",gson.toJson(list_NhomChiTieu.get(position)));
                                     Intent i = new Intent(v.getContext(),ThongTinNhom.class);
                                     i.putExtras(bundle);
                                     mContext.startActivity(i);
