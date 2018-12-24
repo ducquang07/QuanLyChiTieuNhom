@@ -508,8 +508,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(util.getFlagEditNhom(getApplicationContext())){
             new getNhomChiTieuTask().execute();
         }
-
-
     }
 
     public double TinhQuyNhom(nhomchitieu nhom,List<giaodich> list_GiaoDich){

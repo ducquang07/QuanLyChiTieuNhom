@@ -133,6 +133,7 @@ public class ThemNhomChiTieu extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
                                         StatusCode = response.code();
+                                        util.setFlagEditNhom(getApplicationContext(),true);
                                     }
                                     @Override
                                     public void onFailure(Call<Void> call, Throwable t) {
@@ -186,9 +187,6 @@ public class ThemNhomChiTieu extends AppCompatActivity {
                 });
             }catch (Exception e) {
                 Log.d("ERROR", e.toString());
-            }
-            finally {
-                util.setFlagEditNhom(getApplicationContext(),true);
             }
             return (StatusCode == 200)? true : false;
         }
