@@ -58,6 +58,7 @@ import static vn.edu.uit.quanlychitieunhom.Views.ThemGiaoDich.DATE_DIALOG_ID;
 public class ChiTietHoaDon extends AppCompatActivity {
     Util util = new Util();
     int StatusCode;
+    int ERR = 0;
 
     private TextView create_by;
     private EditText sotien;
@@ -82,13 +83,10 @@ public class ChiTietHoaDon extends AppCompatActivity {
 
     public void GetComponentByID(){
         create_by = (TextView) findViewById(R.id.tvTenNguoiNhap);
-//        TextView sotien = (TextView) findViewById(R.id.tvTongTien);
         sotien = (EditText) findViewById(R.id.txtTongtien) ;
-//        TextView ngaygiaodich = (TextView) findViewById(R.id.tvNgayGiaoDich);
         ngaygiaodich = (EditText) findViewById(R.id.txtNgayGiaoDich);
         tennhomchitieu = (TextView) findViewById(R.id.tvTenNhomChiTieu);
         loaichitieu = (Spinner) findViewById(R.id.spLoaiGiaoDich) ;
-//        TextView tenloaichitieu = (TextView) findViewById(R.id.tvLoaiChiTieu);
         ghichu = (EditText) findViewById(R.id.txtGhichu);
         anhhoadon = (ImageView) findViewById(R.id.imgHoaDon);
         btnLuuThongTin = (Button) findViewById(R.id.btnLuuThongTin);
@@ -108,7 +106,6 @@ public class ChiTietHoaDon extends AppCompatActivity {
         current_giaodich = gson.fromJson(i.getStringExtra("giaodich"),giaodich.class);
         Log.d("CURRENT",current_giaodich.toString());
 
-        Date ngay = (Date) i.getSerializableExtra("ngaygiaodich");
 
         create_by.setText(current_giaodich.getTaikhoan().getTennguoidung());
         sotien.setText(String.valueOf(current_giaodich.getSotien()));
@@ -121,6 +118,7 @@ public class ChiTietHoaDon extends AppCompatActivity {
 
         new getLoaiGiaoDichTask().execute();
         EditMode(false);
+
     }
 
 
@@ -174,7 +172,14 @@ public class ChiTietHoaDon extends AppCompatActivity {
         btnLuuThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new updateGiaoDichTask().execute();
+                checkValidate("Số tiền",sotien);
+                if(ERR == 0){
+                    new updateGiaoDichTask().execute();
+                }
+                else{
+                    ERR = 0;
+                }
+
             }
         });
 
@@ -438,6 +443,17 @@ public class ChiTietHoaDon extends AppCompatActivity {
             return (StatusCode == 200)? true : false;
         }
 
+    }
+
+
+    public int checkValidate(String label,EditText editText){
+
+        if(editText.getText().toString().equals(null)||editText.getText().equals("") || editText.getText().toString().isEmpty()){
+            editText.setError(label+ " không được để trống");
+            return ERR++;
+        }
+        editText.setError(null);
+        return ERR;
     }
 
 }

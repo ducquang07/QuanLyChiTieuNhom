@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -68,6 +69,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     private ImageView imageViewUser;
     private TextView nameUser;
     private TextView tvQuyNhom;
+
 
 
 
@@ -138,6 +140,7 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             util.getImageByURL(getApplicationContext(),user_admin.getAvatar(),imageViewUser);
         }
         nameUser.setText(user_admin.getTennguoidung());
+
     }
 
 

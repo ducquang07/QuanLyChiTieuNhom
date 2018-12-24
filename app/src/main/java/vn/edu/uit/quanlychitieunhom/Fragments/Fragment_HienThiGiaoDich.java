@@ -1,5 +1,6 @@
 package vn.edu.uit.quanlychitieunhom.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import vn.edu.uit.quanlychitieunhom.R;
 import vn.edu.uit.quanlychitieunhom.Services.GiaoDich_Service;
 import vn.edu.uit.quanlychitieunhom.Models.giaodich;
 import vn.edu.uit.quanlychitieunhom.Utils.Util;
+import vn.edu.uit.quanlychitieunhom.Views.ChinhSuaKiChiTieu;
 
 
 public class Fragment_HienThiGiaoDich extends Fragment {
@@ -46,6 +49,7 @@ public class Fragment_HienThiGiaoDich extends Fragment {
     private TextView tvQuyNhom;
     private TextView TuNgay;
     private TextView DenNgay;
+    private Button btnChinhSuaKiChiTieu;
 
     private List_NgayGiaoDich_Adapter list_ngaygiaoDich_adapter;
     private List<giaodich> List_GiaoDich;
@@ -75,9 +79,22 @@ public class Fragment_HienThiGiaoDich extends Fragment {
         tvHanMucChiTieu = (TextView) mheaderView.findViewById(R.id.tvHanMucCT);
         tvTongTienChi = (TextView) mheaderView.findViewById(R.id.tvTongTienChi);
         tvConLai = (TextView) mheaderView.findViewById(R.id.tvConLai);
+        btnChinhSuaKiChiTieu = mheaderView.findViewById(R.id.btnChinhSuaKiChiTieu);
         lvTransaction.addHeaderView(mheaderView);
         TuNgay = view.findViewById(R.id.tvTuNgay);
         DenNgay = view.findViewById(R.id.tvDenNgay);
+
+        btnChinhSuaKiChiTieu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                Gson gson = new Gson();
+                bundle.putString("kychitieu",gson.toJson(kychitieu));
+                Intent i = new Intent(getContext(), ChinhSuaKiChiTieu.class);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
 
 //        lvTransaction.addHeaderView(mheaderView);
         getGiaoDich();
@@ -100,8 +117,6 @@ public class Fragment_HienThiGiaoDich extends Fragment {
                 public void onResponse(Call<List<giaodich>> call, Response<List<giaodich>> response) {
                     Gson gson = new Gson();
                     List_GiaoDich = response.body();
-//                    Log.d("TEST_MAGIAODICH",String.valueOf(MaKyChiTieu)+"/"+String.valueOf(MaNhomChiTieu));
-//                    Log.d("TEST_GIAODICH",gson.toJson(response.body()));
                     List_GiaoDichTheoNgay = util.deployKyChiTieu(List_GiaoDich);
                     GeneratedAdapter();
                 }

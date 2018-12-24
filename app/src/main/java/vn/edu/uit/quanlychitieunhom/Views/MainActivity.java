@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView tvQuyNhom;
 
 
+
     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
 
     private List<nhomchitieu> List_NhomChiTieu = new ArrayList<>();
@@ -126,13 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         btnRegister = findViewById(R.id.btnRegister);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), DangKiTaiKhoan.class);
-                startActivity(i);
-            }
-        });
+
     }
 
 
@@ -477,6 +472,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nameUser.setText(user_admin.getTennguoidung());
         new getNhomChiTieuTask().execute();
         new getKyChiTieu().execute();
+
+
 
     }
 

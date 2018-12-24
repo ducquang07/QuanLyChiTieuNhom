@@ -419,6 +419,7 @@ public class ThemGiaoDich extends AppCompatActivity {
                             showProgress(false);
                             clearInput();
                             Toast.makeText(getApplicationContext(), "Thêm thành công !", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                         else{
                             try {

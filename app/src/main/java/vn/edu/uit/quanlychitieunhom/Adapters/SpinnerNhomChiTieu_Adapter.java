@@ -106,5 +106,14 @@ public class SpinnerNhomChiTieu_Adapter extends ArrayAdapter<nhomchitieu> {
             return (StatusCode == 200)? true : false;
         }
     }
+
+    public int getPositionById(int manhomchitieu){
+        for (int i = 0; i< values.size(); i++) {
+            if(values.get(i).getManhomchitieu() == manhomchitieu){
+                return i;
+            }
+        }
+        return 0;
+    }
 }
 

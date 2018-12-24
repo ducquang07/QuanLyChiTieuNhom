@@ -283,8 +283,6 @@ public class ThietLapKiChiTieu extends AppCompatActivity {
             }
             finally {
                 util.setFlagNewKyChiTieu(getApplicationContext(),true, NhomChiTieu.getManhomchitieu());
-                Log.d("manhom",String.valueOf(NhomChiTieu));
-                Log.d("TEST",util.getFlagNewKyChiTieu(getApplicationContext()).toString());
             }
             return (StatusCode == 200)? true : false;
         }
