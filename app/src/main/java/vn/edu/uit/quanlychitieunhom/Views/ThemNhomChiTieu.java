@@ -187,6 +187,9 @@ public class ThemNhomChiTieu extends AppCompatActivity {
             }catch (Exception e) {
                 Log.d("ERROR", e.toString());
             }
+            finally {
+                util.setFlagEditNhom(getApplicationContext(),true);
+            }
             return (StatusCode == 200)? true : false;
         }
     }

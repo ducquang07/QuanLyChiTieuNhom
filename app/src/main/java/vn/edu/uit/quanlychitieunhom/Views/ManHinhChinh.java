@@ -274,6 +274,9 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             } catch (Exception e) {
                 Log.d("Test", "Exception");
             }
+            finally {
+                util.setFlagEditNhom(getApplicationContext(),false);
+            }
             // TODO: register the new account here.
             return (StatusCode == 200)? true : false;
         }
@@ -358,6 +361,9 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         Util.FlagNewKyChiTieu flagNewKyChiTieu = util.getFlagNewKyChiTieu(getApplicationContext());
         if(flagNewKyChiTieu.isFlag() && flagNewKyChiTieu.getManhom() == NhomChiTieu.getManhomchitieu()){
             new getKyChiTieu().execute();
+        }
+        if(util.getFlagEditNhom(getApplicationContext())){
+            new getNhomChiTieuTask().execute();
         }
     }
 

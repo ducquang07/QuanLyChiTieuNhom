@@ -127,7 +127,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         btnRegister = findViewById(R.id.btnRegister);
-
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), DangKiTaiKhoan.class);
+                startActivity(i);
+            }
+        });
     }
 
 
@@ -446,6 +452,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
             } catch (Exception e) {
                 Log.d("Test", "Exception");
+
+            }
+            finally {
+                util.setFlagEditNhom(getApplicationContext(),false);
             }
             // TODO: register the new account here.
             return (StatusCode == 200)? true : false;
@@ -494,6 +504,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Util.FlagNewKyChiTieu flagNewKyChiTieu = util.getFlagNewKyChiTieu(getApplicationContext());
         if(flagNewKyChiTieu.isFlag() && flagNewKyChiTieu.getManhom() == NhomChiTieu.getManhomchitieu()){
             new getKyChiTieu().execute();
+        }
+        if(util.getFlagEditNhom(getApplicationContext())){
+            new getNhomChiTieuTask().execute();
         }
 
 

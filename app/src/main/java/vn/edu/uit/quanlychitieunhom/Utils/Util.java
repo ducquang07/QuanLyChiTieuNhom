@@ -335,4 +335,6 @@ public class Util {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPref.getBoolean("flag_edit_nhom",false);
     }
+
+
 }
